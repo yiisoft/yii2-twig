@@ -140,6 +140,8 @@ class ViewRenderer extends BaseViewRenderer
         }
 
         $this->twig->setLoader($loader);
+
+        Yii::$app->layout = false;
     }
 
     /**
