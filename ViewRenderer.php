@@ -73,6 +73,10 @@ class ViewRenderer extends BaseViewRenderer
      */
     public $lexerOptions = [];
     /**
+     * @var array list of namespaces with pathes
+     */
+    public $namespaces = [];
+    /**
      * @var \Twig_Environment twig environment object that do all rendering twig templates
      */
     public $twig;
@@ -126,6 +130,16 @@ class ViewRenderer extends BaseViewRenderer
         }));
 
         $this->twig->addGlobal('app', \Yii::$app);
+
+        $loader = new \Twig_Loader_Filesystem;
+
+        foreach ($this->namespaces as $dir => $namespace) {
+            if ($path = Yii::getAlias($dir, false)) {
+                $loader->addPath($path, $namespace);
+            }
+        }
+
+        $this->twig->setLoader($loader);
     }
 
     /**
@@ -143,7 +157,7 @@ class ViewRenderer extends BaseViewRenderer
     public function render($view, $file, $params)
     {
         $this->twig->addGlobal('this', $view);
-        $this->twig->setLoader(new TwigSimpleFileLoader(dirname($file)));
+        $this->twig->getLoader()->addPath(dirname($file));
         return $this->twig->render(pathinfo($file, PATHINFO_BASENAME), $params);
     }
 
