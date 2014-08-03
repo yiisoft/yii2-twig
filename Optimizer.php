@@ -49,10 +49,12 @@ class Optimizer implements \Twig_NodeVisitorInterface
                         }
                     }
                     $expression->setNode('arguments', new \Twig_Node($arguments));
+
                     return new \Twig_Node_Do($expression, $expression->getLine());
                 }
             }
         }
+
         return $node;
     }
 

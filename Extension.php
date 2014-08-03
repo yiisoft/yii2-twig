@@ -33,7 +33,6 @@ class Extension extends \Twig_Extension
      */
     protected $widgets = [];
 
-
     /**
      * Creates new instance
      *
@@ -70,7 +69,7 @@ class Extension extends \Twig_Extension
             new \Twig_SimpleFunction('*_widget', [$this, 'widget'], $options),
             new \Twig_SimpleFunction('path', [$this, 'path']),
             new \Twig_SimpleFunction('url', [$this, 'url']),
-            new \Twig_SimpleFunction('void', function(){}),
+            new \Twig_SimpleFunction('void', function () {}),
             new \Twig_SimpleFunction('set', [$this, 'setProperty']),
         ];
 
@@ -81,6 +80,7 @@ class Extension extends \Twig_Extension
         foreach (['begin_page', 'end_page', 'begin_body', 'end_body', 'head'] as $helper) {
             $functions[] = new \Twig_SimpleFunction($helper, [$this, 'viewHelper'], $options);
         }
+
         return $functions;
     }
 
@@ -95,6 +95,7 @@ class Extension extends \Twig_Extension
     {
         $widget = $this->resolveClassName($widget);
         $this->widgets[] = $widget;
+
         return $this->call($widget, 'begin', [
             $config,
         ]);
@@ -155,12 +156,13 @@ class Extension extends \Twig_Extension
                 return $this->aliases[$className] = $resolvedClassName;
             }
         }
+
         return $className;
     }
 
     public function addUses($args)
     {
-        foreach ((array)$args as $key => $value) {
+        foreach ((array) $args as $key => $value) {
             $value = str_replace('/', '\\', $value);
             if (is_int($key)) {
                 // namespace or class import

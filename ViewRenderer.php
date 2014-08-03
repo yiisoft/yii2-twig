@@ -90,7 +90,6 @@ class ViewRenderer extends BaseViewRenderer
      */
     public $twig;
 
-
     public function init()
     {
         $this->twig = new \Twig_Environment(null, array_merge([
@@ -134,9 +133,9 @@ class ViewRenderer extends BaseViewRenderer
      * This method is invoked by [[View]] whenever it tries to render a view.
      * Child classes must implement this method to render the given view file.
      *
-     * @param View $view the view object used for rendering the file.
-     * @param string $file the view file.
-     * @param array $params the parameters to be passed to the view file.
+     * @param View   $view   the view object used for rendering the file.
+     * @param string $file   the view file.
+     * @param array  $params the parameters to be passed to the view file.
      *
      * @return string the rendering result
      */
@@ -154,7 +153,7 @@ class ViewRenderer extends BaseViewRenderer
      * Adds aliases
      *
      * @param \Twig_Loader_Filesystem $loader
-     * @param array $aliases
+     * @param array                   $aliases
      */
     protected function addAliases($loader, $aliases)
     {
@@ -222,8 +221,8 @@ class ViewRenderer extends BaseViewRenderer
 
     /**
      * Adds custom function or filter
-     * @param string $classType 'Function' or 'Filter'
-     * @param array $elements Parameters of elements to add
+     * @param  string     $classType 'Function' or 'Filter'
+     * @param  array      $elements  Parameters of elements to add
      * @throws \Exception
      */
     private function _addCustom($classType, $elements)
