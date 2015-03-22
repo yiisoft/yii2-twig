@@ -3,6 +3,8 @@ Twig Extension for Yii 2
 
 This extension provides a `ViewRender` that would allow you to use [Twig](http://twig.sensiolabs.org/) view template engine.
 
+For license information check the [LICENSE](LICENSE.md)-file.
+
 Installation
 ------------
 
