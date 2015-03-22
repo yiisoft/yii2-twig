@@ -1,5 +1,5 @@
 Installation
-------------
+============
 
 Installation consists of two parts: getting composer package and configuring an application. 
 
