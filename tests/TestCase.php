@@ -5,7 +5,6 @@ namespace yiiunit\extensions\twig;
 use yii\di\Container;
 use yii\helpers\ArrayHelper;
 use Yii;
-use yii\redis\Connection;
 
 /**
  * This is the base class for all yii framework unit tests.
