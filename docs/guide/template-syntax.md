@@ -108,6 +108,12 @@ Assets could be registered the following way:
 In the call above `register` identifies that we're working with assets while `jquery_asset` translates to `JqueryAsset`
 class that we've already imported with `use`.
 
+Additional syntax of registering asset bundles:
+
+```
+{{ register_asset_bundle('yii/web/JqueryAsset') }}
+```
+
 ## Forms
 
 You can build forms the following way:

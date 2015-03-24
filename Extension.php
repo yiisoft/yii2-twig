@@ -78,6 +78,7 @@ class Extension extends \Twig_Extension
             'needs_context' => true,
         ]);
         $functions[] = new \Twig_SimpleFunction('register_*', [$this, 'registerAsset'], $options);
+        $functions[] = new \Twig_SimpleFunction('register_asset_bundle', [$this, 'registerAssetBundle'], $options);
         foreach (['begin_page', 'end_page', 'begin_body', 'end_body', 'head'] as $helper) {
             $functions[] = new \Twig_SimpleFunction($helper, [$this, 'viewHelper'], $options);
         }
@@ -87,6 +88,20 @@ class Extension extends \Twig_Extension
     public function registerAsset($context, $asset)
     {
         return $this->resolveAndCall($asset, 'register', [
+            isset($context['this']) ? $context['this'] : null,
+        ]);
+    }
+
+    /**
+     * Function for additional syntax of registering asset bundles
+     *
+     * @param $context
+     * @param $bundle
+     */
+    public function registerAssetBundle($context, $bundle)
+    {
+        $bundle = str_replace('/', '\\', $bundle);
+        $this->call($bundle, 'register', [
             isset($context['this']) ? $context['this'] : null,
         ]);
     }
