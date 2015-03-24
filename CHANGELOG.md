@@ -4,6 +4,7 @@ Yii Framework 2 twig extension Change Log
 2.0.4 under development
 -----------------------
 
+- Enh #10: Added alternative syntax for registering asset bundles `{{ register_asset_bundle('yii/web/JqueryAsset') }}` (quantum13)
 - Enh #11: Added support for `Twig_SimpleFunction` and `Twig_SimpleFilter` when defining functions and filters (quantum13)
 
 

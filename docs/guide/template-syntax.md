@@ -98,7 +98,13 @@ One could also use more generic `widget_end()` that executes `Widget::end()`.
 
 ## Assets
 
-Assets could be registered the following way:
+Assets could be registered the following way (since 2.0.4):
+
+```
+{{ register_asset_bundle('yii/web/JqueryAsset') }}
+```
+
+There's a bit more verbose syntax used previously:
 
 ```
 {{ use('yii/web/JqueryAsset') }}
