@@ -248,6 +248,8 @@ class ViewRenderer extends BaseViewRenderer
 
             if ($twigElement !== null) {
                 $this->twig->{'add'.$classType}($name, $twigElement);
+            } elseif ($func instanceof \Twig_SimpleFunction || $func instanceof \Twig_SimpleFilter) {
+                $this->twig->{'add'.$classType}($func);
             } else {
                 throw new \Exception("Incorrect options for \"$classType\" $name.");
             }
