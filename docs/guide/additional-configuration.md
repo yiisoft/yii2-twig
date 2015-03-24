@@ -33,6 +33,10 @@ You can define additional functions like the following:
 'functions' => [
     'rot13' => 'str_rot13',
     'truncate' => '\yii\helpers\StringHelper::truncate',
+    new \Twig_SimpleFunction('rot14', 'str_rot13'),
+    new \Twig_SimpleFunction('add_*', function ($symbols, $val) {
+        return $val . $symbols;
+    }, ['is_safe' => ['html']])
 ],
 ```
 
@@ -41,6 +45,8 @@ In template they could be used like the following:
 ```
 `{{ rot13('test') }}`
 `{{ truncate(post.text, 100) }}`
+`{{ rot14('test') }}`
+`{{ add_42('answer') }}`
 ```
 
 ## Filters
@@ -50,6 +56,10 @@ Additional filters may be added via the application configuration's `filters` op
 ```php
 'filters' => [
     'jsonEncode' => '\yii\helpers\Json::encode',
+    new \Twig_SimpleFilter('rot13', 'str_rot13'),
+    new \Twig_SimpleFilter('add_*', function ($symbols, $val) {
+        return $val . $symbols;
+    }, ['is_safe' => ['html']])
 ],
 ```
 
@@ -57,4 +67,6 @@ Then in the template you can apply filter using the following syntax:
 
 ```
 {{ model|jsonEncode }}
+{{ 'test'|rot13 }}
+{{ 'answer'|add_42 }}
 ```

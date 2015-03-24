@@ -110,6 +110,24 @@ class ViewRendererTest extends TestCase
         $view->renderFile('@yiiunit/extensions/twig/views/nulls.twig', ['order' => $order]);
     }
 
+    public function testSimpleFilters()
+    {
+        $view = $this->mockView();
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters1.twig');
+        $this->assertEquals($content, 'Gjvt');
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters2.twig');
+        $this->assertEquals($content, 'val42');
+    }
+
+    public function testSimpleFunctions()
+    {
+        $view = $this->mockView();
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions1.twig');
+        $this->assertEquals($content, 'Gjvt');
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions2.twig');
+        $this->assertEquals($content, 'val43');
+    }
+
     /**
      * Mocks view instance
      * @return View
@@ -130,6 +148,16 @@ class ViewRendererTest extends TestCase
                     'functions' => [
                         't' => '\Yii::t',
                         'json_encode' => '\yii\helpers\Json::encode',
+                        new \Twig_SimpleFunction('rot13', 'str_rot13'),
+                        new \Twig_SimpleFunction('add_*', function ($symbols, $val) {
+                            return $val . $symbols;
+                        }, ['is_safe' => ['html']])
+                    ],
+                    'filters' => [
+                        new \Twig_SimpleFilter('rot13', 'str_rot13'),
+                        new \Twig_SimpleFilter('add_*', function ($symbols, $val) {
+                            return $val . $symbols;
+                        }, ['is_safe' => ['html']])
                     ],
                     'lexerOptions' => [
                         'tag_comment' => [ '{*', '*}' ],
