@@ -230,25 +230,25 @@ class ViewRenderer extends BaseViewRenderer
      */
     private function _addCustom($classType, $elements)
     {
-        $classFunction = 'Twig_' . $classType . '_Function';
+        $classFunction = 'Twig_' . $classType;
 
         foreach ($elements as $name => $func) {
             $twigElement = null;
 
             switch ($func) {
-                // Just a name of function
-                case is_string($func):
-                    $twigElement = new $classFunction($func);
+                // Callable (including just a name of function).
+                case is_callable($func):
+                    $twigElement = new $classFunction($name, $func);
                     break;
-                // Name of function + options array
-                case is_array($func) && is_string($func[0]) && isset($func[1]) && is_array($func[1]):
-                    $twigElement = new $classFunction($func[0], $func[1]);
+                // Callable (including just a name of function) + options array.
+                case is_array($func) && is_callable($func[0]):
+                    $twigElement = new $classFunction($name, $func[0], (!empty($func[1]) && is_array($func[1])) ? $func[1] : []);
                     break;
             }
 
             if ($twigElement !== null) {
-                $this->twig->{'add'.$classType}($name, $twigElement);
-            } elseif ($func instanceof \Twig_SimpleFunction || $func instanceof \Twig_SimpleFilter) {
+                $this->twig->{'add'.$classType}($twigElement);
+            } elseif ($func instanceof \Twig_Function || $func instanceof \Twig_Filter) {
                 $this->twig->{'add'.$classType}($func);
             } else {
                 throw new \Exception("Incorrect options for \"$classType\" $name.");
