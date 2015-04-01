@@ -244,12 +244,12 @@ class ViewRenderer extends BaseViewRenderer
                 case is_array($func) && is_callable($func[0]):
                     $twigElement = new $classFunction($name, $func[0], (!empty($func[1]) && is_array($func[1])) ? $func[1] : []);
                     break;
+                case $func instanceof \Twig_SimpleFunction || $func instanceof \Twig_SimpleFilter:
+                    $twigElement = $func;
             }
 
             if ($twigElement !== null) {
                 $this->twig->{'add'.$classType}($twigElement);
-            } elseif ($func instanceof \Twig_SimpleFunction || $func instanceof \Twig_SimpleFilter) {
-                $this->twig->{'add'.$classType}($func);
             } else {
                 throw new \Exception("Incorrect options for \"$classType\" $name.");
             }

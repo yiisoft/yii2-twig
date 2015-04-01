@@ -117,6 +117,12 @@ class ViewRendererTest extends TestCase
         $this->assertEquals($content, 'Gjvt');
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters2.twig');
         $this->assertEquals($content, 'val42');
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters3.twig');
+        $this->assertEquals($content, 'Gjvt');
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters4.twig');
+        $this->assertEquals($content, 'val42');
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters5.twig');
+        $this->assertEquals($content, 'Gjvt');
     }
 
     public function testSimpleFunctions()
@@ -126,6 +132,12 @@ class ViewRendererTest extends TestCase
         $this->assertEquals($content, 'Gjvt');
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions2.twig');
         $this->assertEquals($content, 'val43');
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions3.twig');
+        $this->assertEquals($content, 'Gjvt');
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions4.twig');
+        $this->assertEquals($content, 'val43');
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions5.twig');
+        $this->assertEquals($content, '6');
     }
 
     /**
@@ -151,13 +163,29 @@ class ViewRendererTest extends TestCase
                         new \Twig_SimpleFunction('rot13', 'str_rot13'),
                         new \Twig_SimpleFunction('add_*', function ($symbols, $val) {
                             return $val . $symbols;
-                        }, ['is_safe' => ['html']])
+                        }, ['is_safe' => ['html']]),
+                        'callable_rot13' => function($string) {
+                            return str_rot13($string);
+                        },
+                        'callable_add_*' => function ($symbols, $val) {
+                            return $val . $symbols;
+                        },
+                        'callable_sum' => function ($a, $b) {
+                            return $a + $b;
+                        }
                     ],
                     'filters' => [
+                        'string_rot13' => 'str_rot13',
                         new \Twig_SimpleFilter('rot13', 'str_rot13'),
                         new \Twig_SimpleFilter('add_*', function ($symbols, $val) {
                             return $val . $symbols;
-                        }, ['is_safe' => ['html']])
+                        }, ['is_safe' => ['html']]),
+                        'callable_rot13' => function($string) {
+                            return str_rot13($string);
+                        },
+                        'callable_add_*' => function ($symbols, $val) {
+                            return $val . $symbols;
+                        }
                     ],
                     'lexerOptions' => [
                         'tag_comment' => [ '{*', '*}' ],

@@ -36,7 +36,13 @@ You can define additional functions like the following:
     new \Twig_SimpleFunction('rot14', 'str_rot13'),
     new \Twig_SimpleFunction('add_*', function ($symbols, $val) {
         return $val . $symbols;
-    }, ['is_safe' => ['html']])
+    }, ['is_safe' => ['html']]),
+    'callable_add_*' => function ($symbols, $val) {
+        return $val . $symbols;
+    },
+    'sum' => function ($a, $b) {
+        return $a + $b;
+    }
 ],
 ```
 
@@ -47,6 +53,8 @@ In template they could be used like the following:
 `{{ truncate(post.text, 100) }}`
 `{{ rot14('test') }}`
 `{{ add_42('answer') }}`
+`{{ callable_add_42('test') }}`
+`{{ sum(1, 2) }}`
 ```
 
 ## Filters
@@ -59,7 +67,13 @@ Additional filters may be added via the application configuration's `filters` op
     new \Twig_SimpleFilter('rot13', 'str_rot13'),
     new \Twig_SimpleFilter('add_*', function ($symbols, $val) {
         return $val . $symbols;
-    }, ['is_safe' => ['html']])
+    }, ['is_safe' => ['html']]),
+    'callable_rot13' => function($string) {
+        return str_rot13($string);
+    },
+    'callable_add_*' => function ($symbols, $val) {
+        return $val . $symbols;
+    }
 ],
 ```
 
@@ -69,4 +83,6 @@ Then in the template you can apply filter using the following syntax:
 {{ model|jsonEncode }}
 {{ 'test'|rot13 }}
 {{ 'answer'|add_42 }}
+{{ 'test'|callable_rot13 }}
+{{ 'answer'|callable_add_42 }}
 ```
