@@ -151,3 +151,19 @@ Within Twig templates the following variables are always defined:
 
 - `app`, which equates to `\Yii::$app`
 - `this`, which equates to the current `View` object
+ 
+## Blocks
+
+You can set blocks the following way:
+
+```
+{{ void(this.beginBlock('block1')) }}
+now, block1 is set
+{{ void(this.endBlock()) }}
+```
+
+Then, in the layout view, render the blocks:
+
+```
+{{ this.blocks['block1'] }}
+```
