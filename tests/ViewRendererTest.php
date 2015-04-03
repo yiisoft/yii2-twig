@@ -26,6 +26,7 @@ class ViewRendererTest extends TestCase
     {
         parent::tearDown();
         FileHelper::removeDirectory(Yii::getAlias('@runtime/assets'));
+        FileHelper::removeDirectory(Yii::getAlias('@runtime/Twig'));
     }
 
     /**
@@ -128,18 +129,56 @@ class ViewRendererTest extends TestCase
         $this->assertEquals($content, 'val43');
     }
 
+    public function testCacheUmask()
+    {
+        //Tests works only on Linux
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            return;
+        }
+
+        $runtimeDir = Yii::getAlias('@runtime');
+
+        $umasks = [
+            0022 => ['755', '644'],
+            0002 => ['775', '664'],
+        ];
+
+        foreach($umasks as $umask => $perms_expected) {
+            $template = '/temp' . $umask . '.twig';
+
+            $view = $this->mockView(true, $umask);
+
+            file_put_contents($runtimeDir . $template, '');
+            $view->renderFile($runtimeDir . $template);
+
+            $template_cache = $view->renderers['twig']->twig->getCacheFilename($template);
+
+            clearstatcache();
+            $perms = fileperms(dirname($template_cache));
+            $this->assertEquals($perms_expected[0], substr(base_convert($perms, 10, 8), -3));
+
+            $perms = fileperms($template_cache);
+            $this->assertEquals($perms_expected[1], substr(base_convert($perms, 10, 8), -3));
+
+            unlink($runtimeDir . $template);
+        }
+    }
+
     /**
      * Mocks view instance
+     * @param bool $useCache
+     * @param null $cacheUmask
      * @return View
      */
-    protected function mockView()
+    protected function mockView($useCache=false, $cacheUmask=null)
     {
         return new View([
             'renderers' => [
                 'twig' => [
                     'class' => 'yii\twig\ViewRenderer',
+                    'cachePath' => $useCache ? '@runtime/Twig/cache' : false,
+                    'cacheUmask' => $cacheUmask,
                     'options' => [
-                        'cache' => false,
                     ],
                     'globals' => [
                         'html' => '\yii\helpers\Html',
