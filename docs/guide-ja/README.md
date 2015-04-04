@@ -1,7 +1,7 @@
 Yii 2 Twig エクステンション
 ===========================
 
-このエクステンションは [Twig](http://twig.sensiolabs.org/) ビュー・テンプレート・エンジンを使うことが出来るようにする `ViewRenderer` を提供します。
+このエクステンションは [Twig](http://twig.sensiolabs.org/) ビューテンプレートエンジンを使うことが出来るようにする `ViewRenderer` を提供します。
 
 始めよう
 --------
