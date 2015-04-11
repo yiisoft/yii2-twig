@@ -55,7 +55,7 @@ Additional filters may be added via the application configuration's `filters` op
 
 ```php
 'filters' => [
-    'jsonEncode' => '\yii\helpers\Json::encode',
+    'jsonEncode' => '\yii\helpers\Json::htmlEncode',
     new \Twig_SimpleFilter('rot13', 'str_rot13'),
     new \Twig_SimpleFilter('add_*', function ($symbols, $val) {
         return $val . $symbols;
