@@ -36,7 +36,13 @@ Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw
     new \Twig_SimpleFunction('rot14', 'str_rot13'),
     new \Twig_SimpleFunction('add_*', function ($symbols, $val) {
         return $val . $symbols;
-    }, ['is_safe' => ['html']])
+    }, ['is_safe' => ['html']]),
+    'callable_add_*' => function ($symbols, $val) {
+        return $val . $symbols;
+    },
+    'sum' => function ($a, $b) {
+        return $a + $b;
+    }
 ],
 ```
 
@@ -47,6 +53,8 @@ Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw
 `{{ truncate(post.text, 100) }}`
 `{{ rot14('test') }}`
 `{{ add_42('answer') }}`
+`{{ callable_add_42('test') }}`
+`{{ sum(1, 2) }}`
 ```
 
 ## フィルタ
@@ -55,11 +63,17 @@ Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw
 
 ```php
 'filters' => [
-    'jsonEncode' => '\yii\helpers\Json::encode',
+    'jsonEncode' => '\yii\helpers\Json::htmlEncode',
     new \Twig_SimpleFilter('rot13', 'str_rot13'),
     new \Twig_SimpleFilter('add_*', function ($symbols, $val) {
         return $val . $symbols;
-    }, ['is_safe' => ['html']])
+    }, ['is_safe' => ['html']]),
+    'callable_rot13' => function($string) {
+        return str_rot13($string);
+    },
+    'callable_add_*' => function ($symbols, $val) {
+        return $val . $symbols;
+    }
 ],
 ```
 
@@ -69,4 +83,6 @@ Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw
 {{ model|jsonEncode }}
 {{ 'test'|rot13 }}
 {{ 'answer'|add_42 }}
+{{ 'test'|callable_rot13 }}
+{{ 'answer'|callable_add_42 }}
 ```
