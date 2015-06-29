@@ -32,6 +32,11 @@ abstract class Template extends \Twig_Template
                 }
                 return $object->$item;
             }
+        } else if ($object instanceof \yii\base\Application) {
+	        if ($this->env->hasExtension('sandbox')) {
+		        $this->env->getExtension('sandbox')->checkPropertyAllowed($object, $item);
+	        }
+	        return $object->$item;
         }
 
         return parent::getAttribute($object, $item, $arguments, $type, $isDefinedTest, $ignoreStrictCheck);
