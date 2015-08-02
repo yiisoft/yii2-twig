@@ -27,6 +27,10 @@ class ViewRenderer extends BaseViewRenderer
      */
     public $cachePath = '@runtime/Twig/cache';
     /**
+     * @var int umask for Twig cache files. Used default if null.
+     */
+    public $cacheUmask = null;
+    /**
      * @var array Twig options.
      * @see http://twig.sensiolabs.org/doc/api.html#environment-options
      */
@@ -93,7 +97,7 @@ class ViewRenderer extends BaseViewRenderer
 
     public function init()
     {
-        $this->twig = new \Twig_Environment(null, array_merge([
+        $this->twig = new Environment(null, array_merge([
             'cache' => Yii::getAlias($this->cachePath),
             'charset' => Yii::$app->charset,
         ], $this->options));
@@ -120,6 +124,11 @@ class ViewRenderer extends BaseViewRenderer
         // Adding custom extensions
         if (!empty($this->extensions)) {
             $this->addExtensions($this->extensions);
+        }
+
+        // Applying custom umask to Twig cache files
+        if(!is_null($this->cacheUmask)) {
+            $this->twig->umask = $this->cacheUmask;
         }
 
         $this->twig->addGlobal('app', \Yii::$app);
