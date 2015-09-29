@@ -5,6 +5,7 @@ Yii Framework 2 twig extension Change Log
 -----------------------
 
 - Enh #16: Extended simple functions and simple filters support (PatchRanger, quantum13)
+- Enh #30: Added `@app/views`, `@app/modules`, `@app/widgets` as `Twig_Loader_Filesystem` loader paths, same for theme `pathMap` paths 
 
 2.0.4 May 10, 2015
 ------------------
