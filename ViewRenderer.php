@@ -90,6 +90,30 @@ class ViewRenderer extends BaseViewRenderer
      */
     public $twig;
 
+    /**
+     * @var string twig namespace to use in templates
+     * @since 2.0.5
+     */
+    public $twigViewsNamespace = \Twig_Loader_Filesystem::MAIN_NAMESPACE;
+
+    /**
+     * @var string twig namespace to use in modules templates
+     * @since 2.0.5
+     */
+    public $twigModulesNamespace = 'modules';
+
+    /**
+     * @var string twig namespace to use in widgets templates
+     * @since 2.0.5
+     */
+    public $twigWidgetsNamespace = 'widgets';
+
+    /**
+     * @var array twig fallback paths
+     * @since 2.0.5
+     */
+    public $twigFallbackPaths = [];
+
 
     public function init()
     {
@@ -146,6 +170,7 @@ class ViewRenderer extends BaseViewRenderer
     {
         $this->twig->addGlobal('this', $view);
         $loader = new \Twig_Loader_Filesystem(dirname($file));
+        $this->addFallbackPaths($loader, $view->theme);
         $this->addAliases($loader, Yii::$aliases);
         $this->twig->setLoader($loader);
 
@@ -166,6 +191,75 @@ class ViewRenderer extends BaseViewRenderer
             } elseif (is_string($path) && is_dir($path)) {
                 $loader->addPath($path, substr($alias, 1));
             }
+        }
+    }
+
+    /**
+     * Adds fallback paths to twig loader
+     *
+     * @param \Twig_Loader_Filesystem $loader
+     * @param \yii\base\Theme|null $theme
+     * @since 2.0.5
+     */
+    protected function addFallbackPaths($loader, $theme)
+    {
+        foreach ($this->twigFallbackPaths as $namespace => $path) {
+            $path = Yii::getAlias($path);
+            if (!is_dir($path)) {
+                continue;
+            }
+
+            if (is_string($namespace)) {
+                $loader->addPath($path, $namespace);
+            } else {
+                $loader->addPath($path);
+            }
+        }
+
+        if ($theme instanceOf \yii\base\Theme && is_array($theme->pathMap)) {
+            $pathMap = $theme->pathMap;
+
+            if (isset($pathMap['@app/views'])) {
+                foreach ((array)$pathMap['@app/views'] as $path) {
+                    $path = Yii::getAlias($path);
+                    if (is_dir($path)) {
+                        $loader->addPath($path, $this->twigViewsNamespace);
+                    }
+                }
+            }
+
+            if (isset($pathMap['@app/modules'])) {
+                foreach ((array)$pathMap['@app/modules'] as $path) {
+                    $path = Yii::getAlias($path);
+                    if (is_dir($path)) {
+                        $loader->addPath($path, $this->twigModulesNamespace);
+                    }
+                }
+            }
+
+            if (isset($pathMap['@app/widgets'])) {
+                foreach ((array)$pathMap['@app/widgets'] as $path) {
+                    $path = Yii::getAlias($path);
+                    if (is_dir($path)) {
+                        $loader->addPath($path, $this->twigWidgetsNamespace);
+                    }
+                }
+            }
+        }
+
+        $defaultViewsPath = Yii::getAlias('@app/views');
+        if (is_dir($defaultViewsPath)) {
+            $loader->addPath($defaultViewsPath, $this->twigViewsNamespace);
+        }
+
+        $defaultModulesPath = Yii::getAlias('@app/modules');
+        if (is_dir($defaultModulesPath)) {
+            $loader->addPath($defaultModulesPath, $this->twigModulesNamespace);
+        }
+
+        $defaultWidgetsPath = Yii::getAlias('@app/widgets');
+        if (is_dir($defaultWidgetsPath)) {
+            $loader->addPath($defaultWidgetsPath, $this->twigWidgetsNamespace);
         }
     }
 
