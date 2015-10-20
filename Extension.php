@@ -172,6 +172,12 @@ class Extension extends \Twig_Extension
         ]);
     }
 
+    /**
+     * Used for 'begin_page', 'end_page', 'begin_body', 'end_body', 'head'
+     *
+     * @param array $context context information
+     * @param string $name
+     */
     public function viewHelper($context, $name = null)
     {
         if ($name !== null && isset($context['this'])) {
@@ -291,7 +297,7 @@ class Extension extends \Twig_Extension
      *
      * @param \stdClass $object
      * @param string $property
-     * @param mixes $value
+     * @param mixed $value
      */
     public function setProperty($object, $property, $value)
     {
