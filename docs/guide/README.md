@@ -8,4 +8,5 @@ Getting Started
 
 * [Installation](installation.md)
 * [Template Syntax](template-syntax.md)
+* [Layouts and Widgets](layouts-and-widgets.md)
 * [Additional Configuration](additional-configuration.md)
