@@ -108,3 +108,32 @@ Here is `navigation` bar code with login/logout dynamic variants:
     }) }}
     {{ nav_bar_end() }}
 ```
+
+## Footer
+
+Here is an example how to convert basic Yii footer code from PHP to twig.
+
+In order to show `Powered by Yii framework` add `global` inside config file:
+```php
+'renderers' => [
+    'twig' => [
+        //..
+        'globals' => [
+            //..
+            'Yii' => '\Yii',
+            //..
+        ],
+        'uses' => ['yii\bootstrap'],
+        //..
+    ],
+],
+```
+Here is a footer code:
+```
+<footer class="footer">
+    <div class="container">
+        <p class="pull-left">&copy; My Company {{ 'now'|date('Y') }}</p>
+        <p class="pull-right">{{ Yii.powered() | raw }}</p>
+    </div>
+</footer>
+```
