@@ -3,7 +3,7 @@
 
 ## メイン・レイアウト
 
-`views/layout/layout.twig` file to replace `views/layout/main.php` を置き換える `views/layout/layout.twig` ファイルの例を示します。
+`views/layout/main.php` を置き換える `views/layout/layout.twig` ファイルの例を示します。
 
 デフォルトのレイアウトを変更するために、`SiteController` の中でパブリックな変数を追加します。
 ```php
@@ -20,7 +20,7 @@ class SiteController extends Controller
 
 `views/layout/main.twig` の中身は次のようになります。
 
-```
+```twig
     {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# アドバンスト・テンプレートのアセットのルート #}
     {{   void(this.beginPage()) }}
     <!DOCTYPE html>
@@ -72,7 +72,7 @@ class SiteController extends Controller
 
 以下が login/logout の動的なバリエーションを持つ `navigation` バーのコードです。
 
-```
+```twig
     {{ nav_bar_begin({
         'brandLabel': '<div class="logo"><img src="' ~ url.base(true) ~'/images/png/logo.png" alt="logo"/></div>',
         'brandUrl' : app.homeUrl,
