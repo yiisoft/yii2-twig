@@ -20,7 +20,7 @@ class SiteController extends Controller
 
 Here is code inside file `views/layout/main.twig`: 
 
-```
+```twig
     {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# asset root for yii advanced template #}
     {{   void(this.beginPage()) }}
     <!DOCTYPE html>
@@ -72,7 +72,7 @@ Beforehand let's add `global` inside config file:
 
 Here is `navigation` bar code with login/logout dynamic variants:
 
-```
+```twig
     {{ nav_bar_begin({
         'brandLabel': '<div class="logo"><img src="' ~ url.base(true) ~'/images/png/logo.png" alt="logo"/></div>',
         'brandUrl' : app.homeUrl,
