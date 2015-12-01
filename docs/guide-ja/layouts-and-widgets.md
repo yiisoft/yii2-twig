@@ -1,7 +1,7 @@
 レイアウトとウィジェット
 ========================
 
-## メイン・レイアウト
+## メインレイアウト
 
 `views/layout/main.php` を置き換える `views/layout/layout.twig` ファイルの例を示します。
 
@@ -21,7 +21,7 @@ class SiteController extends Controller
 `views/layout/main.twig` の中身は次のようになります。
 
 ```twig
-    {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# アドバンスト・テンプレートのアセットのルート #}
+    {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# アドバンストテンプレートのアセットのルート #}
     {{   void(this.beginPage()) }}
     <!DOCTYPE html>
     <html lang="{{ app.language }}">
@@ -48,7 +48,7 @@ class SiteController extends Controller
     </html>
     {{   void(this.endPage()) }}
 ```
-## ナビゲーション・バー
+## ナビゲーションバー
 
 前もって `global` を構成情報ファイルの中に追加しましょう。
 ```php
