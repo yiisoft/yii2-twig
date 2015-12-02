@@ -8,21 +8,21 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 
 結果が必要な場合は、次の構文を使ってメソッドや関数を呼び出すことが出来ます。
 
-```
+```twig
 {% set result = my_function({'a' : 'b'}) %}
 {% set result = myObject.my_function({'a' : 'b'}) %}
 ```
 
 結果を変数に代入する代りに echo したい場合は、こうします。
 
-```
+```twig
 {{ my_function({'a' : 'b'}) }}
 {{ myObject.my_function({'a' : 'b'}) }}
 ```
 
 結果を必要としない場合は、`void` ラッパーを使わなければなりません。
 
-```
+```twig
 {{ void(my_function({'a' : 'b'})) }}
 {{ void(myObject.my_function({'a' : 'b'})) }}
 ```
@@ -32,7 +32,7 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 `set` と呼ばれる特別な関数を使って、オブジェクトのプロパティを設定することが出来ます。
 例えば、テンプレート中の下記のコードはページタイトルを変更します。
 
-```
+```twig
 {{ set(this, 'title', 'New title') }}
 ```
 
@@ -40,7 +40,7 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 
 追加のクラスと名前空間をテンプレートの中でインポートすることが出来ます。
 
-```
+```twig
 名前空間のインポート:
 {{ use('/app/widgets') }}
 
@@ -55,7 +55,7 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 
 `include` と `extends` 文によるテンプレートの参照には二つの方法があります。
 
-```
+```twig
 {% include "comment.twig" %}
 {% extends "post.twig" %}
 
@@ -73,7 +73,7 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 
 このエクステンションは、ウィジェットを簡単に使えるように、ウィジェットの構文を関数呼び出しに変換します。
 
-```
+```twig
 {{ use('yii/bootstrap') }}
 {{ nav_bar_begin({
     'brandLabel': 'My Company',
@@ -99,9 +99,15 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 
 ## アセット
 
-アセットは次の方法で登録することが出来ます。
+アセットは次の方法で登録することが出来ます (2.0.4 以降)。
 
+```twig
+{{ register_asset_bundle('yii/web/JqueryAsset') }}
 ```
+
+以前は、もう少し饒舌な文法が使われていました。
+
+```twig
 {{ use('yii/web/JqueryAsset') }}
 {{ register_jquery_asset() }}
 ```
@@ -112,7 +118,7 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 
 フォームは次のようにして構築することが出来ます。
 
-```
+```twig
 {{ use('yii/widgets/ActiveForm') }}
 {% set form = active_form_begin({
     'id' : 'login-form',
@@ -152,7 +158,7 @@ Twig のテンプレート内では、次の変数が常に定義されていま
 
 次のようにしてブロックを設定することが出来ます。
 
-```
+```twig
 {{ void(this.beginBlock('block1')) }}
 これで block1 が設定されました
 {{ void(this.endBlock()) }}
@@ -160,6 +166,6 @@ Twig のテンプレート内では、次の変数が常に定義されていま
 
 そして、レイアウトビューで、ブロックをレンダリングします。
 
-```
+```twig
 {{ this.blocks['block1'] }}
 ```
