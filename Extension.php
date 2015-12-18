@@ -11,7 +11,6 @@ use yii\base\InvalidCallException;
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
-use yii\web\AssetBundle;
 
 /**
  * Extension provides Yii-specific syntax for Twig templates.
@@ -114,14 +113,13 @@ class Extension extends \Twig_Extension
      *
      * @param array $context context information
      * @param string $bundle asset bundle class fully qualified name
-     * @return AssetBundle
      *
      * @since 2.0.4
      */
     public function registerAssetBundle($context, $bundle)
     {
         $bundle = str_replace('/', '\\', $bundle);
-        return $this->call($bundle, 'register', [
+        $this->call($bundle, 'register', [
             isset($context['this']) ? $context['this'] : null,
         ]);
     }

@@ -5,7 +5,6 @@ Yii Framework 2 twig extension Change Log
 -----------------------
 
 - Enh #16: Extended simple functions and simple filters support (PatchRanger, quantum13)
-- Enh #40: `register_asset_bundle()` now returns AssetBundle instance (samdark)
 
 2.0.4 May 10, 2015
 ------------------

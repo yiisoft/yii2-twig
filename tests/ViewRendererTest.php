@@ -3,7 +3,6 @@ namespace yiiunit\extensions\twig;
 
 use yii\helpers\FileHelper;
 use yii\web\AssetManager;
-use yii\web\JqueryAsset;
 use yii\web\View;
 use Yii;
 use yiiunit\extensions\twig\data\Order;
@@ -115,40 +114,30 @@ class ViewRendererTest extends TestCase
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters1.twig');
-        $this->assertEquals('Gjvt', $content);
+        $this->assertEquals($content, 'Gjvt');
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters2.twig');
-        $this->assertEquals('val42', $content);
+        $this->assertEquals($content, 'val42');
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters3.twig');
-        $this->assertEquals('Gjvt', $content);
+        $this->assertEquals($content, 'Gjvt');
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters4.twig');
-        $this->assertEquals('val42', $content);
+        $this->assertEquals($content, 'val42');
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters5.twig');
-        $this->assertEquals('Gjvt', $content);
+        $this->assertEquals($content, 'Gjvt');
     }
 
     public function testSimpleFunctions()
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions1.twig');
-        $this->assertEquals('Gjvt', $content);
+        $this->assertEquals($content, 'Gjvt');
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions2.twig');
-        $this->assertEquals('val43', $content);
+        $this->assertEquals($content, 'val43');
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions3.twig');
-        $this->assertEquals('Gjvt', $content);
+        $this->assertEquals($content, 'Gjvt');
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions4.twig');
-        $this->assertEquals('val43', $content);
+        $this->assertEquals($content, 'val43');
         $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions5.twig');
-        $this->assertEquals('6', $content);
-    }
-
-    /**
-     * @see https://github.com/yiisoft/yii2-twig/issues/40
-     */
-    public function testRegisterAssetBundle()
-    {
-        $view = $this->mockView();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/register_asset_bundle.twig');
-        $this->assertEquals(Yii::getAlias('@bower/jquery/dist'), $content);
+        $this->assertEquals($content, '6');
     }
 
     /**
