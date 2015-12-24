@@ -140,6 +140,13 @@ class ViewRendererTest extends TestCase
         $this->assertEquals($content, '6');
     }
 
+    public function testRegisterAssetBundle()
+    {
+        $view = $this->mockView();
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/register_asset_bundle.twig');
+        $this->assertEquals(Yii::getAlias('@bower/jquery/dist'), $content);
+    }
+
     /**
      * Mocks view instance
      * @return View
