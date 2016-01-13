@@ -147,6 +147,55 @@ class ViewRendererTest extends TestCase
         $this->assertEquals(Yii::getAlias('@bower/jquery/dist'), $content);
     }
 
+    public function testPath()
+    {
+        $this->mockWebApplication([
+            'components' => [
+                'urlManager' => [
+                    'enablePrettyUrl' => true,
+                    'enableStrictParsing' => true,
+                    'showScriptName' => false,
+                    'rules' => [
+                        'GET mypath' => 'mycontroller/myaction',
+                        'GET mypath2/<myparam>' => 'mycontroller2/myaction2'
+                    ],
+                ]
+            ]
+        ]);
+        $view = $this->mockView();
+        $this->assertEquals('/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithParams.twig'));
+        $this->assertEquals('/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithParams2.twig'));
+        $this->assertEquals('/some/custom/path', $view->renderFile('@yiiunit/extensions/twig/views/path/pathCustom.twig'));
+
+        $this->assertEquals('/mypath', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithoutParams.twig')); //Expected, but fails
+    }
+
+    public function testUrl()
+    {
+        $this->mockWebApplication([
+            'components' => [
+                'urlManager' => [
+                    'enablePrettyUrl' => true,
+                    'enableStrictParsing' => true,
+                    'showScriptName' => false,
+                    'rules' => [
+                        'GET mypath' => 'mycontroller/myaction',
+                        'GET mypath2/<myparam>' => 'mycontroller2/myaction2'
+                    ],
+                ]
+            ]
+        ]);
+
+        Yii::$app->request->setHostInfo('http://testurl.com');
+        $view = $this->mockView();
+        $this->assertEquals('http://testurl.com/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithParams.twig'));
+        $this->assertEquals('http://testurl.com/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithParams2.twig'));
+        $this->assertEquals('http://testurl.com/some/custom/path', $view->renderFile('@yiiunit/extensions/twig/views/url/urlCustom.twig'));
+
+        $this->assertEquals('http://testurl.com/mypath', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithoutParams.twig'));//Expected, but fails
+    }
+
+
     /**
      * Mocks view instance
      * @return View
