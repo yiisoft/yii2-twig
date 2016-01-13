@@ -163,11 +163,16 @@ class ViewRendererTest extends TestCase
             ]
         ]);
         $view = $this->mockView();
-        $this->assertEquals('/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithParams.twig'));
-        $this->assertEquals('/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithParams2.twig'));
+        $this->assertEquals('/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithParams.twig'));//bc
+        $this->assertEquals('/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/path/path2WithParams.twig'));//bc
         $this->assertEquals('/some/custom/path', $view->renderFile('@yiiunit/extensions/twig/views/path/pathCustom.twig'));
 
-        $this->assertEquals('/mypath', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithoutParams.twig')); //Expected, but fails
+        //to resolve url as a route first arg should be an array
+        $this->assertEquals('/mycontroller/myaction', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithoutParams.twig'));
+
+        $this->assertEquals('/mypath', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithoutParamsAsArray.twig'));
+        $this->assertEquals('/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithParamsAsArray.twig'));
+        $this->assertEquals('/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/path/path2WithParamsAsArray.twig'));
     }
 
     public function testUrl()
@@ -188,11 +193,16 @@ class ViewRendererTest extends TestCase
 
         Yii::$app->request->setHostInfo('http://testurl.com');
         $view = $this->mockView();
-        $this->assertEquals('http://testurl.com/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithParams.twig'));
-        $this->assertEquals('http://testurl.com/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithParams2.twig'));
+        $this->assertEquals('http://testurl.com/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithParams.twig'));//bc
+        $this->assertEquals('http://testurl.com/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/url/url2WithParams.twig'));//bc
         $this->assertEquals('http://testurl.com/some/custom/path', $view->renderFile('@yiiunit/extensions/twig/views/url/urlCustom.twig'));
 
-        $this->assertEquals('http://testurl.com/mypath', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithoutParams.twig'));//Expected, but fails
+        //to resolve url as a route first arg should be an array
+        $this->assertEquals('http://testurl.com/mycontroller/myaction', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithoutParams.twig'));
+
+        $this->assertEquals('http://testurl.com/mypath', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithoutParamsAsArray.twig'));
+        $this->assertEquals('http://testurl.com/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithParamsAsArray.twig'));
+        $this->assertEquals('http://testurl.com/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/url/url2WithParamsAsArray.twig'));
     }
 
 

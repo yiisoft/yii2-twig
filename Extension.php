@@ -279,9 +279,12 @@ class Extension extends \Twig_Extension
      */
     public function path($path, $args = [])
     {
-        if ($args !== []) {
-            $path = array_merge([$path], $args);
+        if (is_array($path)) {
+            $path = array_merge($path, $args);
+        } elseif ($args !== []) {
+            $path = array_merge([$path], $args); //bc
         }
+
         return Url::to($path);
     }
 
@@ -294,9 +297,12 @@ class Extension extends \Twig_Extension
      */
     public function url($path, $args = [])
     {
-        if ($args !== []) {
-            $path = array_merge([$path], $args);
+        if (is_array($path)) {
+            $path = array_merge($path, $args);
+        } elseif ($args !== []) {
+            $path = array_merge([$path], $args); //bc
         }
+
         return Url::to($path, true);
     }
 
