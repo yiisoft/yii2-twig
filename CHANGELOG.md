@@ -1,10 +1,10 @@
 Yii Framework 2 twig extension Change Log
 =========================================
 
-2.0.7 under development
+2.1.0 under development
 -----------------------
 
-- no changes in this release.
+- Chg #46: Adjusted `path()` and `url()` syntax to be similar to Yii's `Url::to()` (quantum13)
 
 
 2.0.6 October 5, 2016
