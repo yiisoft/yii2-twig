@@ -35,4 +35,4 @@ to the require section of your composer.json.
 Usage
 -----
 
-To use this extension, simply configure it as described in [Documentation](docs/guide/installation.md#configuring-application).
+To use this extension, configure it as described in [documentation](docs/guide/installation.md#configuring-application).
