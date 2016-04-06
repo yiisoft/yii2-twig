@@ -1,6 +1,33 @@
 Layouts and Widgets
 ===============
 
+## Widgets
+
+Extension helps using widgets in convenient way converting their syntax to function calls:
+
+```
+{{ use('yii/bootstrap') }}
+{{ nav_bar_begin({
+    'brandLabel': 'My Company',
+}) }}
+    {{ nav_widget({
+        'options': {
+            'class': 'navbar-nav navbar-right',
+        },
+        'items': [{
+            'label': 'Home',
+            'url': '/site/index',
+        }]
+    }) }}
+{{ nav_bar_end() }}
+```
+
+In the template above `nav_bar_begin`, `nav_bar_end` or `nav_widget` consists of two parts. First part is widget name
+coverted to lowercase and underscores: `NavBar` becomes `nav_bar`, `Nav` becomes `nav`. `_begin`, `_end` and `_widget`
+are the same as `::begin()`, `::end()` and `::widget()` calls of a widget.
+
+One could also use more generic `widget_end()` that executes `Widget::end()`.
+
 ## Main layout
 
 Here is an example of `views/layout/layout.twig` file to replace `views/layout/main.php`. 
@@ -107,4 +134,52 @@ Here is `navigation` bar code with login/logout dynamic variants:
         'items': menuItems
     }) }}
     {{ nav_bar_end() }}
+```
+
+## Footer
+
+Here is an example how to convert basic Yii footer code from PHP to twig.
+
+In order to show `Powered by Yii framework` add `global` inside config file:
+```php
+'renderers' => [
+    'twig' => [
+        //..
+        'globals' => [
+            //..
+            'Yii' => '\Yii',
+            //..
+        ],
+        'uses' => ['yii\bootstrap'],
+        //..
+    ],
+],
+```
+Here is a footer code:
+```
+<footer class="footer">
+    <div class="container">
+        <p class="pull-left">&copy; My Company {{ 'now'|date('Y') }}</p>
+        <p class="pull-right">{{ Yii.powered() | raw }}</p>
+    </div>
+</footer>
+```
+
+## Forms
+
+You can build forms the following way:
+
+```
+{{ use('yii/widgets/ActiveForm') }}
+{% set form = active_form_begin({
+    'id' : 'login-form',
+    'options' : {'class' : 'form-horizontal'},
+}) %}
+    {{ form.field(model, 'username') | raw }}
+    {{ form.field(model, 'password').passwordInput() | raw }}
+
+    <div class="form-group">
+        <input type="submit" value="Login" class="btn btn-primary" />
+    </div>
+{{ active_form_end() }}
 ```

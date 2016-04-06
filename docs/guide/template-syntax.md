@@ -37,7 +37,7 @@ in the template will change page title:
 {{ set(this, 'title', 'New title') }}
 ```
 
-## Importing namespaces and classes
+## Importing widgets namespaces and classes
 
 You can import additional classes and namespaces right in the template:
 
@@ -51,6 +51,56 @@ Class import:
 Aliased class import:
 {{ use({'alias' : '/app/widgets/MyWidget'}) }}
 ```
+Please refer to [Layouts and Widgets](layouts-and-widgets.md) for additional information.
+
+
+## Importing other classes
+
+In most cases, except widgets and assets, you have to import classes via [globals](additional-configuration.md#globals).
+ 
+For example this code prints nothing:
+
+```
+{{ use('yii/helpers/Url') }}
+<h1>{{ Url.base(true) }}</h1>
+```
+
+and this code also prints nothing:
+
+```
+{{ use ('app/models/MyClass') }}  
+{{ MyClass.helloWorld() }}
+```
+
+You have add these classes to [globals](additional-configuration.md#globals):
+
+```
+// ....
+'view' => [
+    'class' => 'yii\web\View',
+    'renderers' => [
+        'twig' => [
+            'class' => 'yii\twig\ViewRenderer',
+            'cachePath' => '@runtime/Twig/cache',
+            'options' => [
+                'auto_reload' => true,
+            ],
+            'globals' => [
+                'Url' => '\yii\helpers\Url',
+                'MyClass' => '\frontend\models\MyClass',
+            ],
+        ],
+    ],
+],
+// ....
+```
+
+Only then you can use classes such way:
+```
+<h1>{{ Url.base(true) }}</h1>
+{{ MyClass.helloWorld() }}
+```
+
 
 ## Referencing other templates
 
@@ -69,32 +119,10 @@ that means these will be searched in the same directory as the currently rendere
 
 In the second case we're using path aliases. All the Yii aliases such as `@app` are available by default.
 
-## Widgets
-
-Extension helps using widgets in convenient way converting their syntax to function calls:
-
-```twig
-{{ use('yii/bootstrap') }}
-{{ nav_bar_begin({
-    'brandLabel': 'My Company',
-}) }}
-    {{ nav_widget({
-        'options': {
-            'class': 'navbar-nav navbar-right',
-        },
-        'items': [{
-            'label': 'Home',
-            'url': '/site/index',
-        }]
-    }) }}
-{{ nav_bar_end() }}
+You can also use `render` method inside a view:
 ```
-
-In the template above `nav_bar_begin`, `nav_bar_end` or `nav_widget` consists of two parts. First part is widget name
-coverted to lowercase and underscores: `NavBar` becomes `nav_bar`, `Nav` becomes `nav`. `_begin`, `_end` and `_widget`
-are the same as `::begin()`, `::end()` and `::widget()` calls of a widget.
-
-One could also use more generic `widget_end()` that executes `Widget::end()`.
+{{ this.render('comment.twig', {'data1' : data1, 'data2' : data2}) | raw }}
+```
 
 ## Assets
 
@@ -113,26 +141,6 @@ There's a bit more verbose syntax used previously:
 
 In the call above `register` identifies that we're working with assets while `jquery_asset` translates to `JqueryAsset`
 class that we've already imported with `use`.
-
-## Forms
-
-You can build forms the following way:
-
-```twig
-{{ use('yii/widgets/ActiveForm') }}
-{% set form = active_form_begin({
-    'id' : 'login-form',
-    'options' : {'class' : 'form-horizontal'},
-}) %}
-    {{ form.field(model, 'username') | raw }}
-    {{ form.field(model, 'password').passwordInput() | raw }}
-
-    <div class="form-group">
-        <input type="submit" value="Login" class="btn btn-primary" />
-    </div>
-{{ active_form_end() }}
-```
-
 
 ## URLs
 
