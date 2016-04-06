@@ -1,11 +1,11 @@
-Layouts and Widgets
-===============
+レイアウトとウィジェット
+========================
 
-## Main layout
+## メインレイアウト
 
-Here is an example of `views/layout/layout.twig` file to replace `views/layout/main.php`. 
+`views/layout/main.php` を置き換える `views/layout/layout.twig` ファイルの例を示します。
 
-In order to change default layout add public variable inside `SiteController`:
+デフォルトのレイアウトを変更するために、`SiteController` の中でパブリックな変数を追加します。
 ```php
 /**
  * Site controller
@@ -18,10 +18,10 @@ class SiteController extends Controller
 ```
 
 
-Here is code inside file `views/layout/main.twig`: 
+`views/layout/main.twig` の中身は次のようになります。
 
 ```twig
-    {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# asset root for yii advanced template #}
+    {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# アドバンストテンプレートのアセットのルート #}
     {{   void(this.beginPage()) }}
     <!DOCTYPE html>
     <html lang="{{ app.language }}">
@@ -35,12 +35,12 @@ Here is code inside file `views/layout/main.twig`:
         <body>
             {{   void(this.beginBody()) }}
             <section id="header">
-                {# header content #}
+                {# ヘッダのコンテント #}
             </section>
             {{ content | raw}}
             <footer class="footer">
                 <div class="container">
-                    {# footer content #}
+                    {# フッタのコンテント #}
                 </div>
             </footer>
             {{   void(this.endBody()) }}
@@ -48,21 +48,21 @@ Here is code inside file `views/layout/main.twig`:
     </html>
     {{   void(this.endPage()) }}
 ```
-## Navigation bar
+## ナビゲーションバー
 
-Beforehand let's add `global` inside config file:
+前もって `global` を構成情報ファイルの中に追加しましょう。
 ```php
 'renderers' => [
     'twig' => [
         'class' => 'yii\twig\ViewRenderer',
         'cachePath' => '@runtime/Twig/cache',
-        // Array of twig options:
+        // twig のオプションの配列
         'options' => [
             'auto_reload' => true,
         ],
         'globals' => [
             //..
-            'url' => '\yii\helpers\Url', // new global
+            'url' => '\yii\helpers\Url', // 新しい global
             //..
         ],
         'uses' => ['yii\bootstrap'],
@@ -70,7 +70,7 @@ Beforehand let's add `global` inside config file:
 ],
 ```
 
-Here is `navigation` bar code with login/logout dynamic variants:
+以下が login/logout の動的なバリエーションを持つ `navigation` バーのコードです。
 
 ```twig
     {{ nav_bar_begin({
@@ -85,9 +85,9 @@ Here is `navigation` bar code with login/logout dynamic variants:
         {% set menuItems = menuItems|merge([
             {'label' : 'Main', 'url' : ['/site/index']},
             {'label' : 'About', 'url' : ['/site/about']},
-            {# Other ones #}
+            {# その他 #}
             {
-                'label' : 'logout (' ~ app.user.identity.username ~ ')',
+                'label' : 'ログアウト (' ~ app.user.identity.username ~ ')',
                 'url' : ['/site/logout'],
                 'linkOptions' : {'data-method' : 'post'}
             }
@@ -95,8 +95,8 @@ Here is `navigation` bar code with login/logout dynamic variants:
     %}
     {% else %}
         {% set menuItems = menuItems|merge([
-            {'label' : 'login', 'url' : ['/site/login']},
-            {# Other ones #}
+            {'label' : 'ログイン', 'url' : ['/site/login']},
+            {# その他 #}
         ])
     %}
     {% endif %}
@@ -107,33 +107,4 @@ Here is `navigation` bar code with login/logout dynamic variants:
         'items': menuItems
     }) }}
     {{ nav_bar_end() }}
-```
-
-## Footer
-
-Here is an example how to convert basic Yii footer code from PHP to twig.
-
-In order to show `Powered by Yii framework` add `global` inside config file:
-```php
-'renderers' => [
-    'twig' => [
-        //..
-        'globals' => [
-            //..
-            'Yii' => '\Yii',
-            //..
-        ],
-        'uses' => ['yii\bootstrap'],
-        //..
-    ],
-],
-```
-Here is a footer code:
-```
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company {{ 'now'|date('Y') }}</p>
-        <p class="pull-right">{{ Yii.powered() | raw }}</p>
-    </div>
-</footer>
 ```

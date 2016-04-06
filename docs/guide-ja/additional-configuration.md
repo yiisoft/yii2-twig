@@ -19,7 +19,7 @@ Yii のヘルパとあなた自身の変数を定義することが出来ます�
 
 いったん構成してしまえば、テンプレートの中で以下のようにグローバルを使用することが出来ます。
 
-```
+```twig
 Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw }}.
 
 {{ GridView.widget({'dataProvider' : provider}) | raw }}
@@ -48,13 +48,13 @@ Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw
 
 テンプレートでは、次のようにして使うことが出来ます。
 
-```
-`{{ rot13('test') }}`
-`{{ truncate(post.text, 100) }}`
-`{{ rot14('test') }}`
-`{{ add_42('answer') }}`
-`{{ callable_add_42('test') }}`
-`{{ sum(1, 2) }}`
+```twig
+{{ rot13('test') }}
+{{ truncate(post.text, 100) }}
+{{ rot14('test') }}
+{{ add_42('answer') }}
+{{ callable_add_42('test') }}
+{{ sum(1, 2) }}
 ```
 
 ## フィルタ
@@ -79,7 +79,7 @@ Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw
 
 そうすると、テンプレートの中で、次の構文を使ってフィルタを適用することが出来ます。
 
-```
+```twig
 {{ model|jsonEncode }}
 {{ 'test'|rot13 }}
 {{ 'answer'|add_42 }}

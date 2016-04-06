@@ -19,7 +19,7 @@ helpers and your own variables there:
 
 Once configured, in your template you can use the globals in the following way:
 
-```
+```twig
 Hello, {{name}}! {{ html.a('Please login', 'site/login') | raw }}.
 
 {{ GridView.widget({'dataProvider' : provider}) | raw }}
@@ -48,13 +48,13 @@ You can define additional functions like the following:
 
 In template they could be used like the following:
 
-```
-`{{ rot13('test') }}`
-`{{ truncate(post.text, 100) }}`
-`{{ rot14('test') }}`
-`{{ add_42('answer') }}`
-`{{ callable_add_42('test') }}`
-`{{ sum(1, 2) }}`
+```twig
+{{ rot13('test') }}
+{{ truncate(post.text, 100) }}
+{{ rot14('test') }}
+{{ add_42('answer') }}
+{{ callable_add_42('test') }}
+{{ sum(1, 2) }}
 ```
 
 ## Filters
@@ -79,7 +79,7 @@ Additional filters may be added via the application configuration's `filters` op
 
 Then in the template you can apply filter using the following syntax:
 
-```
+```twig
 {{ model|jsonEncode }}
 {{ 'test'|rot13 }}
 {{ 'answer'|add_42 }}

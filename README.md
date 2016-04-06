@@ -35,26 +35,4 @@ to the require section of your composer.json.
 Usage
 -----
 
-To use this extension, simply add the following code in your application configuration:
-
-```php
-return [
-    //....
-    'components' => [
-        'view' => [
-            'renderers' => [
-                'twig' => [
-                    'class' => 'yii\twig\ViewRenderer',
-                    // set cachePath to false in order to disable template caching
-                    'cachePath' => '@runtime/Twig/cache',
-                    // Array of twig options:
-                    'options' => [
-                        'auto_reload' => true,
-                    ],
-                    // ... see ViewRenderer for more options
-                ],
-            ],
-        ],
-    ],
-];
-```
+To use this extension, configure it as described in [documentation](docs/guide/installation.md#configuring-application).

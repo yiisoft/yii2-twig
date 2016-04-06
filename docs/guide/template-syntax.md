@@ -9,21 +9,21 @@ described below.
 
 If you need result you can call a method or a function using the following syntax:
 
-```
+```twig
 {% set result = my_function({'a' : 'b'}) %}
 {% set result = myObject.my_function({'a' : 'b'}) %}
 ```
 
 If you need to echo result instead of assigning it to a variable:
 
-```
+```twig
 {{ my_function({'a' : 'b'}) }}
 {{ myObject.my_function({'a' : 'b'}) }}
 ```
 
 In case you don't need result you shoud use `void` wrapper:
 
-```
+```twig
 {{ void(my_function({'a' : 'b'})) }}
 {{ void(myObject.my_function({'a' : 'b'})) }}
 ```
@@ -33,7 +33,7 @@ In case you don't need result you shoud use `void` wrapper:
 There's a special function called `set` that allows you to set property of an object. For example, the following
 in the template will change page title:
 
-```
+```twig
 {{ set(this, 'title', 'New title') }}
 ```
 
@@ -41,7 +41,7 @@ in the template will change page title:
 
 You can import additional classes and namespaces right in the template:
 
-```
+```twig
 Namespace import:
 {{ use('/app/widgets') }}
 
@@ -56,7 +56,7 @@ Aliased class import:
 
 There are two ways of referencing templates in `include` and `extends` statements:
 
-```
+```twig
 {% include "comment.twig" %}
 {% extends "post.twig" %}
 
@@ -73,7 +73,7 @@ In the second case we're using path aliases. All the Yii aliases such as `@app` 
 
 Extension helps using widgets in convenient way converting their syntax to function calls:
 
-```
+```twig
 {{ use('yii/bootstrap') }}
 {{ nav_bar_begin({
     'brandLabel': 'My Company',
@@ -100,13 +100,13 @@ One could also use more generic `widget_end()` that executes `Widget::end()`.
 
 Assets could be registered the following way (since 2.0.4):
 
-```
+```twig
 {{ register_asset_bundle('yii/web/JqueryAsset') }}
 ```
 
 There's a bit more verbose syntax used previously:
 
-```
+```twig
 {{ use('yii/web/JqueryAsset') }}
 {{ register_jquery_asset() }}
 ```
@@ -118,7 +118,7 @@ class that we've already imported with `use`.
 
 You can build forms the following way:
 
-```
+```twig
 {{ use('yii/widgets/ActiveForm') }}
 {% set form = active_form_begin({
     'id' : 'login-form',
@@ -156,7 +156,7 @@ Within Twig templates the following variables are always defined:
 
 You can set blocks the following way:
 
-```
+```twig
 {{ void(this.beginBlock('block1')) }}
 now, block1 is set
 {{ void(this.endBlock()) }}
@@ -164,6 +164,6 @@ now, block1 is set
 
 Then, in the layout view, render the blocks:
 
-```
+```twig
 {{ this.blocks['block1'] }}
 ```
