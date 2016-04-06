@@ -9,3 +9,5 @@ phpunit.phar
 /tests/docker
 /tests/dockerids
 
+# phpstorm project files
+.idea
