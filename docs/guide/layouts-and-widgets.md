@@ -1,6 +1,33 @@
 Layouts and Widgets
 ===============
 
+## Widgets
+
+Extension helps using widgets in convenient way converting their syntax to function calls:
+
+```
+{{ use('yii/bootstrap') }}
+{{ nav_bar_begin({
+    'brandLabel': 'My Company',
+}) }}
+    {{ nav_widget({
+        'options': {
+            'class': 'navbar-nav navbar-right',
+        },
+        'items': [{
+            'label': 'Home',
+            'url': '/site/index',
+        }]
+    }) }}
+{{ nav_bar_end() }}
+```
+
+In the template above `nav_bar_begin`, `nav_bar_end` or `nav_widget` consists of two parts. First part is widget name
+coverted to lowercase and underscores: `NavBar` becomes `nav_bar`, `Nav` becomes `nav`. `_begin`, `_end` and `_widget`
+are the same as `::begin()`, `::end()` and `::widget()` calls of a widget.
+
+One could also use more generic `widget_end()` that executes `Widget::end()`.
+
 ## Main layout
 
 Here is an example of `views/layout/layout.twig` file to replace `views/layout/main.php`. 
@@ -136,4 +163,23 @@ Here is a footer code:
         <p class="pull-right">{{ Yii.powered() | raw }}</p>
     </div>
 </footer>
+```
+
+## Forms
+
+You can build forms the following way:
+
+```
+{{ use('yii/widgets/ActiveForm') }}
+{% set form = active_form_begin({
+    'id' : 'login-form',
+    'options' : {'class' : 'form-horizontal'},
+}) %}
+    {{ form.field(model, 'username') | raw }}
+    {{ form.field(model, 'password').passwordInput() | raw }}
+
+    <div class="form-group">
+        <input type="submit" value="Login" class="btn btn-primary" />
+    </div>
+{{ active_form_end() }}
 ```
