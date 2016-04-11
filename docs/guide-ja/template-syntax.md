@@ -1,5 +1,5 @@
-テンプレート構文
-================
+テンプレートの構文
+==================
 
 Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org](http://twig.sensiolabs.org/documentation) にある公式ドキュメントです。
 それに追加して、下記に説明する Yii 固有の拡張構文があります。
@@ -36,7 +36,7 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 {{ set(this, 'title', 'New title') }}
 ```
 
-## 名前空間とクラスをインポートする
+## ウィジェットの名前空間とクラスをインポートする
 
 追加のクラスと名前空間をテンプレートの中でインポートすることが出来ます。
 
@@ -51,6 +51,57 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 {{ use({'alias' : '/app/widgets/MyWidget'}) }}
 ```
 
+追加の情報を [レイアウトとウィジェット](layouts-and-widgets.md) で参照してください。
+
+
+## その他のクラスをインポートする
+
+たいていの場合、ウィジェットとアセットを除くと、[globals](additional-configuration.md#globals) によってクラスをインポートしなければなりません。
+
+例えば、次のコードは何も表示しません。
+
+```
+{{ use('yii/helpers/Url') }}
+<h1>{{ Url.base(true) }}</h1>
+```
+
+次のコードも何も表示しません。
+
+```
+{{ use ('app/models/MyClass') }}  
+{{ MyClass.helloWorld() }}
+```
+
+これらのクラスは、[globals](additional-configuration.md#globals) に追加しなければなりません。
+
+```
+// ....
+'view' => [
+    'class' => 'yii\web\View',
+    'renderers' => [
+        'twig' => [
+            'class' => 'yii\twig\ViewRenderer',
+            'cachePath' => '@runtime/Twig/cache',
+            'options' => [
+                'auto_reload' => true,
+            ],
+            'globals' => [
+                'Url' => '\yii\helpers\Url',
+                'MyClass' => '\frontend\models\MyClass',
+            ],
+        ],
+    ],
+],
+// ....
+```
+
+こうして、はじめて、クラスをそのように使うことが出来ます。
+```
+<h1>{{ Url.base(true) }}</h1>
+{{ MyClass.helloWorld() }}
+```
+
+
 ## 他のテンプレートを参照する
 
 `include` と `extends` 文によるテンプレートの参照には二つの方法があります。
@@ -63,39 +114,16 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 {% extends "@app/views/layouts/2columns.twig" %}
 ```
 
-最初の場合では、現在のテンプレートのパスからの相対的なパスでビューを探します。
-`comment.twig` と `post.twig` は、現在レンダリングされているテンプレートと同じディレクトリで探されます。
+最初の場合では、現在のテンプレートのパスからの相対的なパスでビューを探しています。
+すなわち、`comment.twig` と `post.twig` は、現在レンダリングされているテンプレートと同じディレクトリで探されるということを意味します。
 
-第二の場合では、パスエイリアスを使います。
-`@app` のような全ての Yii のエイリアスがデフォルトで利用できます。
+第二の場合では、パスエイリアスを使っています。
+`@app` のような Yii のエイリアスの全てがデフォルトで利用できます。
 
-## ウィジェット
-
-このエクステンションは、ウィジェットを簡単に使えるように、ウィジェットの構文を関数呼び出しに変換します。
-
-```twig
-{{ use('yii/bootstrap') }}
-{{ nav_bar_begin({
-    'brandLabel': 'My Company',
-}) }}
-    {{ nav_widget({
-        'options': {
-            'class': 'navbar-nav navbar-right',
-        },
-        'items': [{
-            'label': 'Home',
-            'url': '/site/index',
-        }]
-    }) }}
-{{ nav_bar_end() }}
+また、ビューの中で `render` メソッドを使うことも出来ます。
 ```
-
-上記のテンプレートでは、`nav_bar_begin`、`nav_bar_end` また `nav_widget` は、二つの部分から構成されます。
-最初の部分は、小文字とアンダースコアに変換されたウィジェットの名前です。
-`NavBar` は `nav_bar`、`Nav` は `nav` に変換されます。
-第二の部分の `_begin`、`_end` および `_widget` は、ウィジェットのメソッド `::begin()`、`::end()` および `::widget()` と同じものです。
-
-もっと汎用的な `Widget::end()` を実行する `widget_end()` も使うことが出来ます。
+{{ this.render('comment.twig', {'data1' : data1, 'data2' : data2}) | raw }}
+```
 
 ## アセット
 
@@ -113,25 +141,6 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 ```
 
 上記のコードで、`register` は、アセットを扱うことを指定し、`jquery_asset` は、既に `use` でインポート済みの `JqueryAsset` クラスに翻訳されます。
-
-## フォーム
-
-フォームは次のようにして構築することが出来ます。
-
-```twig
-{{ use('yii/widgets/ActiveForm') }}
-{% set form = active_form_begin({
-    'id' : 'login-form',
-    'options' : {'class' : 'form-horizontal'},
-}) %}
-    {{ form.field(model, 'username') | raw }}
-    {{ form.field(model, 'password').passwordInput() | raw }}
-
-    <div class="form-group">
-        <input type="submit" value="ログイン" class="btn btn-primary" />
-    </div>
-{{ active_form_end() }}
-```
 
 
 ## URL
