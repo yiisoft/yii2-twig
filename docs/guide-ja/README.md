@@ -7,6 +7,6 @@ Yii 2 Twig エクステンション
 --------
 
 * [インストール](installation.md)
-* [テンプレート構文](template-syntax.md)
+* [テンプレートの構文](template-syntax.md)
 * [レイアウトとウィジェット](layouts-and-widgets.md)
 * [追加の構成](additional-configuration.md)

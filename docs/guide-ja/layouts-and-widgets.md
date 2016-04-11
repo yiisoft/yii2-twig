@@ -1,6 +1,34 @@
 レイアウトとウィジェット
 ========================
 
+## ウィジェット
+
+このエクステンションは、ウィジェットを使うのに便利なように、ウィジェットの構文を関数呼び出しに変換します。
+
+```
+{{ use('yii/bootstrap') }}
+{{ nav_bar_begin({
+    'brandLabel': 'My Company',
+}) }}
+    {{ nav_widget({
+        'options': {
+            'class': 'navbar-nav navbar-right',
+        },
+        'items': [{
+            'label': 'Home',
+            'url': '/site/index',
+        }]
+    }) }}
+{{ nav_bar_end() }}
+```
+
+上記のテンプレートで、`nav_bar_begin`、`nav_bar_end` または `nav_widget` は、二つの部分から成っています。
+最初の部分は、小文字とアンダースコアに変換されたウィジェット名です。
+`NavBar` が `nav_bar` になり、`Nav` が `nav` になります。
+第二の部分の `_begin`、`_end` そして `_widget` は、ウィジェットの `::begin()`、`::end()` そして `::widget()` メソッドの呼び出しと同じです。
+
+もっと一般的な `Widget::end()` を実行する `widget_end()` を使うことも出来ます。
+
 ## メインレイアウト
 
 `views/layout/main.php` を置き換える `views/layout/layout.twig` ファイルの例を示します。
@@ -107,4 +135,52 @@ class SiteController extends Controller
         'items': menuItems
     }) }}
     {{ nav_bar_end() }}
+```
+
+## フッタ
+
+基本的な Yii のフッタのコードを PHP から twig に変換する方法を例示しましょう。
+
+`Powered by Yii framework` を表示するために、構成ファイルの中に `global` を追加します。
+```php
+'renderers' => [
+    'twig' => [
+        //..
+        'globals' => [
+            //..
+            'Yii' => '\Yii',
+            //..
+        ],
+        'uses' => ['yii\bootstrap'],
+        //..
+    ],
+],
+```
+これがフッタのコードです。
+```
+<footer class="footer">
+    <div class="container">
+        <p class="pull-left">&copy; My Company {{ 'now'|date('Y') }}</p>
+        <p class="pull-right">{{ Yii.powered() | raw }}</p>
+    </div>
+</footer>
+```
+
+## フォーム
+
+次のようにして、フォームを構築することが出来ます。
+
+```
+{{ use('yii/widgets/ActiveForm') }}
+{% set form = active_form_begin({
+    'id' : 'login-form',
+    'options' : {'class' : 'form-horizontal'},
+}) %}
+    {{ form.field(model, 'username') | raw }}
+    {{ form.field(model, 'password').passwordInput() | raw }}
+
+    <div class="form-group">
+        <input type="submit" value="ログイン" class="btn btn-primary" />
+    </div>
+{{ active_form_end() }}
 ```
