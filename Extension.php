@@ -279,8 +279,9 @@ class Extension extends \Twig_Extension
      */
     public function path($path, $args = [])
     {
+        $path = [$path];
         if ($args !== []) {
-            $path = array_merge([$path], $args);
+            $path = array_merge($path, $args);
         }
         return Url::to($path);
     }
@@ -294,8 +295,9 @@ class Extension extends \Twig_Extension
      */
     public function url($path, $args = [])
     {
+        $path = [$path];
         if ($args !== []) {
-            $path = array_merge([$path], $args);
+            $path = array_merge($path, $args);
         }
         return Url::to($path, true);
     }
