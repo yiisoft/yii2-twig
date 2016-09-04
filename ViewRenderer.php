@@ -89,25 +89,21 @@ class ViewRenderer extends BaseViewRenderer
      * @var \Twig_Environment twig environment object that renders twig templates
      */
     public $twig;
-
     /**
      * @var string twig namespace to use in templates
      * @since 2.0.5
      */
     public $twigViewsNamespace = \Twig_Loader_Filesystem::MAIN_NAMESPACE;
-
     /**
      * @var string twig namespace to use in modules templates
      * @since 2.0.5
      */
     public $twigModulesNamespace = 'modules';
-
     /**
      * @var string twig namespace to use in widgets templates
      * @since 2.0.5
      */
     public $twigWidgetsNamespace = 'widgets';
-
     /**
      * @var array twig fallback paths
      * @since 2.0.5
