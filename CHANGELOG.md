@@ -7,7 +7,7 @@ Yii Framework 2 twig extension Change Log
 - no changes in this release.
 
 
-2.0.5 under development
+2.0.5 September 4, 2016
 -----------------------
 
 - Enh #16: Extended simple functions and simple filters support (PatchRanger, quantum13)
