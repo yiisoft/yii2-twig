@@ -4,7 +4,7 @@ Yii Framework 2 twig extension Change Log
 2.0.6 under development
 -----------------------
 
-- no changes in this release.
+- Bug #61: Added missing view object existence check (Quexer69)
 
 
 2.0.5 September 4, 2016

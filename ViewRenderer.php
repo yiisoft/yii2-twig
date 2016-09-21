@@ -166,7 +166,9 @@ class ViewRenderer extends BaseViewRenderer
     {
         $this->twig->addGlobal('this', $view);
         $loader = new \Twig_Loader_Filesystem(dirname($file));
-        $this->addFallbackPaths($loader, $view->theme);
+        if ($view instanceof View) {
+            $this->addFallbackPaths($loader, $view->theme);
+        }
         $this->addAliases($loader, Yii::$aliases);
         $this->twig->setLoader($loader);
 
