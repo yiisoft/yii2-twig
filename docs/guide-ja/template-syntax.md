@@ -148,12 +148,12 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 URL を構築するのに使える二つの関数があります。
 
 ```php
-<a href="{{ path('blog/view', {'alias' : post.alias}) }}">{{ post.title }}</a>
-<a href="{{ url('blog/view', {'alias' : post.alias}) }}">{{ post.title }}</a>
+<a href="{{ path(['blog/view'], {'alias' : post.alias}) }}">{{ post.title }}</a>
+<a href="{{ url(['blog/view'], {'alias' : post.alias}) }}">{{ post.title }}</a>
 ```
 
 `path` は相対的な URL を生成し、`url` は絶対的な URL を生成します。
-内部的には、両者とも、[[\yii\helpers\Url]] を使っています。
+内部的には、両者とも、[[\yii\helpers\Url::to]] を使っています。
 
 ## 追加の変数
 
