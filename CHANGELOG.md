@@ -4,6 +4,7 @@ Yii Framework 2 twig extension Change Log
 2.1.0 under development
 -----------------------
 
+- Enh #43: Added scalar global variables support (mpestov)
 - Chg #46: Adjusted `path()` and `url()` syntax to be similar to Yii's `Url::to()` (quantum13)
 
 

@@ -89,7 +89,7 @@ Beforehand let's add `global` inside config file:
         ],
         'globals' => [
             //..
-            'url' => '\yii\helpers\Url', // new global
+            'url' => ['class' => '\yii\helpers\Url'], // new global
             //..
         ],
         'uses' => ['yii\bootstrap'],
@@ -147,7 +147,7 @@ In order to show `Powered by Yii framework` add `global` inside config file:
         //..
         'globals' => [
             //..
-            'Yii' => '\Yii',
+            'Yii' => ['class' => '\Yii'],
             //..
         ],
         'uses' => ['yii\bootstrap'],

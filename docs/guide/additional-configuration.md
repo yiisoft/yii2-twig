@@ -11,9 +11,9 @@ helpers and your own variables there:
 
 ```php
 'globals' => [
-    'html' => '\yii\helpers\Html',
+    'html' => ['class' => '\yii\helpers\Html'],
     'name' => 'Carsten',
-    'GridView' => '\yii\grid\GridView',
+    'GridView' => ['class' => '\yii\grid\GridView'],
 ],
 ```
 
