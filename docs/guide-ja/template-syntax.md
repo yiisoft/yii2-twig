@@ -86,8 +86,8 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
                 'auto_reload' => true,
             ],
             'globals' => [
-                'Url' => '\yii\helpers\Url',
-                'MyClass' => '\frontend\models\MyClass',
+                'Url' => ['class' => '\yii\helpers\Url'],
+                'MyClass' => ['class' => '\frontend\models\MyClass'],
             ],
         ],
     ],

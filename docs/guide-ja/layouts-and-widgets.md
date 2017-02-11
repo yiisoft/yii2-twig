@@ -90,7 +90,7 @@ class SiteController extends Controller
         ],
         'globals' => [
             //..
-            'url' => '\yii\helpers\Url', // 新しい global
+            'url' => ['class' => '\yii\helpers\Url'], // 新しい global
             //..
         ],
         'uses' => ['yii\bootstrap'],
@@ -148,7 +148,7 @@ class SiteController extends Controller
         //..
         'globals' => [
             //..
-            'Yii' => '\Yii',
+            'Yii' => ['class' => '\Yii'],
             //..
         ],
         'uses' => ['yii\bootstrap'],

@@ -86,8 +86,8 @@ You have add these classes to [globals](additional-configuration.md#globals):
                 'auto_reload' => true,
             ],
             'globals' => [
-                'Url' => '\yii\helpers\Url',
-                'MyClass' => '\frontend\models\MyClass',
+                'Url' => ['class' => '\yii\helpers\Url'],
+                'MyClass' => ['class' => '\frontend\models\MyClass'],
             ],
         ],
     ],
