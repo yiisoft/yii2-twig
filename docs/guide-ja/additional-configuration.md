@@ -11,7 +11,7 @@ Yii のヘルパとあなた自身の変数を定義することが出来ます�
 
 ```php
 'globals' => [
-    'html' => ['class' => '\yii\helpers\Html'],
+    'html' => '\yii\helpers\Html',
     'name' => 'Carsten',
     'GridView' => ['class' => '\yii\grid\GridView'],
 ],

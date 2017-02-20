@@ -220,7 +220,7 @@ class ViewRendererTest extends TestCase
                         'cache' => false,
                     ],
                     'globals' => [
-                        'html' => ['class' => '\yii\helpers\Html'],
+                        'html' => '\yii\helpers\Html',
                         'pos_begin' => View::POS_BEGIN,
                     ],
                     'functions' => [
