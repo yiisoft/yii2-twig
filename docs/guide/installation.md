@@ -1,7 +1,7 @@
 Installation
 ============
 
-Installation consists of two parts: getting composer package and configuring an application. 
+Installation consists of two parts: getting composer package and configuring an application.
 
 ## Installing an extension
 
@@ -39,7 +39,7 @@ In order to start using Twig you need to configure `view` component like the fol
                         'auto_reload' => true,
                     ],
                     'globals' => [
-                        'html' => ['class' => '\yii\helpers\Html'],
+                        'html' => '\yii\helpers\Html',
                     ],
                     'uses' => ['yii\bootstrap'],
                 ],
