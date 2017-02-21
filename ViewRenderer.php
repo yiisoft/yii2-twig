@@ -300,7 +300,7 @@ class ViewRenderer extends BaseViewRenderer
     public function addExtensions($extensions)
     {
         foreach ($extensions as $extName) {
-            $this->twig->addExtension(is_object($extName) ? $extName : new $extName());
+            $this->twig->addExtension(is_object($extName) ? $extName : Yii::createObject($extName));
         }
     }
 

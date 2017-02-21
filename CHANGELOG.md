@@ -5,6 +5,7 @@ Yii Framework 2 twig extension Change Log
 -----------------------
 
 - Enh #43: Added scalar global variables support (mpestov)
+- Enh #71: Added DIC usage for instantiating of enxtensions (ElisDN)
 - Chg #46: Adjusted `path()` and `url()` syntax to be similar to Yii's `Url::to()` (quantum13)
 
 
