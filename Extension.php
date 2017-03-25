@@ -114,7 +114,7 @@ class Extension extends \Twig_Extension
      *
      * @param array $context context information
      * @param string $bundle asset bundle class fully qualified name
-     * @param boolean $return indicates if AssetBundle should be returned
+     * @param bool $return indicates if AssetBundle should be returned
      *
      * @return void|AssetBundle
      * @since 2.0.4
