@@ -282,7 +282,7 @@ class Extension extends \Twig_Extension
         if (is_array($path)) {
             $path = array_merge($path, $args);
         } elseif ($args !== []) {
-            $path = array_merge([$path], $args); //bc
+            $path = array_merge([$path], $args);
         }
 
         return Url::to($path);
@@ -300,7 +300,7 @@ class Extension extends \Twig_Extension
         if (is_array($path)) {
             $path = array_merge($path, $args);
         } elseif ($args !== []) {
-            $path = array_merge([$path], $args); //bc
+            $path = array_merge([$path], $args);
         }
 
         return Url::to($path, true);

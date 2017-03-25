@@ -1,8 +1,8 @@
 Yii Framework 2 twig extension Change Log
 =========================================
 
-2.1.0 under development
------------------------
+2.1.0 March 25, 2017
+--------------------
 
 - Enh #43: Added scalar global variables support (mpestov)
 - Enh #71: Added DIC usage for instantiating of extensions (ElisDN)
