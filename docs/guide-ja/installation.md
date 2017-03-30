@@ -38,7 +38,7 @@ Twig を使い始めるためには、`view` コンポーネントを下記の�
                         'auto_reload' => true,
                     ],
                     'globals' => [
-                        'html' => '\yii\helpers\Html',
+                        ['class' => '\yii\helpers\Html'],
                     ],
                     'uses' => ['yii\bootstrap'],
                 ],

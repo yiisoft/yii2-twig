@@ -39,7 +39,7 @@ In order to start using Twig you need to configure `view` component like the fol
                         'auto_reload' => true,
                     ],
                     'globals' => [
-                        'html' => '\yii\helpers\Html',
+                        'html' => ['class' => '\yii\helpers\Html'],
                     ],
                     'uses' => ['yii\bootstrap'],
                 ],
