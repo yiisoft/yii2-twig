@@ -16,6 +16,12 @@ use yiiunit\extensions\twig\data\Singer;
  */
 class ViewRendererTest extends TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        parent::setUpBeforeClass();
+        Order::setUp();
+    }
+
     protected function setUp()
     {
         parent::setUp();
@@ -72,23 +78,23 @@ class ViewRendererTest extends TestCase
         $view = $this->mockView();
         $model = new Singer();
         $content = $view->renderFile('@yiiunit/extensions/twig/views/calls.twig', ['model' => $model]);
-        $this->assertFalse(strpos($content, 'silence'), 'silence should not be echoed when void() used: ' . $content);
-        $this->assertTrue(strpos($content, 'echo') !== false, 'echo should be there:' . $content);
-        $this->assertTrue(strpos($content, 'variable') !== false, 'variable should be there:' . $content);
+        $this->assertNotContains('silence', $content, 'silence should not be echoed when void() used');
+        $this->assertContains('echo', $content);
+        $this->assertContains('variable', $content);
     }
 
     public function testInheritance()
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/extensions/twig/views/extends2.twig');
-        $this->assertTrue(strpos($content, 'Hello, I\'m inheritance test!') !== false, 'Hello, I\'m inheritance test! should be there:' . $content);
-        $this->assertTrue(strpos($content, 'extends2 block') !== false, 'extends2 block should be there:' . $content);
-        $this->assertFalse(strpos($content, 'extends1 block') !== false, 'extends1 block should not be there:' . $content);
+        $this->assertContains('Hello, I\'m inheritance test!', $content);
+        $this->assertContains('extends2 block', $content);
+        $this->assertNotContains('extends1 block', $content);
 
         $content = $view->renderFile('@yiiunit/extensions/twig/views/extends3.twig');
-        $this->assertTrue(strpos($content, 'Hello, I\'m inheritance test!') !== false, 'Hello, I\'m inheritance test! should be there:' . $content);
-        $this->assertTrue(strpos($content, 'extends3 block') !== false, 'extends3 block should be there:' . $content);
-        $this->assertFalse(strpos($content, 'extends1 block') !== false, 'extends1 block should not be there:' . $content);
+        $this->assertContains('Hello, I\'m inheritance test!', $content);
+        $this->assertContains('extends3 block', $content);
+        $this->assertNotContains('extends1 block', $content);
     }
 
     public function testChangeTitle()
@@ -97,17 +103,24 @@ class ViewRendererTest extends TestCase
         $view->title = 'Original title';
 
         $content = $view->renderFile('@yiiunit/extensions/twig/views/changeTitle.twig');
-        $this->assertTrue(strpos($content, 'New title') !== false, 'New title should be there:' . $content);
-        $this->assertFalse(strpos($content, 'Original title') !== false, 'Original title should not be there:' . $content);
+        $this->assertContains('New title', $content);
+        $this->assertNotContains('Original title', $content);
     }
 
     public function testNullsInAr()
     {
-        Order::setUp();
-
         $view = $this->mockView();
         $order = new Order();
         $view->renderFile('@yiiunit/extensions/twig/views/nulls.twig', ['order' => $order]);
+    }
+
+    public function testPropertyAccess()
+    {
+        $view = $this->mockView();
+        $order = new Order();
+        $order->total = 42;
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/property.twig', ['order' => $order]);
+        $this->assertContains('42', $content);
     }
 
     public function testSimpleFilters()
