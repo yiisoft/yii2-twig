@@ -4,7 +4,7 @@ Yii Framework 2 twig extension Change Log
 2.1.1 under development
 -----------------------
 
-- no changes in this release.
+- Enh #78: Added `ViewRendererStaticClassProxy:__isset()` to be able to access static variable in the template (mrlinqu)
 
 
 2.1.0 March 25, 2017
