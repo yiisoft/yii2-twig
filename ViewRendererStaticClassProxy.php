@@ -34,8 +34,9 @@ class ViewRendererStaticClassProxy
     {
         $class = new \ReflectionClass($this->_staticClassName);
         $staticProps = $class->getStaticProperties();
+        $constants = $class->getConstants();
 
-        return array_key_exists($property, $staticProps);
+        return array_key_exists($property, $staticProps) || array_key_exists($property, $constants);
     }
     
     /**
@@ -45,7 +46,12 @@ class ViewRendererStaticClassProxy
     public function __get($property)
     {
         $class = new \ReflectionClass($this->_staticClassName);
-
+        
+        $constants = $class->getConstants();
+        if (array_key_exists($property, $constants)) {
+            return $class->getConstant($property);
+        }
+        
         return $class->getStaticPropertyValue($property);
     }
 
