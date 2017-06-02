@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: roman
- * Date: 02.06.2017
- * Time: 8:11
- */
 
 namespace yiiunit\extensions\twig\data;
 
