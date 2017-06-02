@@ -218,6 +218,16 @@ class ViewRendererTest extends TestCase
         $this->assertEquals('http://testurl.com/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/url/url2WithParamsAsArray.twig'));
     }
 
+    public function testStaticAndConsts()
+    {
+        $view = $this->mockView();
+        $view->renderers['twig']['globals']['staticClass'] = ['class' => '\yiiunit\extensions\twig\data\StaticAndConsts'];
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/staticAndConsts.twig');
+        $this->assertContains('I am a const!', $content);
+        $this->assertContains('I am a static var!', $content);
+        $this->assertContains('I am a static function with param pam-param!', $content);
+    }
+
 
     /**
      * Mocks view instance
