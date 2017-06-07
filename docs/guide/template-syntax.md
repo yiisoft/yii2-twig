@@ -147,8 +147,8 @@ class that we've already imported with `use`.
 There are two functions you can use for building URLs:
 
 ```php
-<a href="{{ path(['blog/view'], {'alias' : post.alias}) }}">{{ post.title }}</a>
-<a href="{{ url(['blog/view'], {'alias' : post.alias}) }}">{{ post.title }}</a>
+<a href="{{ path('blog/view', {'alias' : post.alias}) }}">{{ post.title }}</a>
+<a href="{{ url('blog/view', {'alias' : post.alias}) }}">{{ post.title }}</a>
 ```
 
 `path` generates relative URL while `url` generates absolute one. Internally both are using [[\yii\helpers\Url::to]].
