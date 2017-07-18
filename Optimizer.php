@@ -34,10 +34,10 @@ class Optimizer implements \Twig_NodeVisitorInterface
             if ($expression instanceof \Twig_Node_Expression_Function) {
                 $name = $expression->getAttribute('name');
                 if (preg_match('/^(?:register_.+_asset|use|.+_begin|.+_end)$/', $name)) {
-                    return new \Twig_Node_Do($expression, $expression->getLine());
+                    return new \Twig_Node_Do($expression, $expression->getTemplateLine());
                 } elseif (in_array($name, ['begin_page', 'end_page', 'begin_body', 'end_body', 'head'])) {
                     $arguments = [
-                        new \Twig_Node_Expression_Constant($name, $expression->getLine()),
+                        new \Twig_Node_Expression_Constant($name, $expression->getTemplateLine()),
                     ];
                     if ($expression->hasNode('arguments') && $expression->getNode('arguments') !== null) {
                         foreach ($expression->getNode('arguments') as $key => $value) {
@@ -49,7 +49,7 @@ class Optimizer implements \Twig_NodeVisitorInterface
                         }
                     }
                     $expression->setNode('arguments', new \Twig_Node($arguments));
-                    return new \Twig_Node_Do($expression, $expression->getLine());
+                    return new \Twig_Node_Do($expression, $expression->getTemplateLine());
                 }
             }
         }
