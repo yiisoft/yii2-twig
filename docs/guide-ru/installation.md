@@ -1,29 +1,29 @@
-Installation
+Установка
 ============
 
-Installation consists of two parts: getting composer package and configuring an application.
+Установка состоит из двух частей: получение пакета расширения через Composer и конфигурирование приложения.
 
-## Installing an extension
+## Установка расширения
 
-The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+Предпочтительный способ установки расширения через [composer](http://getcomposer.org/download/).
 
-Either run
+Для этого запустите команду
 
 ```
 php composer.phar require --prefer-dist yiisoft/yii2-twig
 ```
 
-or add
+или добавьте
 
 ```
 "yiisoft/yii2-twig": "~2.0.0"
 ```
 
-to the require section of your composer.json.
+в секцию require вашего composer.json.
 
-## Configuring application
+## Конфигурирование приложения
 
-In order to start using Twig you need to configure `view` component like the following:
+Чтобы использовать шаблонизатор Twig, вам необходимо сконфигурировать компонент `view` следующим образом:
 
 ```php
 [
@@ -50,9 +50,9 @@ In order to start using Twig you need to configure `view` component like the fol
 ]
 ```
 
-After it's done you can create templates in files that have the `.twig` extension (or use another file extension but
-configure the component accordingly). Unlike standard view files, when using Twig you must include the extension
-in your `$this->render()` controller call:
+После этого вы можете создавать шаблоны в файлах с расширением `.twig` (или использовать другое расширение файла, 
+предварительно переконфигурировав компонент). В отличие от стандартных файлов вида, при использовании шаблонизатора 
+Twig вы должны указывать расширение файла в вызове метода контроллера `$ this-> render ()`:
 
 ```php
 return $this->render('renderer.twig', ['username' => 'Alex']);

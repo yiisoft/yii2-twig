@@ -1,9 +1,9 @@
-Layouts and Widgets
-===============
+Шаблоны и виджеты
+=================
 
-## Widgets
+## Виджеты
 
-Extension helps using widgets in convenient way converting their syntax to function calls:
+Расширение позволяет использовать виджеты в удобной форме, конвертируя их синтаксис в вызовы функций:
 
 ```
 {{ use('yii/bootstrap') }}
@@ -22,17 +22,18 @@ Extension helps using widgets in convenient way converting their syntax to funct
 {{ nav_bar_end() }}
 ```
 
-In the template above `nav_bar_begin`, `nav_bar_end` or `nav_widget` consists of two parts. First part is widget name
-coverted to lowercase and underscores: `NavBar` becomes `nav_bar`, `Nav` becomes `nav`. `_begin`, `_end` and `_widget`
-are the same as `::begin()`, `::end()` and `::widget()` calls of a widget.
+В шаблоне выше имена функций `nav_bar_begin`, `nav_bar_end` или `nav_widget` состоят из двух частей. Первая часть - 
+это имя виджета, переведенное в нижний регистр и разделенное нижними подчеркиваниями: `NavBar` становится `nav_bar`, 
+`Nav` становится `nav`. `_begin`, `_end` и `_widget` аналогичны вызовам виджета `::begin()`, `::end()` и `::widget()`.
 
-One could also use more generic `widget_end()` that executes `Widget::end()`.
+Можно также использовать более общий вызов функции `widget_end()`, который выполняет `Widget::end()`.
 
-## Main layout
+## Главный шаблон
 
-Here is an example of `views/layout/layout.twig` file to replace `views/layout/main.php`. 
+Рассмотрим пример, как заменить шаблон по умолчанию `views/layout/main.php` на файл `views/layout/main.twig`.
 
-In order to change default layout add public variable inside `SiteController`:
+Чтобы изменить шаблон по умолчанию, добавьте public свойство в контроллер `SiteController`:
+
 ```php
 /**
  * Site controller
@@ -44,8 +45,7 @@ class SiteController extends Controller
     // ..
 ```
 
-
-Here is code inside file `views/layout/main.twig`: 
+Код в шаблоне `views/layout/main.twig`: 
 
 ```twig
     {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# asset root for yii advanced template #}
@@ -75,9 +75,11 @@ Here is code inside file `views/layout/main.twig`:
     </html>
     {{   void(this.endPage()) }}
 ```
-## Navigation bar
 
-Beforehand let's add `global` inside config file:
+## Панель навигации
+
+Прежде всего добавим `global` в файл конфигурации:
+
 ```php
 'renderers' => [
     'twig' => [
@@ -97,7 +99,7 @@ Beforehand let's add `global` inside config file:
 ],
 ```
 
-Here is `navigation` bar code with login/logout dynamic variants:
+Пример кода панели навигации в двух вариантах - для зарегистрированных/незарегистрированных пользователей:
 
 ```twig
     {{ nav_bar_begin({
@@ -136,11 +138,12 @@ Here is `navigation` bar code with login/logout dynamic variants:
     {{ nav_bar_end() }}
 ```
 
-## Footer
+## Футер
 
-Here is an example how to convert basic Yii footer code from PHP to twig.
+Рассмотрим пример, как конвертировать стандартный футер Yii из PHP в шаблон Twig.
 
-In order to show `Powered by Yii framework` add `global` inside config file:
+Чтобы отобразить `Powered by Yii framework` добавим `global` в файл конфигурации:
+
 ```php
 'renderers' => [
     'twig' => [
@@ -155,7 +158,9 @@ In order to show `Powered by Yii framework` add `global` inside config file:
     ],
 ],
 ```
-Here is a footer code:
+
+Код футера:
+
 ```
 <footer class="footer">
     <div class="container">
@@ -165,9 +170,9 @@ Here is a footer code:
 </footer>
 ```
 
-## Forms
+## Формы
 
-You can build forms the following way:
+Вы можете строить формы следующим способом:
 
 ```
 {{ use('yii/widgets/ActiveForm') }}

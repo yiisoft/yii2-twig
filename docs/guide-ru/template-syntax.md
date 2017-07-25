@@ -1,78 +1,80 @@
-Template Syntax
-===============
+Синтаксис шаблонизатора
+=======================
 
 The best resource to learn Twig basics is its official documentation you can find at
 [twig.sensiolabs.org](http://twig.sensiolabs.org/documentation). Additionally there are Yii-specific syntax extensions
 described below.
 
-## Method and function calls
+Лучшим ресурсом для изучения основ шаблонизатора Twig является официальная документация, которую можно найти тут - 
+[twig.sensiolabs.org](http://twig.sensiolabs.org/documentation). Ниже описаны синтаксические расширения, специфичные для Yii:
 
-If you need result you can call a method or a function using the following syntax:
+## Вызов метода и функции
+
+Если необходимо получить результат в переменную, вы можете вызвать метод или функцию следующим образом:
 
 ```twig
 {% set result = my_function({'a' : 'b'}) %}
 {% set result = myObject.my_function({'a' : 'b'}) %}
 ```
 
-If you need to echo result instead of assigning it to a variable:
+Если необходимо вывести результат без сохранения в переменную:
 
 ```twig
 {{ my_function({'a' : 'b'}) }}
 {{ myObject.my_function({'a' : 'b'}) }}
 ```
 
-In case you don't need result you shoud use `void` wrapper:
+Также вы можете использовать обертку `void`, если нет необходимости сохранять результат:
 
 ```twig
 {{ void(my_function({'a' : 'b'})) }}
 {{ void(myObject.my_function({'a' : 'b'})) }}
 ```
 
-## Setting object properties
+## Установка свойств объекта
 
-There's a special function called `set` that allows you to set property of an object. For example, the following
-in the template will change page title:
+Специальная функция `set` позволяет устанавливать свойства объекта. Например, следующий фрагмент кода изменяет
+title страницы:
 
 ```twig
 {{ set(this, 'title', 'New title') }}
 ```
 
-## Importing widgets namespaces and classes
+## Импортирование виджетов, пространств имен и классов
 
-You can import additional classes and namespaces right in the template:
+Вы можете импортировать в шаблон классы и пространства имен следующим образом:
 
 ```twig
-Namespace import:
+Импортирование пространства имен:
 {{ use('/app/widgets') }}
 
-Class import:
+Импортирование класса:
 {{ use('/yii/widgets/ActiveForm') }}
 
-Aliased class import:
+Импортирование класса с использованием псевдонима:
 {{ use({'alias' : '/app/widgets/MyWidget'}) }}
 ```
-Please refer to [Layouts and Widgets](layouts-and-widgets.md) for additional information.
+Подробная информация находится в разделе [Шаблоны и виджеты](layouts-and-widgets.md)
 
+## Импортирование других классов
 
-## Importing other classes
-
-In most cases, except widgets and assets, you have to import classes via [globals](additional-configuration.md#globals).
+В большинстве случаев, кроме виджетов и ассетов, вам понадобится импортировать классы через секцию [globals](additional-configuration.md#globals).
  
-For example this code prints nothing:
+Например, этот код ничего не выведет:
 
 ```
 {{ use('yii/helpers/Url') }}
 <h1>{{ Url.base(true) }}</h1>
 ```
 
-and this code also prints nothing:
+и этот код тоже ничего не выведет:
 
 ```
 {{ use ('app/models/MyClass') }}  
 {{ MyClass.helloWorld() }}
 ```
 
-You have add these classes to [globals](additional-configuration.md#globals):
+Вы должны указать эти классы в конфигурации, используя секцию [globals](additional-configuration.md#globals):
 
 ```
 // ....
@@ -95,16 +97,16 @@ You have add these classes to [globals](additional-configuration.md#globals):
 // ....
 ```
 
-Only then you can use classes such way:
+Только после этого вы можете использовать классы таким образом:
+
 ```
 <h1>{{ Url.base(true) }}</h1>
 {{ MyClass.helloWorld() }}
 ```
 
+## Интеграция шаблонов
 
-## Referencing other templates
-
-There are two ways of referencing templates in `include` and `extends` statements:
+Интегрировать другие шаблоны в текущий шаблон можно с помощью двух операторов `include` и `extends`:
 
 ```twig
 {% include "comment.twig" %}
@@ -114,55 +116,56 @@ There are two ways of referencing templates in `include` and `extends` statement
 {% extends "@app/views/layouts/2columns.twig" %}
 ```
 
-In the first case the view will be searched relatively to the current template path. For `comment.twig` and `post.twig`
-that means these will be searched in the same directory as the currently rendered template.
+В первом случае файл вида будет искаться относительно текущего пути. Это значит что файлы `comment.twig` и `post.twig` 
+будут искаться в той же директории, что и текущий отображаемый шаблон.
 
-In the second case we're using path aliases. All the Yii aliases such as `@app` are available by default.
+Во втором случае мы используем псевдонимы путей. Все псевдонимя Yii, такие как `@app`, доступны по умолчанию.
 
-You can also use `render` method inside a view:
+Вы также можете использовать метод `render` внутри вида:
+
 ```
 {{ this.render('comment.twig', {'data1' : data1, 'data2' : data2}) | raw }}
 ```
 
-## Assets
+## Ассеты
 
-Assets could be registered the following way (since 2.0.4):
+Ассеты могут быть зарегистрированы следующим способом (начиная с версии 2.0.4):
 
 ```twig
 {{ register_asset_bundle('yii/web/JqueryAsset') }}
 ```
 
-There's a bit more verbose syntax used previously:
+Более подробный синтаксис:
 
 ```twig
 {{ use('yii/web/JqueryAsset') }}
 {{ register_jquery_asset() }}
 ```
 
-In the call above `register` identifies that we're working with assets while `jquery_asset` translates to `JqueryAsset`
-class that we've already imported with `use`.
+В коде, указанном выше, `register` определяет, что мы работаем с ассетами, а `jquery_asset` переводится в класс 
+`JqueryAsset`, который уже импортирован с помощью `use`.
 
 ## URLs
 
-There are two functions you can use for building URLs:
+Для построения URL-ов вы можете использовать следующие функции:
 
 ```php
 <a href="{{ path(['blog/view'], {'alias' : post.alias}) }}">{{ post.title }}</a>
 <a href="{{ url(['blog/view'], {'alias' : post.alias}) }}">{{ post.title }}</a>
 ```
 
-`path` generates relative URL while `url` generates absolute one. Internally both are using [[\yii\helpers\Url::to]].
+Функция `path` генерирует относительный URL, `url` - абсолютный. Внутри себя обе функции используют [[\yii\helpers\Url::to]].
 
-## Additional variables
+## Дополнительные переменные
 
-Within Twig templates the following variables are always defined:
+Следующие переменные всегда определены в шаблонах Twig:
 
-- `app`, which equates to `\Yii::$app`
-- `this`, which equates to the current `View` object
+- `app`, которая соответствует `\Yii::$app`
+- `this`, которая соответствует текущему объекту `View`
  
-## Blocks
+## Блоки
 
-You can set blocks the following way:
+Вы можете определять блоки следующим образом:
 
 ```twig
 {{ void(this.beginBlock('block1')) }}
@@ -170,7 +173,7 @@ now, block1 is set
 {{ void(this.endBlock()) }}
 ```
 
-Then, in the layout view, render the blocks:
+Затем отображать блоки в основном шаблоне (layout):
 
 ```twig
 {{ this.blocks['block1'] }}

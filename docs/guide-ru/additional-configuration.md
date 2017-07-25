@@ -1,13 +1,13 @@
-Additional Configuration
-========================
+Дополнительная конфигурация
+===========================
 
-Yii Twig extension allows you to define your own syntax and bring regular helper classes into templates. Let's review
-configuration options.
+Расширение Yii Twig позволяет вам определять собственный синтаксис и переносить стандартные классы-хелперы в шаблоны. 
+Давайте рассмотрим параметры конфигурации.
 
 ## Globals
 
-You can add global helpers or values via the application configuration's `globals` variable. You can define both Yii
-helpers and your own variables there:
+Вы можете добавлять хелперы или другие значения с помощью секции `globals` в конфигурации приложения. Вы можете
+определить хелперы Yii или любые ваши переменные следующим образом:
 
 ```php
 'globals' => [
@@ -17,7 +17,7 @@ helpers and your own variables there:
 ],
 ```
 
-Once configured, in your template you can use the globals in the following way:
+Сконфигурировав один раз, вы можете использовать globals в любых ваших шаблонах Twig:
 
 ```twig
 Hello, {{name}}! {{ html.a('Please login', 'site/login') | raw }}.
@@ -25,9 +25,9 @@ Hello, {{name}}! {{ html.a('Please login', 'site/login') | raw }}.
 {{ GridView.widget({'dataProvider' : provider}) | raw }}
 ```
 
-## Functions
+## Функции
 
-You can define additional functions like the following:
+Вы можете определять дополнительные функции следующим образом:
 
 ```php
 'functions' => [
@@ -46,7 +46,7 @@ You can define additional functions like the following:
 ],
 ```
 
-In template they could be used like the following:
+И использовать эти функции в шаблоне Twig:
 
 ```twig
 {{ rot13('test') }}
@@ -57,9 +57,9 @@ In template they could be used like the following:
 {{ sum(1, 2) }}
 ```
 
-## Filters
+## Фильтры
 
-Additional filters may be added via the application configuration's `filters` option:
+Дополнительные фильтры можно добавлять в конфигурации в секции `filters`:
 
 ```php
 'filters' => [
@@ -77,7 +77,7 @@ Additional filters may be added via the application configuration's `filters` op
 ],
 ```
 
-Then in the template you can apply filter using the following syntax:
+В шаблоне применение фильтров выглядит следующим образом:
 
 ```twig
 {{ model|jsonEncode }}
