@@ -5,7 +5,7 @@
 
 Расширение позволяет использовать виджеты в удобной форме, конвертируя их синтаксис в вызовы функций:
 
-```
+```twig
 {{ use('yii/bootstrap') }}
 {{ nav_bar_begin({
     'brandLabel': 'My Company',
@@ -161,7 +161,7 @@ class SiteController extends Controller
 
 Код футера:
 
-```
+```twig
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company {{ 'now'|date('Y') }}</p>
@@ -174,7 +174,7 @@ class SiteController extends Controller
 
 Вы можете строить формы следующим способом:
 
-```
+```twig
 {{ use('yii/widgets/ActiveForm') }}
 {% set form = active_form_begin({
     'id' : 'login-form',

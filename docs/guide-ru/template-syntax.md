@@ -58,21 +58,21 @@ title страницы:
  
 Например, этот код ничего не выведет:
 
-```
+```twig
 {{ use('yii/helpers/Url') }}
 <h1>{{ Url.base(true) }}</h1>
 ```
 
 и этот код тоже ничего не выведет:
 
-```
+```twig
 {{ use ('app/models/MyClass') }}  
 {{ MyClass.helloWorld() }}
 ```
 
 Вы должны указать эти классы в конфигурации, используя секцию [globals](additional-configuration.md#globals):
 
-```
+```php
 // ....
 'view' => [
     'class' => 'yii\web\View',
@@ -95,7 +95,7 @@ title страницы:
 
 Только после этого вы можете использовать классы таким образом:
 
-```
+```twig
 <h1>{{ Url.base(true) }}</h1>
 {{ MyClass.helloWorld() }}
 ```
