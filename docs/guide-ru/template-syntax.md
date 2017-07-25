@@ -1,10 +1,6 @@
 Синтаксис шаблонизатора
 =======================
 
-The best resource to learn Twig basics is its official documentation you can find at
-[twig.sensiolabs.org](http://twig.sensiolabs.org/documentation). Additionally there are Yii-specific syntax extensions
-described below.
-
 Лучшим ресурсом для изучения основ шаблонизатора Twig является официальная документация, которую можно найти тут - 
 [twig.sensiolabs.org](http://twig.sensiolabs.org/documentation). Ниже описаны синтаксические расширения, специфичные для Yii:
 
