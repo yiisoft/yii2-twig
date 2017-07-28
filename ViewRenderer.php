@@ -113,7 +113,9 @@ class ViewRenderer extends BaseViewRenderer
 
     public function init()
     {
-        $this->twig = new \Twig_Environment(null, array_merge([
+        // Create environment with empty loader
+        $loader = new Twig_Empty_Loader();
+        $this->twig = new \Twig_Environment($loader, array_merge([
             'cache' => Yii::getAlias($this->cachePath),
             'charset' => Yii::$app->charset,
         ], $this->options));
