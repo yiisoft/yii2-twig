@@ -1,6 +1,12 @@
 Yii Framework 2 twig extension Change Log
 =========================================
 
+2.2.0 under development
+-----------------------
+
+- Enh #27: Upgrade to Twig 2.0 (koxu1996) 
+
+
 2.1.1 under development
 -----------------------
 
