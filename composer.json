@@ -29,15 +29,6 @@
             "dev-master": "2.0.x-dev"
         }
     },
-    "config": {
-        "process-timeout": 1800,
-        "fxp-asset": {
-            "pattern-skip-version": "(-build|-patch)",
-            "vcs-driver-options": {
-                "github-no-api": true
-            }
-        }
-    },
 	"repositories": [
         {
             "type": "composer",
