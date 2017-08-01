@@ -25,13 +25,7 @@ class ViewRendererTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $config = [
-            'aliases' => [
-                '@bower' => '@vendor/bower-asset',
-                '@npm'   => '@vendor/npm-asset',
-            ]
-        ];
-        $this->mockWebApplication($config);
+        $this->mockWebApplication();
     }
 
     protected function tearDown()
