@@ -21,16 +21,18 @@
         "yiisoft/yii2": "~2.0.4",
         "twig/twig": "~1.0"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
     "autoload": {
         "psr-4": { "yii\\twig\\": "" }
     },
     "extra": {
         "branch-alias": {
             "dev-master": "2.0.x-dev"
-        },
-        "asset-installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
         }
     }
 }
