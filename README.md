@@ -1,5 +1,10 @@
-Twig Extension for Yii 2
-========================
+<p align="center">
+    <a href="https://twig.symfony.com/" target="_blank">
+        <img src="https://twig.symfony.com/images/twig-logo.png" height="200px">
+    </a>
+    <h1 align="center">Twig Extension for Yii 2</h1>
+    <br>
+</p>
 
 This extension provides a `ViewRender` that would allow you to use [Twig](http://twig.sensiolabs.org/) view template engine
 with [Yii framework 2.0](http://www.yiiframework.com).
