@@ -28,6 +28,65 @@
 
 Можно также использовать более общий вызов функции `widget_end()`, который выполняет `Widget::end()`.
 
+Идеология Twig не позволяет применять php-код в шаблонах. Поэтому если есть необходимость использования анонимных функций 
+при конфигурации виджетов, эта функция может быть передана в шаблон в качестве переменной. 
+
+```php
+/**
+ * Site controller
+ */
+class SiteController extends Controller
+{
+    public function actionIndex()
+    {
+        $dataProvider = new ArrayDataProvider();
+        $dataProvider->setModels([
+            [
+                'id' => 1,
+                'name' => 'First',
+                'checked' => false,
+            ],
+            [
+                'id' => 2,
+                'name' => 'Second',
+                'checked' => true,
+            ],
+            [
+                'id' => 1,
+                'name' => 'third',
+                'checked' => false,
+            ],
+        ]);
+
+        $someFunction = function ($model) {
+            return $model['checked'] === true ? 'yes' : 'no';
+        };
+
+        return $this->render('index.twig', [
+            'dataProvider' => $dataProvider,
+            'someFunction' => $someFunction
+        ]);    
+    }
+}
+```
+
+```twig
+{{ use('yii/grid/GridView') }}
+{{ grid_view_widget({
+    'dataProvider': dataProvider,
+    'columns': [
+        {'class': '\\yii\\grid\\SerialColumn'},
+        'id',
+        'name',
+        {
+            'attribute': 'checked',
+            'value': someFunction
+        }
+    ]
+})
+}}
+```
+
 ## Главный шаблон
 
 Рассмотрим пример, как заменить шаблон по умолчанию `views/layout/main.php` на файл `views/layout/main.twig`.

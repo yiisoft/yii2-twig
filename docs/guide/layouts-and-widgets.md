@@ -28,6 +28,65 @@ are the same as `::begin()`, `::end()` and `::widget()` calls of a widget.
 
 One could also use more generic `widget_end()` that executes `Widget::end()`.
 
+Twig ideology don`t accept use php-code in template. So if you need use anonymous function in widget configuration,
+that function should be passed to the template as variable.
+
+```php
+/**
+ * Site controller
+ */
+class SiteController extends Controller
+{
+    public function actionIndex()
+    {
+        $dataProvider = new ArrayDataProvider();
+        $dataProvider->setModels([
+            [
+                'id' => 1,
+                'name' => 'First',
+                'checked' => false,
+            ],
+            [
+                'id' => 2,
+                'name' => 'Second',
+                'checked' => true,
+            ],
+            [
+                'id' => 1,
+                'name' => 'third',
+                'checked' => false,
+            ],
+        ]);
+
+        $someFunction = function ($model) {
+            return $model['checked'] === true ? 'yes' : 'no';
+        };
+
+        return $this->render('index.twig', [
+            'dataProvider' => $dataProvider,
+            'someFunction' => $someFunction
+        ]);    
+    }
+}
+```
+
+```twig
+{{ use('yii/grid/GridView') }}
+{{ grid_view_widget({
+    'dataProvider': dataProvider,
+    'columns': [
+        {'class': '\\yii\\grid\\SerialColumn'},
+        'id',
+        'name',
+        {
+            'attribute': 'checked',
+            'value': someFunction
+        }
+    ]
+})
+}}
+```  
+
 ## Main layout
 
 Here is an example of `views/layout/layout.twig` file to replace `views/layout/main.php`. 
