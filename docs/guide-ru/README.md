@@ -10,4 +10,5 @@
 * [Установка](installation.md)
 * [Синтаксис шаблонизатора](template-syntax.md)
 * [Шаблоны и виджеты](layouts-and-widgets.md)
+* [Html хелперы](html-helper.md)
 * [Дополнительная конфигурация](additional-configuration.md)
