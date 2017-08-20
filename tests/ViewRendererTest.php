@@ -2,6 +2,7 @@
 namespace yiiunit\extensions\twig;
 
 use yii\helpers\FileHelper;
+use yii\twig\html\HtmlHelperExtension;
 use yii\web\AssetManager;
 use yii\web\View;
 use Yii;
@@ -153,6 +154,25 @@ class ViewRendererTest extends TestCase
         $this->assertEquals($content, '6');
     }
 
+    public function testHtmlExtension()
+    {
+        $params = [
+            'options' => [
+                'class' => 'btn btn-default',
+                'style' => 'color:red; font-size: 24px'
+            ]
+        ];
+        $view = $this->mockView();
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/html/add_class.twig', $params);
+        $this->assertEquals($content, "btn btn-default btn-primary");
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/html/remove_class.twig', $params);
+        $this->assertEquals($content, "btn");
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/html/add_style.twig', $params);
+        $this->assertEquals($content, "color: red; font-size: 24px; display: none;");
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/html/remove_style.twig', $params);
+        $this->assertEquals($content, "color: red; font-size: 24px;/color: red; font-size: 24px;");
+    }
+
     public function testRegisterAssetBundle()
     {
         $view = $this->mockView();
@@ -243,7 +263,6 @@ class ViewRendererTest extends TestCase
                         'cache' => false,
                     ],
                     'globals' => [
-                        'html' => ['class' => '\yii\helpers\Html'],
                         'pos_begin' => View::POS_BEGIN,
                     ],
                     'functions' => [
@@ -279,6 +298,9 @@ class ViewRendererTest extends TestCase
                     'lexerOptions' => [
                         'tag_comment' => [ '{*', '*}' ],
                     ],
+                    'extensions' => [
+                        HtmlHelperExtension::class
+                    ]
                 ],
             ],
             'assetManager' => $this->mockAssetManager(),
