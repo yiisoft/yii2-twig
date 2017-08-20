@@ -2,7 +2,6 @@
 namespace yiiunit\extensions\twig;
 
 use yii\helpers\FileHelper;
-use yii\twig\html\HtmlHelperExtension;
 use yii\web\AssetManager;
 use yii\web\View;
 use Yii;
@@ -299,7 +298,7 @@ class ViewRendererTest extends TestCase
                         'tag_comment' => [ '{*', '*}' ],
                     ],
                     'extensions' => [
-                        HtmlHelperExtension::class
+                        '\yii\twig\html\HtmlHelperExtension'
                     ]
                 ],
             ],

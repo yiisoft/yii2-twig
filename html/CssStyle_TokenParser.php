@@ -6,7 +6,7 @@ class CssStyle_TokenParser extends BaseCss_TokenParser
 {
     public function getNodeClass()
     {
-        return StyleClassNode::class;
+        return '\yii\twig\html\StyleClassNode';
     }
 
     public function getTag()
