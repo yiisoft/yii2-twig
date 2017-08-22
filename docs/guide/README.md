@@ -9,4 +9,5 @@ Getting Started
 * [Installation](installation.md)
 * [Template Syntax](template-syntax.md)
 * [Layouts and Widgets](layouts-and-widgets.md)
+* [Html helper](html-helper.md)
 * [Additional Configuration](additional-configuration.md)

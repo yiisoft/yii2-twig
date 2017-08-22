@@ -11,7 +11,6 @@
 
 ```php
 'globals' => [
-    'html' => ['class' => '\yii\helpers\Html'],
     'name' => 'Carsten',
     'GridView' => ['class' => '\yii\grid\GridView'],
 ],
