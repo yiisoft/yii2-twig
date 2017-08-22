@@ -85,3 +85,19 @@ Hello, {{name}}! {{ html.a('Please login', 'site/login') | raw }}.
 {{ 'test'|callable_rot13 }}
 {{ 'answer'|callable_add_42 }}
 ```
+
+## Пути
+
+Дополнительные пути можно добавлять в конфигурации в секции `twigFallbackPaths`:
+
+```php
+'twigFallbackPaths' => [
+    'layouts' => '@app/views/layouts' //возможно использование yii2-алиасов
+]
+```
+
+и затем использовать в шаблонах:
+
+```twig
+{% extends '@layouts/main.twig %}
+```
