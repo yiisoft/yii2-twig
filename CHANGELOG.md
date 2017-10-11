@@ -1,6 +1,12 @@
 Yii Framework 2 twig extension Change Log
 =========================================
 
+2.1.2 under development
+-----------------------
+
+- no changes in this release.
+
+
 2.1.1 October 11, 2017
 ----------------------
 
