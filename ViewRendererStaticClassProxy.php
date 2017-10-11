@@ -28,7 +28,7 @@ class ViewRendererStaticClassProxy
 
     /**
      * @param string $property
-     * @return boolean
+     * @return bool
      */
     public function __isset($property)
     {

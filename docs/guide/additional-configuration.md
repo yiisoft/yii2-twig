@@ -86,3 +86,19 @@ Then in the template you can apply filter using the following syntax:
 {{ 'test'|callable_rot13 }}
 {{ 'answer'|callable_add_42 }}
 ```
+
+## Paths
+
+Additional paths may be added via the application configuration's `twigFallbackPaths` option:
+
+```php
+'twigFallbackPaths' => [
+    'layouts' => '@app/views/layouts' //it is pissible to use yii2-alises
+]
+```
+
+Then they could be used in a template:
+
+```twig
+{% extends '@layouts/main.twig %}
+```
