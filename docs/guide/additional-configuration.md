@@ -93,7 +93,7 @@ Additional paths may be added via the application configuration's `twigFallbackP
 
 ```php
 'twigFallbackPaths' => [
-    'layouts' => '@app/views/layouts' //it is pissible to use yii2-alises
+    'layouts' => '@app/views/layouts' //it is possible to use yii2-alises
 ]
 ```
 
