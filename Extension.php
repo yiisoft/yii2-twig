@@ -52,6 +52,7 @@ class Extension extends \Twig_Extension
     {
         return [
             new Optimizer(),
+            new GetAttrAdjuster(),
         ];
     }
 

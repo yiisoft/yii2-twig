@@ -8,33 +8,51 @@
 namespace yii\twig;
 
 /**
- * Template base class
- *
- * @author Alexei Tenitski <alexei@ten.net.nz>
+ * Template helper
  */
-abstract class Template extends \Twig_Template
+class Template
 {
     /**
-     * @inheritdoc
+     * Returns the attribute value for a given array/object.
+     *
+     * @param \Twig_Environment $env
+     * @param \Twig_Source      $source
+     * @param mixed             $object            The object or array from where to get the item
+     * @param mixed             $item              The item to get from the array or object
+     * @param array             $arguments         An array of arguments to pass if the item is an object method
+     * @param string            $type              The type of attribute (@see Twig_Template constants)
+     * @param bool              $isDefinedTest     Whether this is only a defined check
+     * @param bool              $ignoreStrictCheck Whether to ignore the strict attribute check or not
+     *
+     * @return mixed The attribute value, or a Boolean when $isDefinedTest is true, or null when the attribute is not set and $ignoreStrictCheck is true
+     *
+     * @throws \Twig_Error_Runtime if the attribute does not exist and Twig is running in strict mode and $isDefinedTest is false
+     *
+     * @internal
      */
-    protected function getAttribute($object, $item, array $arguments = [], $type = \Twig_Template::ANY_CALL, $isDefinedTest = false, $ignoreStrictCheck = false)
+    public static function attribute(\Twig_Environment $env, \Twig_Source $source, $object, $item, array $arguments = [], string $type = \Twig_Template::ANY_CALL, bool $isDefinedTest = false, bool $ignoreStrictCheck = false)
     {
-        // Twig uses isset() to check if attribute exists which does not work when attribute exists but is null
-        if ($object instanceof \yii\base\Model) {
-            if ($type === \Twig_Template::METHOD_CALL) {
-                if ($this->env->hasExtension('sandbox')) {
-                    $this->env->getExtension('sandbox')->checkMethodAllowed($object, $item);
-                }
-                return call_user_func_array([$object, $item], $arguments);
-            } else {
-                if ($this->env->hasExtension('sandbox')) {
-                    $this->env->getExtension('sandbox')->checkPropertyAllowed($object, $item);
-                }
-                return $object->$item;
+        if ($object instanceof ElementInterface) {
+            self::_includeElementInTemplateCaches($object);
+        }
+        if (
+            $type !== \Twig_Template::METHOD_CALL &&
+            ($object instanceof Object || $object instanceof \yii\base\Model) &&
+            $object->canGetProperty($item)
+        ) {
+            return $isDefinedTest ? true : $object->$item;
+        }
+        // Convert any Twig_Markup arguments back to strings (unless the class *extends* Twig_Markup)
+        foreach ($arguments as $key => $value) {
+            if (is_object($value) && get_class($value) === \Twig_Markup::class) {
+                $arguments[$key] = (string)$value;
             }
         }
-
-        return parent::getAttribute($object, $item, $arguments, $type, $isDefinedTest, $ignoreStrictCheck);
+        // Add deprecated support for the old DateTime methods
+        if ($object instanceof \DateTime && ($value = self::_dateTimeAttribute($object, $item, $type)) !== false) {
+            return $value;
+        }
+        return \twig_get_attribute($env, $source, $object, $item, $arguments, $type, $isDefinedTest, $ignoreStrictCheck);
     }
 
     /**

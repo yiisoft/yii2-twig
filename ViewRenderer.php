@@ -113,12 +113,12 @@ class ViewRenderer extends BaseViewRenderer
 
     public function init()
     {
-        $this->twig = new \Twig_Environment(null, array_merge([
+        // Create environment with empty loader
+        $loader = new Twig_Empty_Loader();
+        $this->twig = new \Twig_Environment($loader, array_merge([
             'cache' => Yii::getAlias($this->cachePath),
             'charset' => Yii::$app->charset,
         ], $this->options));
-
-        $this->twig->setBaseTemplateClass('yii\twig\Template');
 
         // Adding custom globals (objects or static classes)
         if (!empty($this->globals)) {
@@ -143,11 +143,6 @@ class ViewRenderer extends BaseViewRenderer
         }
 
         $this->twig->addGlobal('app', \Yii::$app);
-
-        // Change lexer syntax (must be set after other settings)
-        if (!empty($this->lexerOptions)) {
-            $this->setLexerOptions($this->lexerOptions);
-        }
     }
 
     /**
@@ -169,8 +164,14 @@ class ViewRenderer extends BaseViewRenderer
         if ($view instanceof View) {
             $this->addFallbackPaths($loader, $view->theme);
         }
+
         $this->addAliases($loader, Yii::$aliases);
         $this->twig->setLoader($loader);
+
+        // Change lexer syntax (must be set after other settings)
+        if (!empty($this->lexerOptions)) {
+            $this->setLexerOptions($this->lexerOptions);
+        }
 
         return $this->twig->render(pathinfo($file, PATHINFO_BASENAME), $params);
     }
