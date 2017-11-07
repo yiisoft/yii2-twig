@@ -10,6 +10,7 @@ Yii Framework 2 twig extension Change Log
 -----------------------
 
 - Enh #90 Added `yii\twig\Profile`. Extension for render profiling.
+- Enh #94 Fixed documentation
 
 2.1.1 October 11, 2017
 ----------------------
