@@ -4,17 +4,17 @@ Yii Framework 2 twig extension Change Log
 2.2.0 under development
 -----------------------
 
-- Enh #27: Upgrade to Twig 2.0 (koxu1996) 
+- no changes in this release.
 
 2.1.2 under development
 -----------------------
 
-- no changes in this release.
-
+- Enh #90 Added `yii\twig\Profile`. Extension for render profiling.
 
 2.1.1 October 11, 2017
 ----------------------
 
+- Enh #27: Upgrade to Twig 2.0 (koxu1996)
 - Enh #75: Got rid of deprecated function `Twig\Node::getLine()` (dmirogin)
 - Enh #78: Added `ViewRendererStaticClassProxy:__isset()` to be able to access static variable in the template (mrlinqu)
 - Enh #79: Added class constants support (mrlinqu)
