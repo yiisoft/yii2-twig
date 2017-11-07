@@ -135,7 +135,7 @@ Here is code inside file `views/layout/main.twig`:
     {{   void(this.endPage()) }}
 ```
 
-If you don't want to use controller layout you must to set false for the $layout field. 
+If you don't want to use controller layout you must to set `false` for the `$layout` field. 
 Also you must to set this field globally in application config.
 
 ```php
