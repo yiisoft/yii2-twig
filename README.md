@@ -41,3 +41,8 @@ Usage
 -----
 
 To use this extension, configure it as described in [documentation](docs/guide/installation.md#configuring-application).
+
+Requirements
+------------
+
+* PHP 7.0.0 and higher
