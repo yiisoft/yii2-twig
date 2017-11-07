@@ -134,6 +134,16 @@ Here is code inside file `views/layout/main.twig`:
     </html>
     {{   void(this.endPage()) }}
 ```
+
+If you don't want to use controller layout you must to set false for the $layout field. 
+Also you must to set this field globally in application config.
+
+```php
+[
+    'layout' => false
+]
+```
+
 ## Navigation bar
 
 Beforehand let's add `global` inside config file:
