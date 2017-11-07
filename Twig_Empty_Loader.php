@@ -16,8 +16,8 @@ namespace yii\twig;
 class Twig_Empty_Loader implements \Twig_LoaderInterface
 {
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function getSourceContext($name)
     {
         throw new Twig_Error_Loader("Can not render using empty loader");
