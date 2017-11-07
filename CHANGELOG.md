@@ -12,7 +12,6 @@ Yii Framework 2 twig extension Change Log
 
 - Enh #17: Added html helper (amarox)
 - Enh #25: Improve exceptions (amarox)
-- Enh #27: Upgrade to Twig 2.0 (koxu1996)
 - Enh #75: Got rid of deprecated function `Twig\Node::getLine()` (dmirogin)
 - Enh #78: Added `ViewRendererStaticClassProxy:__isset()` to be able to access static variable in the template (mrlinqu)
 - Enh #79: Added class constants support (mrlinqu)
