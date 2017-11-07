@@ -9,7 +9,8 @@ Yii Framework 2 twig extension Change Log
 2.1.2 under development
 -----------------------
 
-- Enh #90 Added `yii\twig\Profile`. Extension for render profiling.
+- Enh #90 Added `yii\twig\Profile`. Extension for render profiling (amarox)
+- Enh #94 Fixed documentation (amarox)
 
 2.1.1 October 11, 2017
 ----------------------
