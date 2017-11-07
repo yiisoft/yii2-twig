@@ -14,7 +14,7 @@ for both A and B.
 
 Upgrade from 2.1.0
 ------------------
-Since 2.1.1 extension uses Twig 2. See [twig upgrade notes](http://symfony.com/blog/twig-how-to-upgrade-to-2-0-deprecation-notices-to-the-rescue).
+Since 2.2.0 extension uses Twig 2. See [twig upgrade notes](http://symfony.com/blog/twig-how-to-upgrade-to-2-0-deprecation-notices-to-the-rescue).
 Also Twig 2 needs at least PHP 7.0.0
 
 
