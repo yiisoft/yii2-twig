@@ -101,3 +101,17 @@ Hello, {{name}}! {{ html.a('Please login', 'site/login') | raw }}.
 ```twig
 {% extends '@layouts/main.twig %}
 ```
+
+## Профилирование
+
+Чтобы в trace логи писались данные [twig-профайлера](https://twig.symfony.com/doc/2.x/api.html#profiler-extension), необходимо добавить расширение
+
+```php
+'extensions' => [
+    \yii\twig\Profile::class
+]
+```
+
+Данные записываются только когда приложение находится в режиме отладки. 
+
+Использование профайлера влияет на производительность.

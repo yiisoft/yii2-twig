@@ -102,3 +102,17 @@ Then they could be used in a template:
 ```twig
 {% extends '@layouts/main.twig %}
 ```
+
+## Profiling
+
+To include [twig-profile](https://twig.symfony.com/doc/2.x/api.html#profiler-extension) data in trace log you need to add the extension
+
+```php
+'extensions' => [
+    \yii\twig\Profile::class
+]
+```
+
+Profile writes log only debug mode.
+
+Using a profile affects performance.
