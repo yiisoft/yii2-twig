@@ -48,10 +48,6 @@ class Template
                 $arguments[$key] = (string)$value;
             }
         }
-        // Add deprecated support for the old DateTime methods
-        if ($object instanceof \DateTime && ($value = self::_dateTimeAttribute($object, $item, $type)) !== false) {
-            return $value;
-        }
         return \twig_get_attribute($env, $source, $object, $item, $arguments, $type, $isDefinedTest, $ignoreStrictCheck);
     }
 
