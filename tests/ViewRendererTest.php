@@ -247,6 +247,14 @@ class ViewRendererTest extends TestCase
         $this->assertContains('I am a static function with param pam-param!', $content);
     }
 
+    public function testDate()
+    {
+        $view = $this->mockView();
+        $date = new \DateTime();
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/date.twig', compact('date'));
+        $this->assertEquals($content, $date->format('Y-m-d'));
+    }
+
 
     /**
      * Mocks view instance
