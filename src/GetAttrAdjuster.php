@@ -7,8 +7,6 @@
 
 namespace yii\twig;
 
-use yii\twig\GetAttr;
-
 /**
  * GetAttrAdjuster swaps Twig_Node_Expression_GetAttr nodes with [[GetAttr]] nodes.
  */
