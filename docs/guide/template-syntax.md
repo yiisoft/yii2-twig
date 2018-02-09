@@ -21,7 +21,7 @@ If you need to echo result instead of assigning it to a variable:
 {{ myObject.my_function({'a' : 'b'}) }}
 ```
 
-In case you don't need result you shoud use `void` wrapper:
+In case you don't need result you should use `void` wrapper:
 
 ```twig
 {{ void(my_function({'a' : 'b'})) }}

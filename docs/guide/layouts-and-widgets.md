@@ -23,7 +23,7 @@ Extension helps using widgets in convenient way converting their syntax to funct
 ```
 
 In the template above `nav_bar_begin`, `nav_bar_end` or `nav_widget` consists of two parts. First part is widget name
-coverted to lowercase and underscores: `NavBar` becomes `nav_bar`, `Nav` becomes `nav`. `_begin`, `_end` and `_widget`
+converted to lowercase and underscores: `NavBar` becomes `nav_bar`, `Nav` becomes `nav`. `_begin`, `_end` and `_widget`
 are the same as `::begin()`, `::end()` and `::widget()` calls of a widget.
 
 One could also use more generic `widget_end()` that executes `Widget::end()`.
