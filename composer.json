@@ -28,7 +28,10 @@
         }
     ],
     "autoload": {
-        "psr-4": { "yii\\twig\\": "" }
+        "psr-4": { "yii\\twig\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "yiiunit\\extensions\\twig\\": "tests/" }
     },
     "extra": {
         "branch-alias": {

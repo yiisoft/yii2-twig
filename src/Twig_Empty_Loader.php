@@ -20,7 +20,7 @@ class Twig_Empty_Loader implements \Twig_LoaderInterface
      */
     public function getSourceContext($name)
     {
-        throw new Twig_Error_Loader("Can not render using empty loader");
+        throw new \Twig_Error_Loader("Can not render using empty loader");
     }
 
     /**
@@ -28,7 +28,7 @@ class Twig_Empty_Loader implements \Twig_LoaderInterface
      */
     public function getCacheKey($name)
     {
-        throw new Twig_Error_Loader("Can not render using empty loader");
+        throw new \Twig_Error_Loader("Can not render using empty loader");
     }
 
     /**
@@ -36,7 +36,7 @@ class Twig_Empty_Loader implements \Twig_LoaderInterface
      */
     public function isFresh($name, $time)
     {
-        throw new Twig_Error_Loader("Can not render using empty loader");
+        throw new \Twig_Error_Loader("Can not render using empty loader");
     }
 
     /**
