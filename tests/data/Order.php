@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiunit\extensions\twig\data;
+namespace yiiunit\twig\data;
 
 use yii\db\ActiveRecord;
 use yii\db\Connection;

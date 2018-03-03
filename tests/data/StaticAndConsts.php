@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiunit\extensions\twig\data;
+namespace yiiunit\twig\data;
 
 
 class StaticAndConsts

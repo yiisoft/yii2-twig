@@ -1,12 +1,18 @@
 <?php
-namespace yiiunit\extensions\twig;
+/**
+ * @link http://www.yiiframework.com/
+ * @copyright Copyright (c) 2008 Yii Software LLC
+ * @license http://www.yiiframework.com/license/
+ */
+
+namespace yiiunit\twig;
 
 use yii\helpers\FileHelper;
 use yii\web\AssetManager;
 use yii\web\View;
 use Yii;
-use yiiunit\extensions\twig\data\Order;
-use yiiunit\extensions\twig\data\Singer;
+use yiiunit\twig\data\Order;
+use yiiunit\twig\data\Singer;
 
 /**
  * Tests Twig view renderer
@@ -40,7 +46,7 @@ class ViewRendererTest extends TestCase
     public function testLayoutAssets()
     {
         $view = $this->mockView();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/layout.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/layout.twig');
 
         $this->assertEquals(1, preg_match('#<script src="/assets/[0-9a-z]+/jquery\\.js"></script>\s*</body>#', $content), 'Content does not contain the jquery js:' . $content);
     }
@@ -48,7 +54,7 @@ class ViewRendererTest extends TestCase
     public function testAppGlobal()
     {
         $view = $this->mockView();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/layout.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/layout.twig');
 
         $this->assertEquals(1, preg_match('#<meta charset="' . Yii::$app->charset . '"/>#', $content), 'Content does not contain charset:' . $content);
     }
@@ -59,7 +65,7 @@ class ViewRendererTest extends TestCase
     public function testLexerOptions()
     {
         $view = $this->mockView();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/comments.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/comments.twig');
 
         $this->assertFalse(strpos($content, 'CUSTOM_LEXER_TWIG_COMMENT'), 'Custom comment lexerOptions were not applied: ' . $content);
         $this->assertTrue(strpos($content, 'DEFAULT_TWIG_COMMENT') !== false, 'Default comment style was not modified via lexerOptions:' . $content);
@@ -69,7 +75,7 @@ class ViewRendererTest extends TestCase
     {
         $view = $this->mockView();
         $model = new Singer();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/form.twig', ['model' => $model]);
+        $content = $view->renderFile('@yiiunit/twig/views/form.twig', ['model' => $model]);
         $this->assertEquals(1, preg_match('#<form id="login-form" class="form-horizontal" action="/form-handler" method="post">.*?</form>#s', $content), 'Content does not contain form:' . $content);
     }
 
@@ -77,7 +83,7 @@ class ViewRendererTest extends TestCase
     {
         $view = $this->mockView();
         $model = new Singer();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/calls.twig', ['model' => $model]);
+        $content = $view->renderFile('@yiiunit/twig/views/calls.twig', ['model' => $model]);
         $this->assertNotContains('silence', $content, 'silence should not be echoed when void() used');
         $this->assertContains('echo', $content);
         $this->assertContains('variable', $content);
@@ -86,12 +92,12 @@ class ViewRendererTest extends TestCase
     public function testInheritance()
     {
         $view = $this->mockView();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/extends2.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/extends2.twig');
         $this->assertContains('Hello, I\'m inheritance test!', $content);
         $this->assertContains('extends2 block', $content);
         $this->assertNotContains('extends1 block', $content);
 
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/extends3.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/extends3.twig');
         $this->assertContains('Hello, I\'m inheritance test!', $content);
         $this->assertContains('extends3 block', $content);
         $this->assertNotContains('extends1 block', $content);
@@ -102,7 +108,7 @@ class ViewRendererTest extends TestCase
         $view = $this->mockView();
         $view->title = 'Original title';
 
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/changeTitle.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/changeTitle.twig');
         $this->assertContains('New title', $content);
         $this->assertNotContains('Original title', $content);
     }
@@ -111,7 +117,7 @@ class ViewRendererTest extends TestCase
     {
         $view = $this->mockView();
         $order = new Order();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/nulls.twig', ['order' => $order]);
+        $content = $view->renderFile('@yiiunit/twig/views/nulls.twig', ['order' => $order]);
         $this->assertSame('', $content);
     }
 
@@ -120,37 +126,37 @@ class ViewRendererTest extends TestCase
         $view = $this->mockView();
         $order = new Order();
         $order->total = 42;
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/property.twig', ['order' => $order]);
+        $content = $view->renderFile('@yiiunit/twig/views/property.twig', ['order' => $order]);
         $this->assertContains('42', $content);
     }
 
     public function testSimpleFilters()
     {
         $view = $this->mockView();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters1.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/simpleFilters1.twig');
         $this->assertEquals($content, 'Gjvt');
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters2.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/simpleFilters2.twig');
         $this->assertEquals($content, 'val42');
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters3.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/simpleFilters3.twig');
         $this->assertEquals($content, 'Gjvt');
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters4.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/simpleFilters4.twig');
         $this->assertEquals($content, 'val42');
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFilters5.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/simpleFilters5.twig');
         $this->assertEquals($content, 'Gjvt');
     }
 
     public function testSimpleFunctions()
     {
         $view = $this->mockView();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions1.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/simpleFunctions1.twig');
         $this->assertEquals($content, 'Gjvt');
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions2.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/simpleFunctions2.twig');
         $this->assertEquals($content, 'val43');
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions3.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/simpleFunctions3.twig');
         $this->assertEquals($content, 'Gjvt');
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions4.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/simpleFunctions4.twig');
         $this->assertEquals($content, 'val43');
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/simpleFunctions5.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/simpleFunctions5.twig');
         $this->assertEquals($content, '6');
     }
 
@@ -163,20 +169,20 @@ class ViewRendererTest extends TestCase
             ]
         ];
         $view = $this->mockView();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/html/add_class.twig', $params);
+        $content = $view->renderFile('@yiiunit/twig/views/html/add_class.twig', $params);
         $this->assertEquals($content, "btn btn-default btn-primary");
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/html/remove_class.twig', $params);
+        $content = $view->renderFile('@yiiunit/twig/views/html/remove_class.twig', $params);
         $this->assertEquals($content, "btn");
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/html/add_style.twig', $params);
+        $content = $view->renderFile('@yiiunit/twig/views/html/add_style.twig', $params);
         $this->assertEquals($content, "color: red; font-size: 24px; display: none;");
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/html/remove_style.twig', $params);
+        $content = $view->renderFile('@yiiunit/twig/views/html/remove_style.twig', $params);
         $this->assertEquals($content, "color: red; font-size: 24px;/color: red; font-size: 24px;");
     }
 
     public function testRegisterAssetBundle()
     {
         $view = $this->mockView();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/register_asset_bundle.twig');
+        $content = $view->renderFile('@yiiunit/twig/views/register_asset_bundle.twig');
         $this->assertEquals(Yii::getAlias('@bower/jquery/dist'), $content);
     }
 
@@ -196,16 +202,16 @@ class ViewRendererTest extends TestCase
             ]
         ]);
         $view = $this->mockView();
-        $this->assertEquals('/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithParams.twig'));//bc
-        $this->assertEquals('/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/path/path2WithParams.twig'));//bc
-        $this->assertEquals('/some/custom/path', $view->renderFile('@yiiunit/extensions/twig/views/path/pathCustom.twig'));
+        $this->assertEquals('/mypath?myparam=123', $view->renderFile('@yiiunit/twig/views/path/pathWithParams.twig'));//bc
+        $this->assertEquals('/mypath2/123', $view->renderFile('@yiiunit/twig/views/path/path2WithParams.twig'));//bc
+        $this->assertEquals('/some/custom/path', $view->renderFile('@yiiunit/twig/views/path/pathCustom.twig'));
 
         //to resolve url as a route first arg should be an array
-        $this->assertEquals('/mycontroller/myaction', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithoutParams.twig'));
+        $this->assertEquals('/mycontroller/myaction', $view->renderFile('@yiiunit/twig/views/path/pathWithoutParams.twig'));
 
-        $this->assertEquals('/mypath', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithoutParamsAsArray.twig'));
-        $this->assertEquals('/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/path/pathWithParamsAsArray.twig'));
-        $this->assertEquals('/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/path/path2WithParamsAsArray.twig'));
+        $this->assertEquals('/mypath', $view->renderFile('@yiiunit/twig/views/path/pathWithoutParamsAsArray.twig'));
+        $this->assertEquals('/mypath?myparam=123', $view->renderFile('@yiiunit/twig/views/path/pathWithParamsAsArray.twig'));
+        $this->assertEquals('/mypath2/123', $view->renderFile('@yiiunit/twig/views/path/path2WithParamsAsArray.twig'));
     }
 
     public function testUrl()
@@ -226,23 +232,23 @@ class ViewRendererTest extends TestCase
 
         Yii::$app->request->setHostInfo('http://testurl.com');
         $view = $this->mockView();
-        $this->assertEquals('http://testurl.com/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithParams.twig'));//bc
-        $this->assertEquals('http://testurl.com/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/url/url2WithParams.twig'));//bc
-        $this->assertEquals('http://testurl.com/some/custom/path', $view->renderFile('@yiiunit/extensions/twig/views/url/urlCustom.twig'));
+        $this->assertEquals('http://testurl.com/mypath?myparam=123', $view->renderFile('@yiiunit/twig/views/url/urlWithParams.twig'));//bc
+        $this->assertEquals('http://testurl.com/mypath2/123', $view->renderFile('@yiiunit/twig/views/url/url2WithParams.twig'));//bc
+        $this->assertEquals('http://testurl.com/some/custom/path', $view->renderFile('@yiiunit/twig/views/url/urlCustom.twig'));
 
         //to resolve url as a route first arg should be an array
-        $this->assertEquals('http://testurl.com/mycontroller/myaction', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithoutParams.twig'));
+        $this->assertEquals('http://testurl.com/mycontroller/myaction', $view->renderFile('@yiiunit/twig/views/url/urlWithoutParams.twig'));
 
-        $this->assertEquals('http://testurl.com/mypath', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithoutParamsAsArray.twig'));
-        $this->assertEquals('http://testurl.com/mypath?myparam=123', $view->renderFile('@yiiunit/extensions/twig/views/url/urlWithParamsAsArray.twig'));
-        $this->assertEquals('http://testurl.com/mypath2/123', $view->renderFile('@yiiunit/extensions/twig/views/url/url2WithParamsAsArray.twig'));
+        $this->assertEquals('http://testurl.com/mypath', $view->renderFile('@yiiunit/twig/views/url/urlWithoutParamsAsArray.twig'));
+        $this->assertEquals('http://testurl.com/mypath?myparam=123', $view->renderFile('@yiiunit/twig/views/url/urlWithParamsAsArray.twig'));
+        $this->assertEquals('http://testurl.com/mypath2/123', $view->renderFile('@yiiunit/twig/views/url/url2WithParamsAsArray.twig'));
     }
 
     public function testStaticAndConsts()
     {
         $view = $this->mockView();
-        $view->renderers['twig']['globals']['staticClass'] = ['class' => '\yiiunit\extensions\twig\data\StaticAndConsts'];
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/staticAndConsts.twig');
+        $view->renderers['twig']['globals']['staticClass'] = ['class' => \yiiunit\twig\data\StaticAndConsts::class];
+        $content = $view->renderFile('@yiiunit/twig/views/staticAndConsts.twig');
         $this->assertContains('I am a const!', $content);
         $this->assertContains('I am a static var!', $content);
         $this->assertContains('I am a static function with param pam-param!', $content);
@@ -252,7 +258,7 @@ class ViewRendererTest extends TestCase
     {
         $view = $this->mockView();
         $date = new \DateTime();
-        $content = $view->renderFile('@yiiunit/extensions/twig/views/date.twig', compact('date'));
+        $content = $view->renderFile('@yiiunit/twig/views/date.twig', compact('date'));
         $this->assertEquals($content, $date->format('Y-m-d'));
     }
 
