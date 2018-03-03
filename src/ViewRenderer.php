@@ -80,7 +80,7 @@ class ViewRenderer extends BaseViewRenderer
      * [
      *     'yii\bootstrap',
      *     'app\assets',
-     *     \yii\bootstrap\NavBar::className(),
+     *     \yii\bootstrap\NavBar::class,
      * ]
      * ```
      */

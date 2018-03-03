@@ -46,6 +46,6 @@ SQL
 
     public function getCustomer()
     {
-        return $this->hasOne(Order::className(), ['id' => 'customer_id']);
+        return $this->hasOne(Order::class, ['id' => 'customer_id']);
     }
 }
