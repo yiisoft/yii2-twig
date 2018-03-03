@@ -111,7 +111,8 @@ class ViewRendererTest extends TestCase
     {
         $view = $this->mockView();
         $order = new Order();
-        $view->renderFile('@yiiunit/extensions/twig/views/nulls.twig', ['order' => $order]);
+        $content = $view->renderFile('@yiiunit/extensions/twig/views/nulls.twig', ['order' => $order]);
+        $this->assertSame('', $content);
     }
 
     public function testPropertyAccess()
