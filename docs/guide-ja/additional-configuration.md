@@ -1,7 +1,7 @@
 追加の構成
 ==========
 
-Yii Twig エクステンションは、あなた自身の構文を定義して、通常のヘルパクラスをテンプレートに導入することを可能にしています。
+Yii Twig エクステンションは、あなた自身の構文を定義して、通常のヘルパ・クラスをテンプレートに導入することを可能にしています。
 構成のオプションを見ていきましょう。
 
 ## グローバル (globals)
@@ -86,3 +86,33 @@ Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw
 {{ 'test'|callable_rot13 }}
 {{ 'answer'|callable_add_42 }}
 ```
+
+## パス
+
+アプリケーション構成情報の `twigFallbackPaths` オプションによって、パスを追加することが出来ます。
+
+```php
+'twigFallbackPaths' => [
+    'layouts' => '@app/views/layouts' // yii2 のエイリアスが使えます
+]
+```
+
+これをテンプレートの中で使うことが出来ます。
+
+```twig
+{% extends '@layouts/main.twig %}
+```
+
+## プロファイリング
+
+トレース・ログに [twig-profile](https://twig.symfony.com/doc/2.x/api.html#profiler-extension) のデータを含めるためには、エクステンションを追加する必要があります。
+
+```php
+'extensions' => [
+    \yii\twig\Profile::class
+]
+```
+
+プロファイラはデバッグ・モードの時だけログを吐きます。
+
+プロファイリングの使用はパフォーマンスに影響を及ぼします。
