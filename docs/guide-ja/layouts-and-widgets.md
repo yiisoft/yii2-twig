@@ -29,7 +29,66 @@
 
 もっと一般的な `Widget::end()` を実行する `widget_end()` を使うことも出来ます。
 
-## メインレイアウト
+Twig のイデオロギーはテンプレート内での PHP コードの使用を許容しません。
+ですから、ウィジェットの構成で無名関数を使用する必要がある場合は、その関数を変数としてテンプレートに渡さなければなりません。
+
+```php
+/**
+ * Site controller
+ */
+class SiteController extends Controller
+{
+    public function actionIndex()
+    {
+        $dataProvider = new ArrayDataProvider();
+        $dataProvider->setModels([
+            [
+                'id' => 1,
+                'name' => 'First',
+                'checked' => false,
+            ],
+            [
+                'id' => 2,
+                'name' => 'Second',
+                'checked' => true,
+            ],
+            [
+                'id' => 1,
+                'name' => 'third',
+                'checked' => false,
+            ],
+        ]);
+
+        $someFunction = function ($model) {
+            return $model['checked'] === true ? 'yes' : 'no';
+        };
+
+        return $this->render('index.twig', [
+            'dataProvider' => $dataProvider,
+            'someFunction' => $someFunction
+        ]);    
+    }
+}
+```
+
+```twig
+{{ use('yii/grid/GridView') }}
+{{ grid_view_widget({
+    'dataProvider': dataProvider,
+    'columns': [
+        {'class': '\\yii\\grid\\SerialColumn'},
+        'id',
+        'name',
+        {
+            'attribute': 'checked',
+            'value': someFunction
+        }
+    ]
+})
+}}
+```  
+
+## メイン・レイアウト
 
 `views/layout/main.php` を置き換える `views/layout/layout.twig` ファイルの例を示します。
 
@@ -49,7 +108,7 @@ class SiteController extends Controller
 `views/layout/main.twig` の中身は次のようになります。
 
 ```twig
-    {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# アドバンストテンプレートのアセットのルート #}
+    {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# アドバンスト・テンプレートのアセットのルート #}
     {{   void(this.beginPage()) }}
     <!DOCTYPE html>
     <html lang="{{ app.language }}">
@@ -76,7 +135,17 @@ class SiteController extends Controller
     </html>
     {{   void(this.endPage()) }}
 ```
-## ナビゲーションバー
+
+コントローラのレイアウトを使いたくない場合は `$layout` フィールドを `false` に設定しなければなりません。
+また、このフィールドはアプリケーション設定でグローバルに設定しなければなりません。
+
+```php
+[
+    'layout' => false
+]
+```
+
+## ナビゲーション・バー
 
 前もって `global` を構成情報ファイルの中に追加しましょう。
 ```php
