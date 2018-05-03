@@ -1,7 +1,8 @@
 テンプレートの構文
 ==================
 
-Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org](http://twig.sensiolabs.org/documentation) にある公式ドキュメントです。
+Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org](http://twig.sensiolabs.org/documentation)
+にある公式ドキュメントです。
 それに追加して、下記に説明する Yii 固有の拡張構文があります。
 
 ## メソッドとファンクションの呼び出し
@@ -50,7 +51,6 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 エイリアス化してクラスをインポート:
 {{ use({'alias' : '/app/widgets/MyWidget'}) }}
 ```
-
 追加の情報を [レイアウトとウィジェット](layouts-and-widgets.md) で参照してください。
 
 
@@ -117,8 +117,7 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 最初の場合では、現在のテンプレートのパスからの相対的なパスでビューを探しています。
 すなわち、`comment.twig` と `post.twig` は、現在レンダリングされているテンプレートと同じディレクトリで探されるということを意味します。
 
-第二の場合では、パス・エイリアスを使っています。
-`@app` のような Yii のエイリアスの全てがデフォルトで利用できます。
+第二の場合では、パス・エイリアスを使っています。`@app` のような Yii のエイリアスの全てがデフォルトで利用できます。
 
 また、ビューの中で `render` メソッドを使うことも出来ます。
 ```
@@ -140,8 +139,8 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 {{ register_jquery_asset() }}
 ```
 
-上記のコードで、`register` は、アセットを扱うことを指定し、`jquery_asset` は、既に `use` でインポート済みの `JqueryAsset` クラスに翻訳されます。
-
+上記のコードで、`register` は、アセットを扱うことを指定し、`jquery_asset` は、
+既に `use` でインポート済みの `JqueryAsset` クラスに翻訳されます。
 
 ## URL
 
@@ -152,8 +151,7 @@ URL を構築するのに使える二つの関数があります。
 <a href="{{ url(['blog/view'], {'alias' : post.alias}) }}">{{ post.title }}</a>
 ```
 
-`path` は相対的な URL を生成し、`url` は絶対的な URL を生成します。
-内部的には、両者とも、[[\yii\helpers\Url::to]] を使っています。
+`path` は相対的な URL を生成し、`url` は絶対的な URL を生成します。内部的には、両者とも、[[\yii\helpers\Url::to]] を使っています。
 
 ## 追加の変数
 
@@ -162,7 +160,6 @@ Twig のテンプレート内では、次の変数が常に定義されていま
 - `app` - `\Yii::$app` オブジェクト
 - `this` - 現在の `View` オブジェクト
 
- 
 ## ブロック
 
 次のようにしてブロックを設定することが出来ます。
