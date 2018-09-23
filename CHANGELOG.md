@@ -1,8 +1,8 @@
 Yii Framework 2 twig extension Change Log
 =========================================
 
-2.2.1 under development
------------------------
+2.2.1 September 24, 2018
+------------------------
 
 - Bug #97: Fixed error when outputting DateTime dates (koxu1996)
 
