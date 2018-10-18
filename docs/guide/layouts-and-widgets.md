@@ -89,7 +89,7 @@ class SiteController extends Controller
 
 ## Main layout
 
-Here is an example of `views/layout/layout.twig` file to replace `views/layout/main.php`. 
+Here is an example of `views/layouts/main.twig` file to replace `views/layouts/main.php`. 
 
 In order to change default layout add public variable inside `SiteController`:
 ```php
@@ -104,7 +104,7 @@ class SiteController extends Controller
 ```
 
 
-Here is code inside file `views/layout/main.twig`: 
+Here is code inside file `views/layouts/main.twig`: 
 
 ```twig
     {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# asset root for yii advanced template #}
@@ -135,12 +135,14 @@ Here is code inside file `views/layout/main.twig`:
     {{   void(this.endPage()) }}
 ```
 
-If you don't want to use controller layout you must to set `false` for the `$layout` field. 
-Also you must to set this field globally in application config.
+If you don't want to use a layout in controller, you must set `$layout` property to `false`. 
+You can also change the layout globally in application config:
 
 ```php
 [
-    'layout' => false
+    'layout' => 'main.twig',
+    // or disable it:
+    'layout' => false,
 ]
 ```
 
