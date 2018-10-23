@@ -89,7 +89,7 @@ class SiteController extends Controller
 
 ## メイン・レイアウト
 
-`views/layout/main.php` を置き換える `views/layout/layout.twig` ファイルの例を示します。
+`views/layoust/main.php` を置き換える `views/layouts/main.twig` ファイルの例を示します。
 
 デフォルトのレイアウトを変更するために、`SiteController` の中でパブリックな変数を追加します。
 ```php
@@ -104,7 +104,7 @@ class SiteController extends Controller
 ```
 
 
-`views/layout/main.twig` の中身は次のようになります。
+`views/layouts/main.twig` の中身は次のようになります。
 
 ```twig
     {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# アドバンスト・テンプレートのアセットのルート #}
@@ -135,11 +135,13 @@ class SiteController extends Controller
     {{   void(this.endPage()) }}
 ```
 
-コントローラのレイアウトを使いたくない場合は `$layout` フィールドを `false` に設定しなければなりません。
-また、このフィールドはアプリケーション設定でグローバルに設定しなければなりません。
+コントローラのレイアウトを使いたくない場合は `$layout` プロパティを `false` に設定しなければなりません。
+また、アプリケーション設定でレイアウトをグローバルに変更することもできます。
 
 ```php
 [
+    'layout' => 'main.twig',
+    // または無効にする
     'layout' => false
 ]
 ```
