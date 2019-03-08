@@ -32,9 +32,6 @@ class Template
      */
     public static function attribute(\Twig_Environment $env, \Twig_Source $source, $object, $item, array $arguments = [], string $type = \Twig_Template::ANY_CALL, bool $isDefinedTest = false, bool $ignoreStrictCheck = false)
     {
-        if ($object instanceof ElementInterface) {
-            self::_includeElementInTemplateCaches($object);
-        }
         if (
             $type !== \Twig_Template::METHOD_CALL &&
             ($object instanceof Object || $object instanceof \yii\base\Model) &&
