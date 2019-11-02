@@ -86,6 +86,3 @@ in your `$this->render()` controller call:
 ```php
 return $this->render('renderer.twig', ['username' => 'Alex']);
 ```
-
-You can see code datails in:
-[https://github.com/yiisoft/yii2/blob/c5f7704a4d515f06efa66a94940db3aa24d02f6c/framework/base/View.php#L246](https://github.com/yiisoft/yii2/blob/c5f7704a4d515f06efa66a94940db3aa24d02f6c/framework/base/View.php#L246)
