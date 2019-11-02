@@ -50,8 +50,37 @@ In order to start using Twig you need to configure `view` component like the fol
 ]
 ```
 
-After it's done you can create templates in files that have the `.twig` extension (or use another file extension but
-configure the component accordingly). Unlike standard view files, when using Twig you must include the extension
+After it's done you can create templates in files that have the `.twig` extension. If you want to use another file extension,
+you need to configure the component accordingly. Below is an example for `.html`:
+
+
+
+```php
+[
+    'components' => [
+        'view' => [
+            'class' => 'yii\web\View',
+            'renderers' => [
+                'html' => [
+                    'class' => 'yii\twig\ViewRenderer',
+                    'cachePath' => '@runtime/Twig/cache',
+                    // Array of twig options:
+                    'options' => [
+                        'auto_reload' => true,
+                    ],
+                    'globals' => [
+                        'html' => ['class' => '\yii\helpers\Html'],
+                    ],
+                    'uses' => ['yii\bootstrap'],
+                ],
+                // ...
+            ],
+        ],
+    ],
+]
+```
+
+Unlike standard view files, when using Twig you must include the extension
 in your `$this->render()` controller call:
 
 ```php
