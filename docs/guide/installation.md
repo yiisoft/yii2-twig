@@ -50,10 +50,9 @@ In order to start using Twig you need to configure `view` component like the fol
 ]
 ```
 
-After it's done you can create templates in files that have the `.twig` extension (or use another file extension but
-configure the component accordingly). 
+After it's done you can create templates in files that have the `.twig` extension. If you want to use another file extension,
+you need to configure the component accordingly. Below is an example for `.html`:
 
-For file extension `.html`, you could just replace `twig` with `html` like this:
 
 
 ```php
