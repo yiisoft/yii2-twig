@@ -116,3 +116,24 @@ To include [twig-profile](https://twig.symfony.com/doc/2.x/api.html#profiler-ext
 Profile writes log only debug mode.
 
 Using a profile affects performance.
+
+## Yii Debug
+
+If you want to use [yiisoft/yii2-debug](https://github.com/yiisoft/yii2-debug) and display debug toolbar in web pages, you must ensure to add `{{ this.endBody() }}` in your layout template like below:
+
+```
+<!DOCTYPE html>
+<html>
+    <head>
+    ...
+    </head>
+    <body>
+        ...
+        ...
+        {{ this.endBody() }}
+    </body>
+</html>
+
+```
+Because the Debug toolbar block will be insert into html only when event `View::EVENT_END_BODY` be triggered.
+
