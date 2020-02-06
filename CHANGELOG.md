@@ -1,10 +1,11 @@
 Yii Framework 2 twig extension Change Log
 =========================================
 
-2.2.2 under development
+2.2.2 February 06, 2020
 -----------------------
 
 - Bug #103: Fixed HtmlHelperExtension issue (boliver20)
+
 
 2.2.1 September 24, 2018
 ------------------------
