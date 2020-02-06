@@ -7,6 +7,14 @@
 
 namespace yii\twig;
 
+use Twig\Environment;
+use Twig\Node\DoNode;
+use Twig\Node\Expression\ConstantExpression;
+use Twig\Node\Expression\FunctionExpression;
+use Twig\Node\Node;
+use Twig\Node\PrintNode;
+use Twig\NodeVisitor\NodeVisitorInterface;
+
 /**
  * Optimizer removes echo before special functions call and injects function name as an argument for the view helper
  * calls.
@@ -14,12 +22,12 @@ namespace yii\twig;
  * @author Andrey Grachov <andrey.grachov@gmail.com>
  * @author Alexander Makarov <sam@rmcreative.ru>
  */
-class Optimizer implements \Twig_NodeVisitorInterface
+class Optimizer implements NodeVisitorInterface
 {
     /**
      * @inheritdoc
      */
-    public function enterNode(\Twig_Node $node, \Twig_Environment $env)
+    public function enterNode(Node $node, Environment $env)
     {
         return $node;
     }
@@ -27,17 +35,17 @@ class Optimizer implements \Twig_NodeVisitorInterface
     /**
      * @inheritdoc
      */
-    public function leaveNode(\Twig_Node $node, \Twig_Environment $env)
+    public function leaveNode(Node $node, Environment $env)
     {
-        if ($node instanceof \Twig_Node_Print) {
+        if ($node instanceof PrintNode) {
             $expression = $node->getNode('expr');
-            if ($expression instanceof \Twig_Node_Expression_Function) {
+            if ($expression instanceof FunctionExpression) {
                 $name = $expression->getAttribute('name');
                 if (preg_match('/^(?:register_.+_asset|use|.+_begin|.+_end)$/', $name)) {
-                    return new \Twig_Node_Do($expression, $expression->getTemplateLine());
+                    return new DoNode($expression, $expression->getTemplateLine());
                 } elseif (in_array($name, ['begin_page', 'end_page', 'begin_body', 'end_body', 'head'])) {
                     $arguments = [
-                        new \Twig_Node_Expression_Constant($name, $expression->getTemplateLine()),
+                        new ConstantExpression($name, $expression->getTemplateLine()),
                     ];
                     if ($expression->hasNode('arguments') && $expression->getNode('arguments') !== null) {
                         foreach ($expression->getNode('arguments') as $key => $value) {
@@ -48,8 +56,8 @@ class Optimizer implements \Twig_NodeVisitorInterface
                             }
                         }
                     }
-                    $expression->setNode('arguments', new \Twig_Node($arguments));
-                    return new \Twig_Node_Do($expression, $expression->getTemplateLine());
+                    $expression->setNode('arguments', new Node($arguments));
+                    return new DoNode($expression, $expression->getTemplateLine());
                 }
             }
         }

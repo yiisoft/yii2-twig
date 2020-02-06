@@ -7,6 +7,11 @@
 
 namespace yii\twig;
 
+use Twig\Environment;
+use Twig\Lexer;
+use Twig\Loader\FilesystemLoader;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 use Yii;
 use yii\base\View;
 use yii\base\ViewRenderer as BaseViewRenderer;
@@ -86,14 +91,14 @@ class ViewRenderer extends BaseViewRenderer
      */
     public $uses = [];
     /**
-     * @var \Twig_Environment twig environment object that renders twig templates
+     * @var Environment twig environment object that renders twig templates
      */
     public $twig;
     /**
      * @var string twig namespace to use in templates
      * @since 2.0.5
      */
-    public $twigViewsNamespace = \Twig_Loader_Filesystem::MAIN_NAMESPACE;
+    public $twigViewsNamespace = FilesystemLoader::MAIN_NAMESPACE;
     /**
      * @var string twig namespace to use in modules templates
      * @since 2.0.5
@@ -115,7 +120,7 @@ class ViewRenderer extends BaseViewRenderer
     {
         // Create environment with empty loader
         $loader = new Twig_Empty_Loader();
-        $this->twig = new \Twig_Environment($loader, array_merge([
+        $this->twig = new Environment($loader, array_merge([
             'cache' => Yii::getAlias($this->cachePath),
             'charset' => Yii::$app->charset,
         ], $this->options));
@@ -160,7 +165,7 @@ class ViewRenderer extends BaseViewRenderer
     public function render($view, $file, $params)
     {
         $this->twig->addGlobal('this', $view);
-        $loader = new \Twig_Loader_Filesystem(dirname($file));
+        $loader = new FilesystemLoader(dirname($file));
         if ($view instanceof View) {
             $this->addFallbackPaths($loader, $view->theme);
         }
@@ -179,7 +184,7 @@ class ViewRenderer extends BaseViewRenderer
     /**
      * Adds aliases
      *
-     * @param \Twig_Loader_Filesystem $loader
+     * @param FilesystemLoader $loader
      * @param array $aliases
      */
     protected function addAliases($loader, $aliases)
@@ -196,8 +201,8 @@ class ViewRenderer extends BaseViewRenderer
     /**
      * Adds fallback paths to twig loader
      *
-     * @param \Twig_Loader_Filesystem $loader
-     * @param \yii\base\Theme|null $theme
+     * @param FilesystemLoader $loader
+     * @param yii\base\Theme|null $theme
      * @since 2.0.5
      */
     protected function addFallbackPaths($loader, $theme)
@@ -311,7 +316,7 @@ class ViewRenderer extends BaseViewRenderer
      */
     public function setLexerOptions($options)
     {
-        $lexer = new \Twig_Lexer($this->twig, $options);
+        $lexer = new Lexer($this->twig, $options);
         $this->twig->setLexer($lexer);
     }
 
@@ -337,7 +342,7 @@ class ViewRenderer extends BaseViewRenderer
                 case is_array($func) && is_callable($func[0]):
                     $twigElement = new $classFunction($name, $func[0], (!empty($func[1]) && is_array($func[1])) ? $func[1] : []);
                     break;
-                case $func instanceof \Twig_SimpleFunction || $func instanceof \Twig_SimpleFilter:
+                case $func instanceof TwigFunction || $func instanceof TwigFilter:
                     $twigElement = $func;
             }
 

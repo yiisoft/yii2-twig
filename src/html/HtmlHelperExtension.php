@@ -7,7 +7,9 @@
 
 namespace yii\twig\html;
 
-class HtmlHelperExtension extends \Twig_Extension
+use Twig\Extension\AbstractExtension;
+
+class HtmlHelperExtension extends AbstractExtension
 {
     public function getTokenParsers()
     {

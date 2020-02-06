@@ -7,12 +7,16 @@
 
 namespace yii\twig;
 
-class GetAttr extends \Twig_Node_Expression
+use Twig\Compiler;
+use Twig\Node\Expression\AbstractExpression;
+use Twig\Template as TwigTemplate;
+
+class GetAttr extends AbstractExpression
 {
     /**
      * @inheritdoc
      */
-    public function compile(\Twig_Compiler $compiler)
+    public function compile(Compiler $compiler)
     {
         $compiler->raw(Template::class.'::attribute($this->env, $this->getSourceContext(), ');
 
@@ -27,7 +31,7 @@ class GetAttr extends \Twig_Node_Expression
         // only generate optional arguments when needed (to make generated code more readable)
         $needFourth = $this->getAttribute('ignore_strict_check');
         $needThird = $needFourth || $this->getAttribute('is_defined_test');
-        $needSecond = $needThird || \Twig_Template::ANY_CALL !== $this->getAttribute('type');
+        $needSecond = $needThird || TwigTemplate::ANY_CALL !== $this->getAttribute('type');
         $needFirst = $needSecond || $this->hasNode('arguments');
 
         if ($needFirst) {
