@@ -7,9 +7,12 @@
 
 namespace yii\twig\html;
 
+use Twig\Token;
+use Twig\Error\Error;
+
 class StyleClassNode extends BaseClassNode
 {
-    public function __construct(\Twig_Token $name, $value, \Twig_Token $operator, $lineno = 0, $tag = null)
+    public function __construct(Token $name, $value, Token $operator, $lineno = 0, $tag = null)
     {
         parent::__construct(array('value' => $value), array('name' => $name, 'operator' => $operator), $lineno, $tag);
     }
@@ -23,7 +26,7 @@ class StyleClassNode extends BaseClassNode
             case '-':
                 return 'removeCssStyle';
             default:
-                throw new \Twig_Error("Operator {$operator} no found;");
+                throw new Error("Operator {$operator} no found;");
         }
     }
 }

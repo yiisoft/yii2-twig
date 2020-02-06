@@ -7,11 +7,14 @@
 
 namespace yii\twig;
 
+use Twig\TwigFunction;
+use Twig\Extension\AbstractExtension;
 use yii\base\InvalidCallException;
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\web\AssetBundle;
+
 
 /**
  * Extension provides Yii-specific syntax for Twig templates.
@@ -19,7 +22,7 @@ use yii\web\AssetBundle;
  * @author Andrey Grachov <andrey.grachov@gmail.com>
  * @author Alexander Makarov <sam@rmcreative.ru>
  */
-class Extension extends \Twig_Extension
+class Extension extends AbstractExtension
 {
     /**
      * @var array used namespaces
@@ -65,24 +68,24 @@ class Extension extends \Twig_Extension
             'is_safe' => ['html'],
         ];
         $functions = [
-            new \Twig_SimpleFunction('use', [$this, 'addUses'], $options),
-            new \Twig_SimpleFunction('*_begin', [$this, 'beginWidget'], $options),
-            new \Twig_SimpleFunction('*_end', [$this, 'endWidget'], $options),
-            new \Twig_SimpleFunction('widget_end', [$this, 'endWidget'], $options),
-            new \Twig_SimpleFunction('*_widget', [$this, 'widget'], $options),
-            new \Twig_SimpleFunction('path', [$this, 'path']),
-            new \Twig_SimpleFunction('url', [$this, 'url']),
-            new \Twig_SimpleFunction('void', function(){}),
-            new \Twig_SimpleFunction('set', [$this, 'setProperty']),
+            new TwigFunction('use', [$this, 'addUses'], $options),
+            new TwigFunction('*_begin', [$this, 'beginWidget'], $options),
+            new TwigFunction('*_end', [$this, 'endWidget'], $options),
+            new TwigFunction('widget_end', [$this, 'endWidget'], $options),
+            new TwigFunction('*_widget', [$this, 'widget'], $options),
+            new TwigFunction('path', [$this, 'path']),
+            new TwigFunction('url', [$this, 'url']),
+            new TwigFunction('void', function(){}),
+            new TwigFunction('set', [$this, 'setProperty']),
         ];
 
         $options = array_merge($options, [
             'needs_context' => true,
         ]);
-        $functions[] = new \Twig_SimpleFunction('register_*', [$this, 'registerAsset'], $options);
-        $functions[] = new \Twig_SimpleFunction('register_asset_bundle', [$this, 'registerAssetBundle'], $options);
+        $functions[] = new TwigFunction('register_*', [$this, 'registerAsset'], $options);
+        $functions[] = new TwigFunction('register_asset_bundle', [$this, 'registerAssetBundle'], $options);
         foreach (['begin_page', 'end_page', 'begin_body', 'end_body', 'head'] as $helper) {
-            $functions[] = new \Twig_SimpleFunction($helper, [$this, 'viewHelper'], $options);
+            $functions[] = new TwigFunction($helper, [$this, 'viewHelper'], $options);
         }
         return $functions;
     }

@@ -7,9 +7,11 @@
 
 namespace yii\twig\html;
 
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 use yii\twig\ViewRendererStaticClassProxy;
 
-class HtmlHelperExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+class HtmlHelperExtension extends AbstractExtension implements GlobalsInterface
 {
     public function getTokenParsers()
     {
