@@ -18,6 +18,7 @@
         }
     ],
     "require": {
+        "php": "^7.0",
         "yiisoft/yii2": "~2.0.4",
         "twig/twig": "~2.7"
     },
