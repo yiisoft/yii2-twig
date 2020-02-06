@@ -6,10 +6,11 @@ Yii Framework 2 twig extension Change Log
 
 - Bug #115: replaced deprecated PSR-0 classes and add compatibility for Twig 2.7+ versions (boliver20)
 
-2.2.2 under development
+
+2.2.2 February 06, 2020
 -----------------------
 
-- no changes in this release.
+- Bug #103: Fixed HtmlHelperExtension issue (boliver20)
 
 
 2.2.1 September 24, 2018
