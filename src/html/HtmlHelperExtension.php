@@ -7,7 +7,9 @@
 
 namespace yii\twig\html;
 
-class HtmlHelperExtension extends \Twig_Extension
+use yii\twig\ViewRendererStaticClassProxy;
+
+class HtmlHelperExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     public function getTokenParsers()
     {
@@ -20,7 +22,7 @@ class HtmlHelperExtension extends \Twig_Extension
     public function getGlobals()
     {
         return [
-            'html' => ['class' => '\yii\helpers\Html'],
+            'html' => new ViewRendererStaticClassProxy('\yii\helpers\Html'),
         ];
     }
 }
