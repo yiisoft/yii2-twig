@@ -53,27 +53,4 @@ class Template
         }
         return \twig_get_attribute($env, $source, $object, $item, $arguments, $type, $isDefinedTest, $ignoreStrictCheck);
     }
-
-    /**
-     * @inheritdoc
-     */
-    protected function displayWithErrorHandling(array $context, array $blocks = array())
-    {
-        try {
-            parent::displayWithErrorHandling($context, $blocks);
-        } catch (\Error $e) {
-            $r = new \ReflectionObject($this);
-            $file = $r->getFileName();
-            foreach ($e->getTrace() as $trace) {
-                if (isset($trace['file']) and $trace['file'] == $file) {
-                    $debugInfo = $this->getDebugInfo();
-                    if (isset($trace['line']) && isset($debugInfo[$trace['line']])) {
-                        throw new RuntimeError(sprintf('An exception has been thrown during the rendering of a template ("%s").', $e->getMessage()), $debugInfo[$trace['line']], $this->getSourceContext());
-                    }
-                }
-            }
-
-            throw $e;
-        }
-    }
 }
