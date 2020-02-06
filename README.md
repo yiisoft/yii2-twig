@@ -45,4 +45,4 @@ To use this extension, configure it as described in [documentation](docs/guide/i
 Requirements
 ------------
 
-* PHP 7.0.0 and higher
+* PHP 7.0 - 7.3
