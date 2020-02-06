@@ -1,6 +1,11 @@
 Yii Framework 2 twig extension Change Log
 =========================================
 
+2.3.0 under development
+-----------------------
+
+- Bug #115: replaced deprecated PSR-0 classes and add compatibility for Twig 2.7+ versions
+
 2.2.2 under development
 -----------------------
 
