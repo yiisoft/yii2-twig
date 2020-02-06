@@ -4,7 +4,7 @@ Yii Framework 2 twig extension Change Log
 2.3.0 under development
 -----------------------
 
-- Bug #115: replaced deprecated PSR-0 classes and add compatibility for Twig 2.7+ versions (boliver20)
+- Bug #115: Replace deprecated PSR-0 classes and add compatibility for Twig 2.7+ versions (boliver20)
 
 
 2.2.2 February 06, 2020
