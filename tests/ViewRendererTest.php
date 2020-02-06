@@ -177,6 +177,8 @@ class ViewRendererTest extends TestCase
         $this->assertEquals($content, "color: red; font-size: 24px; display: none;");
         $content = $view->renderFile('@yiiunit/twig/views/html/remove_style.twig', $params);
         $this->assertEquals($content, "color: red; font-size: 24px;/color: red; font-size: 24px;");
+        $content = $view->renderFile('@yiiunit/twig/views/html/anchor.twig');
+        $this->assertEquals($content, "<a class=\"btn\" href=\"/site/index\">Button</a>\n");
     }
 
     public function testRegisterAssetBundle()
