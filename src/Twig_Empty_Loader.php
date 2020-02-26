@@ -9,6 +9,7 @@ namespace yii\twig;
 
 use Twig\Error\LoaderError;
 use Twig\Loader\LoaderInterface;
+use Twig\Source;
 
 /**
  * Empty loader used for environment initialisation
@@ -21,7 +22,7 @@ class Twig_Empty_Loader implements LoaderInterface
     /**
      * @inheritdoc
      */
-    public function getSourceContext($name)
+    public function getSourceContext(string $name): Source
     {
         throw new LoaderError("Can not render using empty loader");
     }
@@ -29,7 +30,7 @@ class Twig_Empty_Loader implements LoaderInterface
     /**
      * @inheritdoc
      */
-    public function getCacheKey($name)
+    public function getCacheKey(string $name): string
     {
         throw new LoaderError("Can not render using empty loader");
     }
@@ -37,7 +38,7 @@ class Twig_Empty_Loader implements LoaderInterface
     /**
      * @inheritdoc
      */
-    public function isFresh($name, $time)
+    public function isFresh(string $name, int $time): bool
     {
         throw new LoaderError("Can not render using empty loader");
     }
@@ -45,7 +46,7 @@ class Twig_Empty_Loader implements LoaderInterface
     /**
      * @inheritdoc
      */
-    public function exists($name)
+    public function exists(string $name)
     {
         return false;
     }

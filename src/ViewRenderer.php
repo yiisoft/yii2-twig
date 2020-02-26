@@ -328,7 +328,7 @@ class ViewRenderer extends BaseViewRenderer
      */
     private function _addCustom($classType, $elements)
     {
-        $classFunction = 'Twig_Simple' . $classType;
+        $classFunction = 'Twig\Twig' . $classType;
 
         foreach ($elements as $name => $func) {
             $twigElement = null;

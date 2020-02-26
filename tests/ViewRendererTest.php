@@ -7,6 +7,8 @@
 
 namespace yiiunit\twig;
 
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 use yii\helpers\FileHelper;
 use yii\web\AssetManager;
 use yii\web\View;
@@ -284,8 +286,8 @@ class ViewRendererTest extends TestCase
                     'functions' => [
                         't' => '\Yii::t',
                         'json_encode' => '\yii\helpers\Json::encode',
-                        new \Twig_SimpleFunction('rot13', 'str_rot13'),
-                        new \Twig_SimpleFunction('add_*', function ($symbols, $val) {
+                        new TwigFunction('rot13', 'str_rot13'),
+                        new TwigFunction('add_*', function ($symbols, $val) {
                             return $val . $symbols;
                         }, ['is_safe' => ['html']]),
                         'callable_rot13' => function($string) {
@@ -300,8 +302,8 @@ class ViewRendererTest extends TestCase
                     ],
                     'filters' => [
                         'string_rot13' => 'str_rot13',
-                        new \Twig_SimpleFilter('rot13', 'str_rot13'),
-                        new \Twig_SimpleFilter('add_*', function ($symbols, $val) {
+                        new TwigFilter('rot13', 'str_rot13'),
+                        new TwigFilter('add_*', function ($symbols, $val) {
                             return $val . $symbols;
                         }, ['is_safe' => ['html']]),
                         'callable_rot13' => function($string) {
