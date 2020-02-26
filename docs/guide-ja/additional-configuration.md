@@ -64,8 +64,8 @@ Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw
 ```php
 'filters' => [
     'jsonEncode' => '\yii\helpers\Json::htmlEncode',
-    new \Twig_SimpleFilter('rot13', 'str_rot13'),
-    new \Twig_SimpleFilter('add_*', function ($symbols, $val) {
+    new \Twig\TwigFilter('rot13', 'str_rot13'),
+    new \Twig\TwigFilter('add_*', function ($symbols, $val) {
         return $val . $symbols;
     }, ['is_safe' => ['html']]),
     'callable_rot13' => function($string) {
