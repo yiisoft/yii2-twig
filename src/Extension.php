@@ -7,7 +7,6 @@
 
 namespace yii\twig;
 
-use Twig\TwigFunction;
 use Twig\Extension\AbstractExtension;
 use yii\base\InvalidCallException;
 use yii\helpers\Inflector;
@@ -68,24 +67,24 @@ class Extension extends AbstractExtension
             'is_safe' => ['html'],
         ];
         $functions = [
-            new TwigFunction('use', [$this, 'addUses'], $options),
-            new TwigFunction('*_begin', [$this, 'beginWidget'], $options),
-            new TwigFunction('*_end', [$this, 'endWidget'], $options),
-            new TwigFunction('widget_end', [$this, 'endWidget'], $options),
-            new TwigFunction('*_widget', [$this, 'widget'], $options),
-            new TwigFunction('path', [$this, 'path']),
-            new TwigFunction('url', [$this, 'url']),
-            new TwigFunction('void', function(){}),
-            new TwigFunction('set', [$this, 'setProperty']),
+            new \Twig\TwigFunction('use', [$this, 'addUses'], $options),
+            new \Twig\TwigFunction('*_begin', [$this, 'beginWidget'], $options),
+            new \Twig\TwigFunction('*_end', [$this, 'endWidget'], $options),
+            new \Twig\TwigFunction('widget_end', [$this, 'endWidget'], $options),
+            new \Twig\TwigFunction('*_widget', [$this, 'widget'], $options),
+            new \Twig\TwigFunction('path', [$this, 'path']),
+            new \Twig\TwigFunction('url', [$this, 'url']),
+            new \Twig\TwigFunction('void', function(){}),
+            new \Twig\TwigFunction('set', [$this, 'setProperty']),
         ];
 
         $options = array_merge($options, [
             'needs_context' => true,
         ]);
-        $functions[] = new TwigFunction('register_*', [$this, 'registerAsset'], $options);
-        $functions[] = new TwigFunction('register_asset_bundle', [$this, 'registerAssetBundle'], $options);
+        $functions[] = new \Twig\TwigFunction('register_*', [$this, 'registerAsset'], $options);
+        $functions[] = new \Twig\TwigFunction('register_asset_bundle', [$this, 'registerAssetBundle'], $options);
         foreach (['begin_page', 'end_page', 'begin_body', 'end_body', 'head'] as $helper) {
-            $functions[] = new TwigFunction($helper, [$this, 'viewHelper'], $options);
+            $functions[] = new \Twig\TwigFunction($helper, [$this, 'viewHelper'], $options);
         }
         return $functions;
     }

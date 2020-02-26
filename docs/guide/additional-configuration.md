@@ -33,8 +33,8 @@ You can define additional functions like the following:
 'functions' => [
     'rot13' => 'str_rot13',
     'truncate' => '\yii\helpers\StringHelper::truncate',
-    new \Twig_SimpleFunction('rot14', 'str_rot13'),
-    new \Twig_SimpleFunction('add_*', function ($symbols, $val) {
+    new \Twig\TwigFunction('rot14', 'str_rot13'),
+    new \Twig\TwigFunction('add_*', function ($symbols, $val) {
         return $val . $symbols;
     }, ['is_safe' => ['html']]),
     'callable_add_*' => function ($symbols, $val) {

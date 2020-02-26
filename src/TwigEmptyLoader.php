@@ -17,7 +17,7 @@ use Twig\Source;
  * @author Andrzej Broński <andrzej1_1@o2.pl>
  */
 
-class Twig_Empty_Loader implements LoaderInterface
+class TwigEmptyLoader implements LoaderInterface
 {
     /**
      * @inheritdoc
