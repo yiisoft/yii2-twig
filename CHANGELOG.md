@@ -7,12 +7,6 @@ Yii Framework 2 twig extension Change Log
 - Enh #123: Upgrade to Twig 3 (andrew-nuwber)
 - Enh #116: Add `t()` function (samdark)
 
-2.3.1 under development
------------------------
-
-- no changes in this release.
-
-
 2.3.0 February 06, 2020
 -----------------------
 
