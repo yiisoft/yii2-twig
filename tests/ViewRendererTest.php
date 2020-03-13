@@ -193,6 +193,7 @@ class ViewRendererTest extends TestCase
         $this->mockWebApplication([
             'components' => [
                 'urlManager' => [
+                    'cache' => false,
                     'enablePrettyUrl' => true,
                     'enableStrictParsing' => true,
                     'showScriptName' => false,
@@ -221,6 +222,7 @@ class ViewRendererTest extends TestCase
         $this->mockWebApplication([
             'components' => [
                 'urlManager' => [
+                    'cache' => false,
                     'enablePrettyUrl' => true,
                     'enableStrictParsing' => true,
                     'showScriptName' => false,
