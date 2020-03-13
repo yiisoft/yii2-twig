@@ -160,7 +160,7 @@ Beforehand let's add `global` inside config file:
         ],
         'globals' => [
             //..
-            'url' => ['class' => '\yii\helpers\Url'], // new global
+            'Url' => ['class' => '\yii\helpers\Url'], // new global
             //..
         ],
         'uses' => ['yii\bootstrap'],
@@ -172,7 +172,7 @@ Here is `navigation` bar code with login/logout dynamic variants:
 
 ```twig
     {{ nav_bar_begin({
-        'brandLabel': '<div class="logo"><img src="' ~ url.base(true) ~'/images/png/logo.png" alt="logo"/></div>',
+        'brandLabel': '<div class="logo"><img src="' ~ Url.base(true) ~'/images/png/logo.png" alt="logo"/></div>',
         'brandUrl' : app.homeUrl,
         'options' : {
             'class' : 'header navbar navbar-fixed-top',
