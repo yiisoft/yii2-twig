@@ -27,7 +27,7 @@ class Optimizer implements NodeVisitorInterface
     /**
      * @inheritdoc
      */
-    public function enterNode(Node $node, Environment $env)
+    public function enterNode(Node $node, Environment $env): Node
     {
         return $node;
     }
@@ -35,7 +35,7 @@ class Optimizer implements NodeVisitorInterface
     /**
      * @inheritdoc
      */
-    public function leaveNode(Node $node, Environment $env)
+    public function leaveNode(Node $node, Environment $env): ?Node
     {
         if ($node instanceof PrintNode) {
             $expression = $node->getNode('expr');

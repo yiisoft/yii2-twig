@@ -21,7 +21,7 @@ class HtmlHelperExtension extends AbstractExtension implements GlobalsInterface
         ];
     }
 
-    public function getGlobals()
+    public function getGlobals(): array
     {
         return [
             'html' => new ViewRendererStaticClassProxy('\yii\helpers\Html'),

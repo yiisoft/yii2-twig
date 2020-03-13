@@ -10,8 +10,6 @@ namespace yii\twig;
 use Twig\Environment;
 use Twig\Lexer;
 use Twig\Loader\FilesystemLoader;
-use Twig\TwigFilter;
-use Twig\TwigFunction;
 use Yii;
 use yii\base\View;
 use yii\base\ViewRenderer as BaseViewRenderer;
@@ -119,7 +117,7 @@ class ViewRenderer extends BaseViewRenderer
     public function init()
     {
         // Create environment with empty loader
-        $loader = new Twig_Empty_Loader();
+        $loader = new TwigEmptyLoader();
         $this->twig = new Environment($loader, array_merge([
             'cache' => Yii::getAlias($this->cachePath),
             'charset' => Yii::$app->charset,
@@ -328,7 +326,7 @@ class ViewRenderer extends BaseViewRenderer
      */
     private function _addCustom($classType, $elements)
     {
-        $classFunction = 'Twig_Simple' . $classType;
+        $classFunction = 'Twig\Twig' . $classType;
 
         foreach ($elements as $name => $func) {
             $twigElement = null;
@@ -342,7 +340,7 @@ class ViewRenderer extends BaseViewRenderer
                 case is_array($func) && is_callable($func[0]):
                     $twigElement = new $classFunction($name, $func[0], (!empty($func[1]) && is_array($func[1])) ? $func[1] : []);
                     break;
-                case $func instanceof TwigFunction || $func instanceof TwigFilter:
+                case $func instanceof \Twig\TwigFunction || $func instanceof \Twig\TwigFilter:
                     $twigElement = $func;
             }
 

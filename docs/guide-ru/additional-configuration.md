@@ -32,8 +32,8 @@ Hello, {{name}}! {{ html.a('Please login', 'site/login') | raw }}.
 'functions' => [
     'rot13' => 'str_rot13',
     'truncate' => '\yii\helpers\StringHelper::truncate',
-    new \Twig_SimpleFunction('rot14', 'str_rot13'),
-    new \Twig_SimpleFunction('add_*', function ($symbols, $val) {
+    new \Twig\TwigFunction('rot14', 'str_rot13'),
+    new \Twig\TwigFunction('add_*', function ($symbols, $val) {
         return $val . $symbols;
     }, ['is_safe' => ['html']]),
     'callable_add_*' => function ($symbols, $val) {
@@ -63,8 +63,8 @@ Hello, {{name}}! {{ html.a('Please login', 'site/login') | raw }}.
 ```php
 'filters' => [
     'jsonEncode' => '\yii\helpers\Json::htmlEncode',
-    new \Twig_SimpleFilter('rot13', 'str_rot13'),
-    new \Twig_SimpleFilter('add_*', function ($symbols, $val) {
+    new \Twig\TwigFilter('rot13', 'str_rot13'),
+    new \Twig\TwigFilter('add_*', function ($symbols, $val) {
         return $val . $symbols;
     }, ['is_safe' => ['html']]),
     'callable_rot13' => function($string) {
