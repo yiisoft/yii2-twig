@@ -160,6 +160,13 @@ class ViewRendererTest extends TestCase
         $this->assertEquals($content, '6');
     }
 
+    public function testTranslation()
+    {
+        $view = $this->mockView();
+        $content = $view->renderFile('@yiiunit/twig/views/t.twig');
+        $this->assertContains('test&lt;br&gt;', $content);
+    }
+
     public function testHtmlExtension()
     {
         $params = [

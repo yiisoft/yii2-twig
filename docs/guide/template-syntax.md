@@ -175,3 +175,13 @@ Then, in the layout view, render the blocks:
 ```twig
 {{ this.blocks['block1'] }}
 ```
+
+## Message translation
+
+You can use the following syntax for message translation:
+
+```twig
+{{ t('app', 'Hello, world!') }}
+```
+
+In order for `./yii message` to extract messages, make sure `@runtime/Twig/cache` is not excluded from scanning.
