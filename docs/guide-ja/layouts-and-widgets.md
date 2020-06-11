@@ -160,7 +160,7 @@ class SiteController extends Controller
         ],
         'globals' => [
             //..
-            'url' => ['class' => '\yii\helpers\Url'], // 新しい global
+            'Url' => ['class' => '\yii\helpers\Url'], // 新しい global
             //..
         ],
         'uses' => ['yii\bootstrap'],
@@ -172,7 +172,7 @@ class SiteController extends Controller
 
 ```twig
     {{ nav_bar_begin({
-        'brandLabel': '<div class="logo"><img src="' ~ url.base(true) ~'/images/png/logo.png" alt="logo"/></div>',
+        'brandLabel': '<div class="logo"><img src="' ~ Url.base(true) ~'/images/png/logo.png" alt="logo"/></div>',
         'brandUrl' : app.homeUrl,
         'options' : {
             'class' : 'header navbar navbar-fixed-top',
