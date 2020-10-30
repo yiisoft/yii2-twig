@@ -4,7 +4,7 @@ Yii Framework 2 twig extension Change Log
 2.4.1 under development
 -----------------------
 
-- no changes in this release.
+- Chg: Allow installing on PHP 8 (samdark)
 
 
 2.4.0 March 13, 2020
