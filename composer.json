@@ -1,5 +1,5 @@
 {
-    "name": "yiisoft/yii2-twig",
+    "name": "sircovsw/yii2-twig",
     "description": "The Twig integration for the Yii framework",
     "keywords": ["yii2", "twig", "renderer"],
     "type": "yii2-extension",
