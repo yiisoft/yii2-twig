@@ -6,7 +6,7 @@
     <br>
 </p>
 
-This extension provides a `ViewRender` that would allow you to use [Twig](http://twig.symhfony.com/) view template engine
+This extension provides a `ViewRender` that would allow you to use [Twig](http://twig.symfony.com/) view template engine
 with [Yii framework 2.0](http://www.yiiframework.com).
 
 For license information check the [LICENSE](LICENSE.md)-file.
