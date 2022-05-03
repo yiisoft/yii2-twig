@@ -2,7 +2,7 @@ Template Syntax
 ===============
 
 The best resource to learn Twig basics is its official documentation you can find at
-[twig.sensiolabs.org](http://twig.sensiolabs.org/documentation). Additionally there are Yii-specific syntax extensions
+[twig.symfony.com](http://twig.symfony.com/documentation). Additionally there are Yii-specific syntax extensions
 described below.
 
 ## Method and function calls

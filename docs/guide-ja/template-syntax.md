@@ -1,7 +1,7 @@
 テンプレートの構文
 ==================
 
-Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org](http://twig.sensiolabs.org/documentation)
+Twig の基礎を学ぶための最善のリソースは、[twig.symfony.com](http://twig.symfony.com/documentation)
 にある公式ドキュメントです。
 それに追加して、下記に説明する Yii 固有の拡張構文があります。
 
