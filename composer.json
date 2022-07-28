@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "php": "^7.2.5|^8.0",
+        "php": "^7.2.5|^8.0|^8.1",
         "yiisoft/yii2": "~2.0.4",
         "twig/twig": "~3.0"
     },
@@ -33,10 +33,14 @@
         }
     ],
     "autoload": {
-        "psr-4": { "yii\\twig\\": "src/" }
+        "psr-4": {
+            "yii\\twig\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "yiiunit\\twig\\": "tests/" }
+        "psr-4": {
+            "yiiunit\\twig\\": "tests/"
+        }
     },
     "extra": {
         "branch-alias": {
@@ -47,10 +51,20 @@
             "phpunit/phpunit-mock-objects": {
                 "Fix PHP 7 and 8 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_mock_objects.patch"
             },
+            "phpunit/php-file-iterator": {
+                "Fix PHP 8.1 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_path_file_iterator.patch"
+            },
             "phpunit/phpunit": {
                 "Fix PHP 7 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php7.patch",
-                "Fix PHP 8 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php8.patch"
+                "Fix PHP 8 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php8.patch",
+                "Fix PHP 8.1 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php81.patch"
             }
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "cweagans/composer-patches": true,
+            "yiisoft/yii2-composer": true
         }
     }
 }
