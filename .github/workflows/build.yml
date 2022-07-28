@@ -1,6 +1,6 @@
 name: build
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 env:
     DEFAULT_COMPOSER_FLAGS: "--prefer-dist --no-interaction --no-progress --optimize-autoloader --ansi"
