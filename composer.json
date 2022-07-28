@@ -1,11 +1,7 @@
 {
     "name": "yiisoft/yii2-twig",
     "description": "The Twig integration for the Yii framework",
-    "keywords": [
-        "yii2",
-        "twig",
-        "renderer"
-    ],
+    "keywords": ["yii2", "twig", "renderer"],
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
     "support": {
@@ -63,6 +59,11 @@
                 "Fix PHP 8 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php8.patch",
                 "Fix PHP 8.1 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php81.patch"
             }
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "cweagans/composer-patches": true
         }
     }
 }
