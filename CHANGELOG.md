@@ -1,10 +1,11 @@
 Yii Framework 2 twig extension Change Log
 =========================================
 
-2.4.2 under development
------------------------
+2.4.2 September 04, 2022
+------------------------
 
 - Chg #134: Allow installing on PHP 8.1 (sircovsw)
+
 
 2.4.1 November 10, 2020
 -----------------------
