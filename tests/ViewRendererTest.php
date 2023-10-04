@@ -22,19 +22,19 @@ use yiiunit\twig\data\Singer;
  */
 class ViewRendererTest extends TestCase
 {
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
         Order::setUp();
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->mockWebApplication();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         FileHelper::removeDirectory(Yii::getAlias('@runtime/assets'));
@@ -84,23 +84,23 @@ class ViewRendererTest extends TestCase
         $view = $this->mockView();
         $model = new Singer();
         $content = $view->renderFile('@yiiunit/twig/views/calls.twig', ['model' => $model]);
-        $this->assertNotContains('silence', $content, 'silence should not be echoed when void() used');
-        $this->assertContains('echo', $content);
-        $this->assertContains('variable', $content);
+        $this->assertStringNotContainsString('silence', $content, 'silence should not be echoed when void() used');
+        $this->assertStringContainsString('echo', $content);
+        $this->assertStringContainsString('variable', $content);
     }
 
     public function testInheritance()
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/twig/views/extends2.twig');
-        $this->assertContains('Hello, I\'m inheritance test!', $content);
-        $this->assertContains('extends2 block', $content);
-        $this->assertNotContains('extends1 block', $content);
+        $this->assertStringContainsString('Hello, I\'m inheritance test!', $content);
+        $this->assertStringContainsString('extends2 block', $content);
+        $this->assertStringNotContainsString('extends1 block', $content);
 
         $content = $view->renderFile('@yiiunit/twig/views/extends3.twig');
-        $this->assertContains('Hello, I\'m inheritance test!', $content);
-        $this->assertContains('extends3 block', $content);
-        $this->assertNotContains('extends1 block', $content);
+        $this->assertStringContainsString('Hello, I\'m inheritance test!', $content);
+        $this->assertStringContainsString('extends3 block', $content);
+        $this->assertStringNotContainsString('extends1 block', $content);
     }
 
     public function testChangeTitle()
@@ -109,8 +109,8 @@ class ViewRendererTest extends TestCase
         $view->title = 'Original title';
 
         $content = $view->renderFile('@yiiunit/twig/views/changeTitle.twig');
-        $this->assertContains('New title', $content);
-        $this->assertNotContains('Original title', $content);
+        $this->assertStringContainsString('New title', $content);
+        $this->assertStringNotContainsString('Original title', $content);
     }
 
     public function testNullsInAr()
@@ -127,7 +127,7 @@ class ViewRendererTest extends TestCase
         $order = new Order();
         $order->total = 42;
         $content = $view->renderFile('@yiiunit/twig/views/property.twig', ['order' => $order]);
-        $this->assertContains('42', $content);
+        $this->assertStringContainsString('42', $content);
     }
 
     public function testSimpleFilters()
@@ -164,7 +164,7 @@ class ViewRendererTest extends TestCase
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/twig/views/t.twig');
-        $this->assertContains('test&lt;br&gt;', $content);
+        $this->assertStringContainsString('test&lt;br&gt;', $content);
     }
 
     public function testHtmlExtension()
@@ -260,9 +260,9 @@ class ViewRendererTest extends TestCase
         $view = $this->mockView();
         $view->renderers['twig']['globals']['staticClass'] = ['class' => \yiiunit\twig\data\StaticAndConsts::class];
         $content = $view->renderFile('@yiiunit/twig/views/staticAndConsts.twig');
-        $this->assertContains('I am a const!', $content);
-        $this->assertContains('I am a static var!', $content);
-        $this->assertContains('I am a static function with param pam-param!', $content);
+        $this->assertStringContainsString('I am a const!', $content);
+        $this->assertStringContainsString('I am a static var!', $content);
+        $this->assertStringContainsString('I am a static function with param pam-param!', $content);
     }
 
     public function testDate()
