@@ -31,7 +31,7 @@ class ViewRenderer extends BaseViewRenderer
     public $cachePath = '@runtime/Twig/cache';
     /**
      * @var array Twig options.
-     * @see http://twig.symfony.com/doc/api.html#environment-options
+     * @see https://twig.symfony.com/doc/api.html#environment-options
      */
     public $options = [];
     /**
@@ -71,7 +71,7 @@ class ViewRenderer extends BaseViewRenderer
      *     'tag_variable' => ['{$', '}']
      * ]
      * ```
-     * @see http://twig.symfony.com/doc/recipes.html#customizing-the-syntax
+     * @see https://twig.symfony.com/doc/recipes.html#customizing-the-syntax
      */
     public $lexerOptions = [];
     /**
