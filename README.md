@@ -6,8 +6,8 @@
     <br>
 </p>
 
-This extension provides a `ViewRender` that would allow you to use [Twig](http://twig.symfony.com/) view template engine
-with [Yii framework 2.0](http://www.yiiframework.com).
+This extension provides a `ViewRender` that would allow you to use [Twig](https://twig.symfony.com/) view template engine
+with [Yii framework 2.0](https://www.yiiframework.com).
 
 For license information check the [LICENSE](LICENSE.md)-file.
 
@@ -21,7 +21,7 @@ Documentation is at [docs/guide/README.md](docs/guide/README.md).
 Installation
 ------------
 
-The preferred way to install this extension is through [composer](http://getcomposer.org/download/):
+The preferred way to install this extension is through [composer](https://getcomposer.org/download/):
 
 ```
 php composer.phar require --prefer-dist yiisoft/yii2-twig
