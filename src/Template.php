@@ -12,6 +12,7 @@ use Twig\Environment;
 use Twig\Error\RuntimeError;
 use Twig\Template as TwigTemplate;
 use Twig\Markup;
+use Twig\Extension\CoreExtension;
 
 /**
  * Template helper
@@ -51,6 +52,13 @@ class Template
                 $arguments[$key] = (string)$value;
             }
         }
+
+        // Note: Since twig:3.9 the 'twig_get_attribute' function was renamed to CoreExtension::getAttribute.
+        //       Because this is an internal function of twig, the authors could break it in a minor version.
+        if (!function_exists('twig_get_attribute')) {
+            return CoreExtension::getAttribute($env, $source, $object, $item, $arguments, $type, $isDefinedTest, $ignoreStrictCheck);
+        }
+
         return \twig_get_attribute($env, $source, $object, $item, $arguments, $type, $isDefinedTest, $ignoreStrictCheck);
     }
 }
