@@ -22,6 +22,9 @@
         "yiisoft/yii2": "~2.0.4",
         "twig/twig": "~3.0"
     },
+    "conflict": {
+        "twig/twig": ">=3.9"
+    },
     "require-dev": {
         "cweagans/composer-patches": "^1.7",
         "phpunit/phpunit": "4.8.34"
