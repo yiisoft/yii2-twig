@@ -37,6 +37,18 @@ class Extension extends AbstractExtension
      */
     protected $widgets = [];
 
+    /**
+     * Little hack to work with twig 3.9
+     * see explanation at the end of yii\twig\ViewRenderer::render function
+     *
+     * @var bool
+     */
+    protected $viewEndPage = false;
+
+    public function withViewEndPage(): bool
+    {
+        return $this->viewEndPage;
+    }
 
     /**
      * Creates new instance
@@ -194,7 +206,11 @@ class Extension extends AbstractExtension
     public function viewHelper($context, $name = null)
     {
         if ($name !== null && isset($context['this'])) {
-            $this->call($context['this'], Inflector::variablize($name));
+            if ($name === 'end_page' && TwigVersionHelper::above39()) {
+                $this->viewEndPage = true;
+            } else {
+                $this->call($context['this'], Inflector::variablize($name));
+            }
         }
     }
 

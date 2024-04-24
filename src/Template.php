@@ -53,9 +53,7 @@ class Template
             }
         }
 
-        // Note: Since twig:3.9 the 'twig_get_attribute' function was renamed to CoreExtension::getAttribute.
-        //       Because this is an internal function of twig, the authors could break it in a minor version.
-        if (!function_exists('twig_get_attribute')) {
+        if (TwigVersionHelper::above39()) {
             return CoreExtension::getAttribute($env, $source, $object, $item, $arguments, $type, $isDefinedTest, $ignoreStrictCheck);
         }
 
