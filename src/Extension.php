@@ -206,7 +206,7 @@ class Extension extends AbstractExtension
     public function viewHelper($context, $name = null)
     {
         if ($name !== null && isset($context['this'])) {
-            if ($name === 'end_page' && TwigVersionHelper::above39()) {
+            if ($name === 'end_page') {
                 $this->viewEndPage = true;
             } else {
                 $this->call($context['this'], Inflector::variablize($name));
