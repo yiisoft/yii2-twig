@@ -200,12 +200,13 @@ class ViewRenderer extends BaseViewRenderer
          * by calling the endPage function with the twig render results in the buffer after twig has already done its work.
          */
         if ($this->extension->withViewEndPage()) {
+            // $view->endPage will end the current buffer when calling ob_get_clean and echo the modified(replaced placeholders) contents.
+            // this means that we need 2 levels deep output buffer.
             ob_start();
-            ob_implicit_flush(false);
+            ob_start();
             echo $content;
             $view->endPage();
-            $content = ob_get_contents();
-            ob_clean();
+            $content = ob_get_clean();
         }
 
         return $content;
