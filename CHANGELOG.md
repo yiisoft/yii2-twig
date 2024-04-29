@@ -1,10 +1,10 @@
 Yii Framework 2 twig extension Change Log
 =========================================
 
-2.4.3 under development
------------------------
+2.4.3 April 29, 2024
+--------------------
 
-- Bug #153: Prevent Twig 3.9 from installing (schmunk42) 
+- Bug #153: Prevent Twig 3.9 from installing (schmunk42)
 
 
 2.4.2 September 04, 2022

@@ -17,7 +17,7 @@ use yii\base\ViewRenderer as BaseViewRenderer;
 /**
  * TwigViewRenderer allows you to use Twig templates in views.
  *
- * @property array $lexerOptions @see self::$lexerOptions. This property is write-only.
+ * @property-write array $lexerOptions @see self::$lexerOptions.
  *
  * @author Alexander Makarov <sam@rmcreative.ru>
  * @since 2.0
