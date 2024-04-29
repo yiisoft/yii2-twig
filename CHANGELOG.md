@@ -4,17 +4,17 @@ Yii Framework 2 twig extension Change Log
 2.5.0 under development
 -----------------------
 
-- Chg #154: Support for twig 3.9  
+- Bug #154: Support for Twig 3.9  
   In twig 3.9 there were many internal changes that might affect and break codebases using twig:
   - Internal functions (including twig_get_attribute) has been moved and renamed.
   - The internal working of twig does not store template state in the output buffer anymore.  
     This means if a custom twig function reads and modifies the output buffer, it might not work as expected.
 
 
-2.4.3 April 26, 2024
------------------------
+2.4.3 April 29, 2024
+--------------------
 
-- Chg #155: prevent twig 3.9 from installing
+- Bug #153: Prevent Twig 3.9 from installing (schmunk42)
 
 
 2.4.2 September 04, 2022
