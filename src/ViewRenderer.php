@@ -113,6 +113,14 @@ class ViewRenderer extends BaseViewRenderer
      */
     public $twigFallbackPaths = [];
 
+    /**
+     * Custom Extension for twig
+     * Need this in the render function for twig3.9 fix.
+     *
+     * @var Extension
+     */
+    protected $extension;
+
 
     public function init()
     {
@@ -121,6 +129,7 @@ class ViewRenderer extends BaseViewRenderer
         $this->twig = new Environment($loader, array_merge([
             'cache' => Yii::getAlias($this->cachePath),
             'charset' => Yii::$app->charset,
+            'use_yield' => false
         ], $this->options));
 
         // Adding custom globals (objects or static classes)
@@ -138,7 +147,8 @@ class ViewRenderer extends BaseViewRenderer
             $this->addFilters($this->filters);
         }
 
-        $this->addExtensions([new Extension($this->uses)]);
+        $this->extension = new Extension($this->uses);
+        $this->addExtensions([$this->extension]);
 
         // Adding custom extensions
         if (!empty($this->extensions)) {
@@ -176,7 +186,30 @@ class ViewRenderer extends BaseViewRenderer
             $this->setLexerOptions($this->lexerOptions);
         }
 
-        return $this->twig->render(pathinfo($file, PATHINFO_BASENAME), $params);
+        $content = $this->twig->render(pathinfo($file, PATHINFO_BASENAME), $params);
+        /**
+         * Hack to work with twig3.9.
+         * Explanation:
+         * Twig 3.9 does not hold the contents of the template in the output buffer anymore,
+         * but it still reads the contents from it (if we stick to use `use_yield` false)
+         * (it was an internal implementation and this package relied on this fact)
+         * This means that when the endPage method in the yii2 View class wants to read the output buffer
+         * to replace the placeholders it will be empty, because twig has already emptied it (and does not hold its state anymore).
+         *
+         * By not doing anything in the twig function call yet (see yii\twig\Extension::viewHelper), we can work around this limitation
+         * by calling the endPage function with the twig render results in the buffer after twig has already done its work.
+         */
+        if ($this->extension->withViewEndPage()) {
+            // $view->endPage will end the current buffer when calling ob_get_clean and echo the modified(replaced placeholders) contents.
+            // this means that we need 2 levels deep output buffer.
+            ob_start();
+            ob_start();
+            echo $content;
+            $view->endPage();
+            $content = ob_get_clean();
+        }
+
+        return $content;
     }
 
     /**

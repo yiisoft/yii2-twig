@@ -20,10 +20,7 @@
     "require": {
         "php": "^7.2.5|^8.0|^8.1",
         "yiisoft/yii2": "~2.0.4",
-        "twig/twig": "~3.0"
-    },
-    "conflict": {
-        "twig/twig": ">=3.9"
+        "twig/twig": "~3.9"
     },
     "require-dev": {
         "cweagans/composer-patches": "^1.7",
