@@ -1,8 +1,8 @@
 Yii Framework 2 twig extension Change Log
 =========================================
 
-2.5.0 under development
------------------------
+2.5.0 May 09, 2024
+------------------
 
 - Bug #154: Support for Twig 3.9  
   In twig 3.9 there were many internal changes that might affect and break codebases using twig:

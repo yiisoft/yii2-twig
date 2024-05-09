@@ -36,7 +36,6 @@ class Extension extends AbstractExtension
      * @var array used widgets
      */
     protected $widgets = [];
-
     /**
      * Little hack to work with twig 3.9
      * see explanation at the end of yii\twig\ViewRenderer::render function
@@ -44,6 +43,7 @@ class Extension extends AbstractExtension
      * @var bool
      */
     protected $viewEndPage = false;
+
 
     public function withViewEndPage(): bool
     {
