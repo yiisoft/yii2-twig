@@ -1,7 +1,7 @@
 Twig Extension for Yii 2
 ========================
 
-This extension provides a `ViewRenderer` that would allow you to use [Twig](http://twig.symfony.com/) view template engine.
+This extension provides a `ViewRenderer` that would allow you to use [Twig](https://twig.symfony.com/) view template engine.
 
 Getting Started
 ---------------
