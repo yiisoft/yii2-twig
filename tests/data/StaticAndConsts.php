@@ -11,6 +11,6 @@ class StaticAndConsts
 
     public static function sticFunction($var)
     {
-        return "I am a static function with param ${var}!";
+        return "I am a static function with param {$var}!";
     }
 }
