@@ -1,7 +1,7 @@
 Yii Framework 2 twig extension Change Log
 =========================================
 
-2.5.1 under development
+2.5.1 February 13, 2025
 -----------------------
 
 - Bug #159: Fixed string interpolation format for php 8.2 (qwerty199369)
