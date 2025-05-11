@@ -21,6 +21,7 @@
             "email": "sam@rmcreative.ru"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=8.1",
         "twig/twig": "~3.9",
