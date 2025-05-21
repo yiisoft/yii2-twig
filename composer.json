@@ -25,7 +25,7 @@
     "require": {
         "php": ">=8.1",
         "twig/twig": "~3.9",
-        "yiisoft/yii2": "2.2.x-dev"
+        "yiisoft/yii2": "22.0.x-dev"
     },
     "require-dev": {
         "php-forge/foxy": "^0.1",
