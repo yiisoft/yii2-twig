@@ -29,3 +29,4 @@ phpunit.phar
 # docker
 /tests/docker
 /tests/dockerids
+node_modules

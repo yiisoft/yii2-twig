@@ -20,7 +20,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * Clean up after test.
      * By default the application created with [[mockApplication]] will be destroyed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         $this->destroyApplication();
@@ -33,8 +33,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             'basePath' => __DIR__,
             'vendorPath' => dirname(__DIR__) . '/vendor',
             'aliases' => [
-                '@bower' => '@vendor/bower-asset',
-                '@npm'   => '@vendor/npm-asset',
+                '@root' => dirname(__DIR__),
+                '@npm'   => '@root/node_modules',
             ],
             'components' => [
                 'request' => [
