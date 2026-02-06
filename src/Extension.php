@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -14,7 +15,6 @@ use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\web\AssetBundle;
-
 
 /**
  * Extension provides Yii-specific syntax for Twig templates.
@@ -87,7 +87,8 @@ class Extension extends AbstractExtension
             new TwigFunction('*_widget', [$this, 'widget'], $options),
             new TwigFunction('path', [$this, 'path']),
             new TwigFunction('url', [$this, 'url']),
-            new TwigFunction('void', function(){}),
+            new TwigFunction('void', function () {
+            }),
             new TwigFunction('set', [$this, 'setProperty']),
             new TwigFunction('t', [\Yii::class,'t']),
         ];

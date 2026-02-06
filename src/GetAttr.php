@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -18,7 +19,7 @@ class GetAttr extends AbstractExpression
      */
     public function compile(Compiler $compiler)
     {
-        $compiler->raw(Template::class.'::attribute($this->env, $this->getSourceContext(), ');
+        $compiler->raw(Template::class . '::attribute($this->env, $this->getSourceContext(), ');
 
         if ($this->getAttribute('ignore_strict_check')) {
             $this->getNode('node')->setAttribute('ignore_strict_check', true);

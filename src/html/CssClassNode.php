@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -12,9 +13,9 @@ use Twig\Error\Error;
 
 class CssClassNode extends BaseClassNode
 {
-    public function __construct(Token $name, $value, Token $operator, $lineno = 0, $tag = null)
+    public function __construct(Token $name, $value, Token $operator, $lineno = 0, ?string $tag = null)
     {
-        parent::__construct(array('value' => $value), array('name' => $name, 'operator' => $operator), $lineno, $tag);
+        parent::__construct(['value' => $value], ['name' => $name, 'operator' => $operator], $lineno, $tag);
     }
 
     public function getHelperMethod()

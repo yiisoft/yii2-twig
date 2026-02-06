@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -41,7 +42,7 @@ class Template
     {
         if (
             $type !== TwigTemplate::METHOD_CALL &&
-            ($object instanceof Object || $object instanceof \yii\base\Model) &&
+            ($object instanceof \yii\base\Model) &&
             $object->canGetProperty($item)
         ) {
             return $isDefinedTest ? true : $object->$item;

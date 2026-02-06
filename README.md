@@ -16,10 +16,15 @@ Documentation is at [docs/guide/README.md](docs/guide/README.md).
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-twig/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-twig)
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii2-twig/downloads.png)](https://packagist.org/packages/yiisoft/yii2-twig)
 [![Build Status](https://github.com/yiisoft/yii2-twig/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-twig/actions)
+[![codecov](https://codecov.io/gh/yiisoft/yii2-twig/graph/badge.svg)](https://codecov.io/gh/yiisoft/yii2-twig)
 
 
 Installation
 ------------
+
+> [!IMPORTANT]
+> - The minimum required [PHP](https://www.php.net/) version is PHP `7.4`.
+> - It works best with PHP `8`.
 
 The preferred way to install this extension is through [composer](https://getcomposer.org/download/):
 
@@ -31,8 +36,3 @@ Usage
 -----
 
 To use this extension, configure it as described in [documentation](docs/guide/installation.md#configuring-application).
-
-Requirements
-------------
-
-* PHP 7.2 - 7.4

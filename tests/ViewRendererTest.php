@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -22,19 +23,19 @@ use yiiunit\twig\data\Singer;
  */
 class ViewRendererTest extends TestCase
 {
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
         Order::setUp();
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->mockWebApplication();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         FileHelper::removeDirectory(Yii::getAlias('@runtime/assets'));
@@ -43,7 +44,7 @@ class ViewRendererTest extends TestCase
     /**
      * https://github.com/yiisoft/yii2/issues/1755
      */
-    public function testLayoutAssets()
+    public function testLayoutAssets(): void
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/twig/views/layout.twig');
@@ -51,7 +52,7 @@ class ViewRendererTest extends TestCase
         $this->assertEquals(1, preg_match('#<script src="/assets/[0-9a-z]+/jquery\\.js"></script>\s*</body>#', $content), 'Content does not contain the jquery js:' . $content);
     }
 
-    public function testAppGlobal()
+    public function testAppGlobal(): void
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/twig/views/layout.twig');
@@ -62,7 +63,7 @@ class ViewRendererTest extends TestCase
     /**
      * https://github.com/yiisoft/yii2/issues/3877
      */
-    public function testLexerOptions()
+    public function testLexerOptions(): void
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/twig/views/comments.twig');
@@ -71,7 +72,7 @@ class ViewRendererTest extends TestCase
         $this->assertTrue(strpos($content, 'DEFAULT_TWIG_COMMENT') !== false, 'Default comment style was not modified via lexerOptions:' . $content);
     }
 
-    public function testForm()
+    public function testForm(): void
     {
         $view = $this->mockView();
         $model = new Singer();
@@ -79,41 +80,41 @@ class ViewRendererTest extends TestCase
         $this->assertEquals(1, preg_match('#<form id="login-form" class="form-horizontal" action="/form-handler" method="post">.*?</form>#s', $content), 'Content does not contain form:' . $content);
     }
 
-    public function testCalls()
+    public function testCalls(): void
     {
         $view = $this->mockView();
         $model = new Singer();
         $content = $view->renderFile('@yiiunit/twig/views/calls.twig', ['model' => $model]);
-        $this->assertNotContains('silence', $content, 'silence should not be echoed when void() used');
-        $this->assertContains('echo', $content);
-        $this->assertContains('variable', $content);
+        $this->assertStringNotContainsString('silence', $content, 'silence should not be echoed when void() used');
+        $this->assertStringContainsString('echo', $content);
+        $this->assertStringContainsString('variable', $content);
     }
 
-    public function testInheritance()
+    public function testInheritance(): void
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/twig/views/extends2.twig');
-        $this->assertContains('Hello, I\'m inheritance test!', $content);
-        $this->assertContains('extends2 block', $content);
-        $this->assertNotContains('extends1 block', $content);
+        $this->assertStringContainsString('Hello, I\'m inheritance test!', $content);
+        $this->assertStringContainsString('extends2 block', $content);
+        $this->assertStringNotContainsString('extends1 block', $content);
 
         $content = $view->renderFile('@yiiunit/twig/views/extends3.twig');
-        $this->assertContains('Hello, I\'m inheritance test!', $content);
-        $this->assertContains('extends3 block', $content);
-        $this->assertNotContains('extends1 block', $content);
+        $this->assertStringContainsString('Hello, I\'m inheritance test!', $content);
+        $this->assertStringContainsString('extends3 block', $content);
+        $this->assertStringNotContainsString('extends1 block', $content);
     }
 
-    public function testChangeTitle()
+    public function testChangeTitle(): void
     {
         $view = $this->mockView();
         $view->title = 'Original title';
 
         $content = $view->renderFile('@yiiunit/twig/views/changeTitle.twig');
-        $this->assertContains('New title', $content);
-        $this->assertNotContains('Original title', $content);
+        $this->assertStringContainsString('New title', $content);
+        $this->assertStringNotContainsString('Original title', $content);
     }
 
-    public function testNullsInAr()
+    public function testNullsInAr(): void
     {
         $view = $this->mockView();
         $order = new Order();
@@ -121,16 +122,16 @@ class ViewRendererTest extends TestCase
         $this->assertSame('', $content);
     }
 
-    public function testPropertyAccess()
+    public function testPropertyAccess(): void
     {
         $view = $this->mockView();
         $order = new Order();
         $order->total = 42;
         $content = $view->renderFile('@yiiunit/twig/views/property.twig', ['order' => $order]);
-        $this->assertContains('42', $content);
+        $this->assertStringContainsString('42', $content);
     }
 
-    public function testSimpleFilters()
+    public function testSimpleFilters(): void
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/twig/views/simpleFilters1.twig');
@@ -145,7 +146,7 @@ class ViewRendererTest extends TestCase
         $this->assertEquals($content, 'Gjvt');
     }
 
-    public function testSimpleFunctions()
+    public function testSimpleFunctions(): void
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/twig/views/simpleFunctions1.twig');
@@ -160,14 +161,14 @@ class ViewRendererTest extends TestCase
         $this->assertEquals($content, '6');
     }
 
-    public function testTranslation()
+    public function testTranslation(): void
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/twig/views/t.twig');
-        $this->assertContains('test&lt;br&gt;', $content);
+        $this->assertStringContainsString('test&lt;br&gt;', $content);
     }
 
-    public function testHtmlExtension()
+    public function testHtmlExtension(): void
     {
         $params = [
             'options' => [
@@ -177,25 +178,25 @@ class ViewRendererTest extends TestCase
         ];
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/twig/views/html/add_class.twig', $params);
-        $this->assertEquals($content, "btn btn-default btn-primary");
+        $this->assertEquals($content, 'btn btn-default btn-primary');
         $content = $view->renderFile('@yiiunit/twig/views/html/remove_class.twig', $params);
-        $this->assertEquals($content, "btn");
+        $this->assertEquals($content, 'btn');
         $content = $view->renderFile('@yiiunit/twig/views/html/add_style.twig', $params);
-        $this->assertEquals($content, "color: red; font-size: 24px; display: none;");
+        $this->assertEquals($content, 'color: red; font-size: 24px; display: none;');
         $content = $view->renderFile('@yiiunit/twig/views/html/remove_style.twig', $params);
-        $this->assertEquals($content, "color: red; font-size: 24px;/color: red; font-size: 24px;");
+        $this->assertEquals($content, 'color: red; font-size: 24px;/color: red; font-size: 24px;');
         $content = $view->renderFile('@yiiunit/twig/views/html/anchor.twig');
         $this->assertEquals($content, "<a class=\"btn\" href=\"/site/index\">Button</a>\n");
     }
 
-    public function testRegisterAssetBundle()
+    public function testRegisterAssetBundle(): void
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yiiunit/twig/views/register_asset_bundle.twig');
         $this->assertEquals(Yii::getAlias('@bower/jquery/dist'), $content);
     }
 
-    public function testPath()
+    public function testPath(): void
     {
         $this->mockWebApplication([
             'components' => [
@@ -224,7 +225,7 @@ class ViewRendererTest extends TestCase
         $this->assertEquals('/mypath2/123', $view->renderFile('@yiiunit/twig/views/path/path2WithParamsAsArray.twig'));
     }
 
-    public function testUrl()
+    public function testUrl(): void
     {
         $this->mockWebApplication([
             'components' => [
@@ -255,24 +256,23 @@ class ViewRendererTest extends TestCase
         $this->assertEquals('http://testurl.com/mypath2/123', $view->renderFile('@yiiunit/twig/views/url/url2WithParamsAsArray.twig'));
     }
 
-    public function testStaticAndConsts()
+    public function testStaticAndConsts(): void
     {
         $view = $this->mockView();
         $view->renderers['twig']['globals']['staticClass'] = ['class' => \yiiunit\twig\data\StaticAndConsts::class];
         $content = $view->renderFile('@yiiunit/twig/views/staticAndConsts.twig');
-        $this->assertContains('I am a const!', $content);
-        $this->assertContains('I am a static var!', $content);
-        $this->assertContains('I am a static function with param pam-param!', $content);
+        $this->assertStringContainsString('I am a const!', $content);
+        $this->assertStringContainsString('I am a static var!', $content);
+        $this->assertStringContainsString('I am a static function with param pam-param!', $content);
     }
 
-    public function testDate()
+    public function testDate(): void
     {
         $view = $this->mockView();
         $date = new \DateTime();
         $content = $view->renderFile('@yiiunit/twig/views/date.twig', compact('date'));
         $this->assertEquals($content, $date->format('Y-m-d'));
     }
-
 
     /**
      * Mocks view instance
@@ -297,7 +297,7 @@ class ViewRendererTest extends TestCase
                         new \Twig\TwigFunction('add_*', function ($symbols, $val) {
                             return $val . $symbols;
                         }, ['is_safe' => ['html']]),
-                        'callable_rot13' => function($string) {
+                        'callable_rot13' => function ($string) {
                             return str_rot13($string);
                         },
                         'callable_add_*' => function ($symbols, $val) {
@@ -313,7 +313,7 @@ class ViewRendererTest extends TestCase
                         new \Twig\TwigFilter('add_*', function ($symbols, $val) {
                             return $val . $symbols;
                         }, ['is_safe' => ['html']]),
-                        'callable_rot13' => function($string) {
+                        'callable_rot13' => function ($string) {
                             return str_rot13($string);
                         },
                         'callable_add_*' => function ($symbols, $val) {
