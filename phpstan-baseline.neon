@@ -133,8 +133,8 @@ parameters:
 			path: src/Extension.php
 
 		-
-			message: '#^Strict comparison using \!\=\= between Twig\\Node\\Node and null will always evaluate to true\.$#'
-			identifier: notIdentical.alwaysTrue
+			message: '#^Instanceof between Twig\\Node\\Node and Twig\\Node\\Expression\\FunctionExpression will always evaluate to false\.$#'
+			identifier: instanceof.alwaysFalse
 			count: 1
 			path: src/Optimizer.php
 
@@ -151,13 +151,7 @@ parameters:
 			path: src/Profile.php
 
 		-
-			message: '#^Call to method canGetProperty\(\) on an unknown class yii\\twig\\Object\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Template.php
-
-		-
-			message: '#^Class yii\\twig\\Object not found\.$#'
+			message: '#^Call to static method getAttribute\(\) on an unknown class Twig\\Extension\\CoreExtension\.$#'
 			identifier: class.notFound
 			count: 1
 			path: src/Template.php

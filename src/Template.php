@@ -42,7 +42,7 @@ class Template
     {
         if (
             $type !== TwigTemplate::METHOD_CALL &&
-            ($object instanceof Object || $object instanceof \yii\base\Model) &&
+            ($object instanceof \yii\base\Model) &&
             $object->canGetProperty($item)
         ) {
             return $isDefinedTest ? true : $object->$item;
