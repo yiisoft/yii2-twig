@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -24,7 +25,7 @@ class TwigEmptyLoader implements LoaderInterface
      */
     public function getSourceContext(string $name): Source
     {
-        throw new LoaderError("Can not render using empty loader");
+        throw new LoaderError('Can not render using empty loader');
     }
 
     /**
@@ -32,7 +33,7 @@ class TwigEmptyLoader implements LoaderInterface
      */
     public function getCacheKey(string $name): string
     {
-        throw new LoaderError("Can not render using empty loader");
+        throw new LoaderError('Can not render using empty loader');
     }
 
     /**
@@ -40,7 +41,7 @@ class TwigEmptyLoader implements LoaderInterface
      */
     public function isFresh(string $name, int $time): bool
     {
-        throw new LoaderError("Can not render using empty loader");
+        throw new LoaderError('Can not render using empty loader');
     }
 
     /**

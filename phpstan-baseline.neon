@@ -1,0 +1,559 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Call to function is_array\(\) with string will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 2
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:__construct\(\) has parameter \$uses with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:addUses\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:addUses\(\) has parameter \$args with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:beginWidget\(\) has parameter \$config with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:endWidget\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:getName\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:path\(\) has parameter \$args with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:registerAsset\(\) has parameter \$context with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:registerAssetBundle\(\) has parameter \$context with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:resolveAndCall\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:setProperty\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:url\(\) has parameter \$args with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:viewHelper\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:viewHelper\(\) has parameter \$context with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Method yii\\twig\\Extension\:\:widget\(\) has parameter \$config with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Parameter \#1 \$function of function call_user_func expects callable\(\)\: mixed, array\{string, string\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Parameter \#1 \$function of function call_user_func_array expects callable\(\)\: mixed, array\{string, string\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Property yii\\twig\\Extension\:\:\$aliases type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Property yii\\twig\\Extension\:\:\$namespaces type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Property yii\\twig\\Extension\:\:\$widgets type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extension.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between Twig\\Node\\Node and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: src/Optimizer.php
+
+		-
+			message: '#^Property yii\\twig\\Profile\:\:\$profiler has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Profile.php
+
+		-
+			message: '#^Property yii\\twig\\Profile\:\:\$view has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Profile.php
+
+		-
+			message: '#^Call to method canGetProperty\(\) on an unknown class yii\\twig\\Object\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Template.php
+
+		-
+			message: '#^Class yii\\twig\\Object not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Template.php
+
+		-
+			message: '#^Method yii\\twig\\Template\:\:attribute\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Template.php
+
+		-
+			message: '#^Access to property \$pathMap on an unknown class Yii\\base\\Theme\.$#'
+			identifier: class.notFound
+			count: 2
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Access to property \$pathMap on an unknown class yii\\base\\Theme\.$#'
+			identifier: class.notFound
+			count: 2
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Class yii\\base\\Theme not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Class yii\\twig\\ViewRenderer has PHPDoc tag @property\-write for property \$lexerOptions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Instanceof between yii\\base\\View and yii\\base\\View will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:_addCustom\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:_addCustom\(\) has parameter \$elements with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:addAliases\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:addAliases\(\) has parameter \$aliases with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:addExtensions\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:addExtensions\(\) has parameter \$extensions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:addFallbackPaths\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:addFilters\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:addFilters\(\) has parameter \$filters with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:addFunctions\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:addFunctions\(\) has parameter \$functions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:addGlobals\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:addGlobals\(\) has parameter \$globals with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:init\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:render\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:render\(\) should return string but returns string\|false\.$#'
+			identifier: return.type
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:setLexerOptions\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRenderer\:\:setLexerOptions\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Parameter \#2 \$theme of method yii\\twig\\ViewRenderer\:\:addFallbackPaths\(\) expects Yii\\base\\Theme\|null, array\|string\|yii\\base\\Theme\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Parameter \$theme of method yii\\twig\\ViewRenderer\:\:addFallbackPaths\(\) has invalid type Yii\\base\\Theme\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Property yii\\twig\\ViewRenderer\:\:\$extensions type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Property yii\\twig\\ViewRenderer\:\:\$filters type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Property yii\\twig\\ViewRenderer\:\:\$functions type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Property yii\\twig\\ViewRenderer\:\:\$globals type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Property yii\\twig\\ViewRenderer\:\:\$lexerOptions type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Property yii\\twig\\ViewRenderer\:\:\$options type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Property yii\\twig\\ViewRenderer\:\:\$twigFallbackPaths type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Property yii\\twig\\ViewRenderer\:\:\$uses type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Unable to resolve the template type T in call to static method yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:createObject\(\)$#'
+			identifier: argument.templateType
+			count: 1
+			path: src/ViewRenderer.php
+
+		-
+			message: '#^Method ReflectionClass\<object\>\:\:getStaticPropertyValue\(\) invoked with 1 parameter, 2 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: src/ViewRendererStaticClassProxy.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRendererStaticClassProxy\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ViewRendererStaticClassProxy.php
+
+		-
+			message: '#^Method yii\\twig\\ViewRendererStaticClassProxy\:\:__set\(\) with return type void returns mixed but should not return anything\.$#'
+			identifier: return.void
+			count: 1
+			path: src/ViewRendererStaticClassProxy.php
+
+		-
+			message: '#^Parameter \#1 \$function of function call_user_func_array expects callable\(\)\: mixed, array\{mixed, string\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/ViewRendererStaticClassProxy.php
+
+		-
+			message: '#^Property yii\\twig\\ViewRendererStaticClassProxy\:\:\$_staticClassName has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/ViewRendererStaticClassProxy.php
+
+		-
+			message: '#^Method yii\\twig\\html\\BaseClassNode\:\:getHelperMethod\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/html/BaseClassNode.php
+
+		-
+			message: '#^Method yii\\twig\\html\\BaseCss_TokenParser\:\:getNodeClass\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/html/BaseCss_TokenParser.php
+
+		-
+			message: '#^Method yii\\twig\\html\\BaseCss_TokenParser\:\:parse\(\) should return Twig\\Node\\Node but returns object\.$#'
+			identifier: return.type
+			count: 1
+			path: src/html/BaseCss_TokenParser.php
+
+		-
+			message: '#^Method yii\\twig\\html\\CssClassNode\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/html/CssClassNode.php
+
+		-
+			message: '#^Method yii\\twig\\html\\CssClassNode\:\:getHelperMethod\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/html/CssClassNode.php
+
+		-
+			message: '#^Method yii\\twig\\html\\CssClass_TokenParser\:\:getNodeClass\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/html/CssClass_TokenParser.php
+
+		-
+			message: '#^Method yii\\twig\\html\\CssStyle_TokenParser\:\:getNodeClass\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/html/CssStyle_TokenParser.php
+
+		-
+			message: '#^Method yii\\twig\\html\\StyleClassNode\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/html/StyleClassNode.php
+
+		-
+			message: '#^Method yii\\twig\\html\\StyleClassNode\:\:getHelperMethod\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/html/StyleClassNode.php
+
+		-
+			message: '#^Method yiiunit\\twig\\TestCase\:\:mockWebApplication\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method yiiunit\\twig\\TestCase\:\:mockWebApplication\(\) has parameter \$appClass with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method yiiunit\\twig\\TestCase\:\:mockWebApplication\(\) has parameter \$config with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Static property yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:\$app \(yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Call to an undefined method yii\\console\\Request\|yii\\web\\Request\:\:setHostInfo\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/ViewRendererTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of method PHPUnit\\Framework\\Assert\:\:assertContains\(\) expects iterable, string given\.$#'
+			identifier: argument.type
+			count: 6
+			path: tests/ViewRendererTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of method PHPUnit\\Framework\\Assert\:\:assertNotContains\(\) expects iterable, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/ViewRendererTest.php
+
+		-
+			message: '#^Property yiiunit\\twig\\data\\Order\:\:\$total \(string\) does not accept int\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/ViewRendererTest.php
+
+		-
+			message: '#^Method yiiunit\\twig\\data\\Order\:\:getCustomer\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: tests/data/Order.php
+
+		-
+			message: '#^Method yiiunit\\twig\\data\\Order\:\:setUp\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: tests/data/Order.php
+
+		-
+			message: '#^Property yiiunit\\twig\\data\\Order\:\:\$db has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: tests/data/Order.php
+
+		-
+			message: '#^Property yiiunit\\twig\\data\\Singer\:\:\$firstName has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: tests/data/Singer.php
+
+		-
+			message: '#^Property yiiunit\\twig\\data\\Singer\:\:\$lastName has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: tests/data/Singer.php
+
+		-
+			message: '#^Property yiiunit\\twig\\data\\Singer\:\:\$test has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: tests/data/Singer.php
+
+		-
+			message: '#^Method yiiunit\\twig\\data\\StaticAndConsts\:\:sticFunction\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: tests/data/StaticAndConsts.php
+
+		-
+			message: '#^Method yiiunit\\twig\\data\\StaticAndConsts\:\:sticFunction\(\) has parameter \$var with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/data/StaticAndConsts.php
+
+		-
+			message: '#^Property yiiunit\\twig\\data\\StaticAndConsts\:\:\$staticVar has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: tests/data/StaticAndConsts.php

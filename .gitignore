@@ -23,9 +23,6 @@ Thumbs.db
 # phpunit
 phpunit.phar
 /phpunit.xml
+.phpunit.result.cache
+coverage.xml
 /tests/runtime
-/tests/data/config.local.php
-
-# docker
-/tests/docker
-/tests/dockerids

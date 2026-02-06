@@ -1,4 +1,7 @@
-name: build
+name: static analysis
+
+permissions:
+  contents: read
 
 on:
   pull_request: &ignore-paths
@@ -10,7 +13,6 @@ on:
       - 'README.md'
       - 'CHANGELOG.md'
       - 'LICENSE.md'
-      - 'UPGRADE.md'
       - '.gitignore'
       - '.gitattributes'
       - '.editorconfig'
@@ -20,7 +22,5 @@ on:
   push: *ignore-paths
 
 jobs:
-  phpunit:
-    uses: yiisoft/yii2-actions/.github/workflows/phpunit.yml@master
-    secrets:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  phpstan:
+    uses: yiisoft/yii2-actions/.github/workflows/phpstan.yml@master

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -251,7 +252,7 @@ class ViewRenderer extends BaseViewRenderer
             }
         }
 
-        if ($theme instanceOf \yii\base\Theme && is_array($theme->pathMap)) {
+        if ($theme instanceof \yii\base\Theme && is_array($theme->pathMap)) {
             $pathMap = $theme->pathMap;
 
             if (isset($pathMap['@app/views'])) {
@@ -378,7 +379,7 @@ class ViewRenderer extends BaseViewRenderer
             }
 
             if ($twigElement !== null) {
-                $this->twig->{'add'.$classType}($twigElement);
+                $this->twig->{'add' . $classType}($twigElement);
             } else {
                 throw new \Exception("Incorrect options for \"$classType\" $name.");
             }

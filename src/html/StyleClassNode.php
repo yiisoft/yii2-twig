@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -14,7 +15,7 @@ class StyleClassNode extends BaseClassNode
 {
     public function __construct(Token $name, $value, Token $operator, $lineno = 0, $tag = null)
     {
-        parent::__construct(array('value' => $value), array('name' => $name, 'operator' => $operator), $lineno, $tag);
+        parent::__construct(['value' => $value], ['name' => $name, 'operator' => $operator], $lineno, $tag);
     }
 
     public function getHelperMethod()

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -16,7 +17,6 @@ namespace yii\twig;
 class ViewRendererStaticClassProxy
 {
     private $_staticClassName;
-
 
     /**
      * @param string $staticClassName
@@ -38,7 +38,7 @@ class ViewRendererStaticClassProxy
 
         return array_key_exists($property, $staticProps) || array_key_exists($property, $constants);
     }
-    
+
     /**
      * @param string $property
      * @return mixed
@@ -46,12 +46,12 @@ class ViewRendererStaticClassProxy
     public function __get($property)
     {
         $class = new \ReflectionClass($this->_staticClassName);
-        
+
         $constants = $class->getConstants();
         if (array_key_exists($property, $constants)) {
             return $class->getConstant($property);
         }
-        
+
         return $class->getStaticPropertyValue($property);
     }
 

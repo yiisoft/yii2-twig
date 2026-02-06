@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -9,7 +10,7 @@ namespace yii\twig;
 
 use Twig\Extension\ProfilerExtension;
 use Twig\Profiler\Dumper\TextDumper;
-use \Twig\Profiler\Profile as TwigProfile;
+use Twig\Profiler\Profile as TwigProfile;
 use yii\web\View;
 
 class Profile extends ProfilerExtension
