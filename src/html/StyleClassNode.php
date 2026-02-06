@@ -13,7 +13,7 @@ use Twig\Error\Error;
 
 class StyleClassNode extends BaseClassNode
 {
-    public function __construct(Token $name, $value, Token $operator, $lineno = 0, $tag = null)
+    public function __construct(Token $name, $value, Token $operator, $lineno = 0, ?string $tag = null)
     {
         parent::__construct(['value' => $value], ['name' => $name, 'operator' => $operator], $lineno, $tag);
     }
