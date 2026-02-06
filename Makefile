@@ -20,5 +20,5 @@ sh:			## Enter the container with the application
 
 static-analysis:	## Run code static analyze. Params: {{ v=8.1 }}.
 	make build v=$(filter-out $@,$(v))
-	docker exec yii2-twig-php sh -c "php -v && composer update && vendor/bin/phpstan analyse --memory-limit 512M"
+	docker exec yii2-twig-php-1 sh -c "php -v && composer update && vendor/bin/phpstan analyse --memory-limit 512M"
 	make down
