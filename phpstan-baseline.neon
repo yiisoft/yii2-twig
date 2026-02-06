@@ -487,18 +487,6 @@ parameters:
 			path: tests/ViewRendererTest.php
 
 		-
-			message: '#^Parameter \#2 \$haystack of method PHPUnit\\Framework\\Assert\:\:assertContains\(\) expects iterable, string given\.$#'
-			identifier: argument.type
-			count: 6
-			path: tests/ViewRendererTest.php
-
-		-
-			message: '#^Parameter \#2 \$haystack of method PHPUnit\\Framework\\Assert\:\:assertNotContains\(\) expects iterable, string given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/ViewRendererTest.php
-
-		-
 			message: '#^Property yiiunit\\twig\\data\\Order\:\:\$total \(string\) does not accept int\.$#'
 			identifier: assign.propertyType
 			count: 1
