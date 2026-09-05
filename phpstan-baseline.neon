@@ -139,6 +139,12 @@ parameters:
 			path: src/Optimizer.php
 
 		-
+			message: '#^Cannot call method getView\(\) on yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Profile.php
+
+		-
 			message: '#^Property yii\\twig\\Profile\:\:\$profiler has no type specified\.$#'
 			identifier: missingType.property
 			count: 1
@@ -163,20 +169,14 @@ parameters:
 			path: src/Template.php
 
 		-
-			message: '#^Access to property \$pathMap on an unknown class Yii\\base\\Theme\.$#'
-			identifier: class.notFound
-			count: 2
+			message: '#^Cannot access property \$charset on yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\|null\.$#'
+			identifier: property.nonObject
+			count: 1
 			path: src/ViewRenderer.php
 
 		-
-			message: '#^Access to property \$pathMap on an unknown class yii\\base\\Theme\.$#'
-			identifier: class.notFound
-			count: 2
-			path: src/ViewRenderer.php
-
-		-
-			message: '#^Class yii\\base\\Theme not found\.$#'
-			identifier: class.notFound
+			message: '#^Class yii\\base\\Theme referenced with incorrect case\: Yii\\base\\Theme\.$#'
+			identifier: class.nameCase
 			count: 1
 			path: src/ViewRenderer.php
 
@@ -301,14 +301,8 @@ parameters:
 			path: src/ViewRenderer.php
 
 		-
-			message: '#^Parameter \#2 \$theme of method yii\\twig\\ViewRenderer\:\:addFallbackPaths\(\) expects Yii\\base\\Theme\|null, array\|string\|yii\\base\\Theme\|null given\.$#'
+			message: '#^Parameter \#2 \$theme of method yii\\twig\\ViewRenderer\:\:addFallbackPaths\(\) expects yii\\base\\Theme\|null, array\|string\|yii\\base\\Theme\|null given\.$#'
 			identifier: argument.type
-			count: 1
-			path: src/ViewRenderer.php
-
-		-
-			message: '#^Parameter \$theme of method yii\\twig\\ViewRenderer\:\:addFallbackPaths\(\) has invalid type Yii\\base\\Theme\.$#'
-			identifier: class.notFound
 			count: 1
 			path: src/ViewRenderer.php
 
@@ -469,14 +463,20 @@ parameters:
 			path: tests/TestCase.php
 
 		-
-			message: '#^Static property yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:\$app \(yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\) does not accept null\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: tests/TestCase.php
-
-		-
 			message: '#^Call to an undefined method yii\\console\\Request\|yii\\web\\Request\:\:setHostInfo\(\)\.$#'
 			identifier: method.notFound
+			count: 1
+			path: tests/ViewRendererTest.php
+
+		-
+			message: '#^Cannot access property \$charset on yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/ViewRendererTest.php
+
+		-
+			message: '#^Cannot access property \$request on yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\|null\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: tests/ViewRendererTest.php
 
