@@ -12,6 +12,7 @@ use yii\db\Connection;
  * @property integer $customer_id
  * @property integer $created_at
  * @property string $total
+ * @property-read Order $customer
  */
 class Order extends ActiveRecord
 {
