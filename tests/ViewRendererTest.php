@@ -78,6 +78,7 @@ class ViewRendererTest extends TestCase
         $model = new Singer();
         $content = $view->renderFile('@yiiunit/twig/views/form.twig', ['model' => $model]);
         $this->assertEquals(1, preg_match('#<form id="login-form" class="form-horizontal" action="/form-handler" method="post">.*?</form>#s', $content), 'Content does not contain form:' . $content);
+        $this->assertEquals(1, preg_match('#<form[^>]*>.*?name="Singer\[firstName\]".*?</form>#s', $content), 'Form fields are rendered outside of the form:' . $content);
     }
 
     public function testCalls(): void
