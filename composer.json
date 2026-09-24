@@ -20,7 +20,7 @@
     "require": {
         "php": ">=7.4",
         "yiisoft/yii2": "^2.0.54",
-        "twig/twig": "~3.9"
+        "twig/twig": "~3.12"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6",

@@ -6,6 +6,7 @@ Yii Framework 2 twig extension Change Log
 
 - Enh #162: Applying Yii2 coding standards (@s1lver)
 - Enh #162: Raise min version to PHP 7.4 (@s1lver)
+- Bug #158: Raise minimum `twig/twig` version to 3.12, widget content was rendered outside of the widget with Twig 3.9 - 3.11 (@KalimeroMK)
 
 
 2.5.1 February 13, 2025
