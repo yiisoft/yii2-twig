@@ -28,3 +28,4 @@ jobs:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     with:
       extensions: pdo, pdo_sqlite
+      php-version: '["8.1","8.2","8.3","8.4","8.5"]'
